@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brotzeit Rostock – Bäckerei & Café am Vögenteich 24 | Torten, Frühstück, Brot</title>
+<meta name="description" content="Brotzeit Rostock — Bäckerei, Konditorei & Café am Vögenteich 24. Frühstück ab 7 Uhr, handwerkliche Torten, frisches Brot. Täglich in Rostock.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Brotzeit Rostock",
+  "description": "Handwerkliche Bäckerei, Konditorei und Café in Rostock. Individuelle Torten, Frühstück und Kaffeespezialitäten.",
+  "url": "https://brotzeit-rostock.de",
+  "telephone": "+493818772950",
+  "email": "maxi@sparre.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Am Vögenteich 24",
+    "addressLocality": "Rostock",
+    "postalCode": "18055",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 54.0897,
+    "longitude": 12.1327
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:30", "closes": "16:30" }
+  ],
+  "servesCuisine": ["Bäckerei", "Konditorei", "Café"],
+  "priceRange": "€",
+  "sameAs": [
+    "https://www.instagram.com/brotzeitrostock/",
+    "https://www.facebook.com/brotzeitrostock/"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & VARIABLEN ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:       #F5EFE4;
+  --sand:        #E8DCCB;
+  --warm-dark:   #2A1F14;
+  --brown-mid:   #7A5C3A;
+  --brown-light: #B8935A;
+  --accent:      #C8612A;
+  --text:        #2A1F14;
+  --text-muted:  #7A6A58;
+  --white:       #FDFAF5;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Barlow', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+#main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  transition: background 0.4s, padding 0.4s;
+}
+#main-nav.scrolled {
+  background: rgba(42,31,20,0.96);
+  padding: 14px 48px;
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  z-index: 101;
+}
+.nav-logo span { color: var(--brown-light); }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* Burger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 101;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile overlay */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--warm-dark);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+.nav-mobile.open { opacity: 1; pointer-events: all; }
+.nav-mobile a {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 300;
+  color: rgba(253,250,245,0.7);
+  text-decoration: none;
+  padding: 14px 0;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(253,250,245,0.07);
+  width: 80%;
+  text-align: center;
+  transition: color 0.2s;
+}
+.nav-mobile a:last-of-type { border-bottom: none; }
+.nav-mobile a:hover { color: var(--brown-light); }
+.nav-mobile-adresse {
+  margin-top: 36px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.25);
+}
+
+/* ── HERO SLIDESHOW ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+}
+.slides {
+  position: absolute;
+  inset: 0;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.slide.active { opacity: 1; }
+.slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(42,31,20,0.3) 0%,
+    rgba(42,31,20,0.1) 40%,
+    rgba(42,31,20,0.65) 100%);
+  z-index: 2;
+}
+.hero-content {
+  position: absolute;
+  bottom: 12%;
+  left: 48px;
+  right: 48px;
+  z-index: 3;
+  max-width: 620px;
+}
+.hero-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.hero-title em { font-style: italic; color: var(--brown-light); }
+.hero-sub {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(253,250,245,0.8);
+  margin-bottom: 32px;
+  max-width: 420px;
+  line-height: 1.8;
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.slide-dots {
+  position: absolute;
+  bottom: 12%;
+  right: 48px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dot {
+  width: 3px;
+  height: 24px;
+  background: rgba(253,250,245,0.3);
+  cursor: pointer;
+  transition: background 0.3s, height 0.3s;
+  border: none;
+}
+.dot.active { background: var(--brown-light); height: 40px; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.btn-primary:hover { background: #B0521F; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-block;
+  padding: 13px 32px;
+  border: 1px solid rgba(253,250,245,0.5);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-ghost:hover { border-color: var(--brown-light); background: rgba(184,147,90,0.1); }
+
+.btn-ghost-dark {
+  display: inline-block;
+  padding: 13px 32px;
+  border: 1px solid var(--brown-mid);
+  color: var(--warm-dark);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-ghost-dark:hover { border-color: var(--accent); background: rgba(200,97,42,0.05); }
+
+/* ── ÜBER UNS TEASER ── */
+.about-strip {
+  background: var(--warm-dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 460px;
+  border-top: 1px solid rgba(253,250,245,0.25);
+}
+.about-image {
+  position: relative;
+  overflow: hidden;
+}
+.about-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-text {
+  padding: 72px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.about-text .section-eyebrow { color: var(--brown-light); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.about-text .section-title { color: var(--white); }
+.section-lead {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.85;
+}
+.about-text .section-lead { color: rgba(253,250,245,0.65); }
+.about-mehr {
+  margin-top: 28px;
+}
+
+/* ── ANGEBOT ── */
+.angebot {
+  background: var(--white);
+  padding: 88px 48px;
+}
+.angebot-intro { margin-bottom: 48px; }
+.angebot-intro .section-title { color: var(--warm-dark); }
+.angebot-intro .section-title em { font-style: italic; color: var(--brown-mid); }
+
+.angebot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.angebot-card {
+  background: var(--cream);
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.angebot-card:hover { background: var(--sand); }
+.angebot-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--accent);
+  transition: height 0.4s;
+}
+.angebot-card:hover::before { height: 100%; }
+.angebot-number {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--sand);
+  line-height: 1;
+  margin-bottom: 18px;
+}
+.angebot-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 10px;
+}
+.angebot-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.angebot-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+}
+.angebot-link::after { content: ' →'; }
+
+/* ── TORTEN ── */
+.torten {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+.torten-text {
+  background: var(--cream);
+  padding: 88px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.torten-text .section-title { color: var(--warm-dark); }
+.torten-text .section-title em { font-style: italic; color: var(--brown-mid); }
+.torten-text .section-lead { color: var(--text-muted); }
+
+.torten-categories {
+  margin-top: 28px;
+  margin-bottom: 32px;
+}
+.torten-cat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--sand);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--warm-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.torten-cat:last-child { border-bottom: none; }
+.torten-cat:hover { color: var(--accent); }
+.torten-cat-arrow { color: var(--brown-light); }
+
+.torten-visual {
+  position: relative;
+  overflow: hidden;
+}
+.torten-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.torten-badge {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: var(--accent);
+  color: var(--white);
+  padding: 14px 20px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  z-index: 2;
+}
+
+/* ── ÖFFNUNGSZEITEN ── */
+.oeffnung {
+  background: var(--warm-dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.oeffnung-col {
+  padding: 72px 48px;
+  border-right: 1px solid rgba(253,250,245,0.07);
+}
+.oeffnung-col:last-child { border-right: none; }
+.oeffnung-col .section-eyebrow { color: var(--brown-light); }
+.oeffnung-col .section-title {
+  color: var(--white);
+  font-size: 1.7rem;
+  margin-bottom: 28px;
+}
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(253,250,245,0.06);
+  font-size: 0.88rem;
+}
+.time-row:last-child { border-bottom: none; }
+.time-row .day { color: rgba(253,250,245,0.65); }
+.time-row .hours { color: var(--brown-light); }
+.time-row.closed .hours { color: rgba(253,250,245,0.3); }
+
+.address-block {
+  font-size: 0.88rem;
+  color: rgba(253,250,245,0.55);
+  line-height: 2;
+}
+.address-block strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.address-block a {
+  color: var(--brown-light);
+  text-decoration: none;
+  display: block;
+}
+.address-block a:hover { color: var(--white); }
+
+.social-links { margin-top: 24px; display: flex; gap: 10px; }
+.social-link {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.4);
+  text-decoration: none;
+  border: 1px solid rgba(253,250,245,0.12);
+  padding: 8px 14px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.social-link:hover { color: var(--brown-light); border-color: var(--brown-light); }
+
+/* ── FOOTER ── */
+#footer {
+  background: #1A1009;
+  padding: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: rgba(253,250,245,0.5);
+  text-decoration: none;
+}
+.footer-logo span { color: var(--brown-light); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--brown-light); }
+.footer-copy {
+  font-size: 0.72rem;
+  color: rgba(253,250,245,0.2);
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-2 { transition-delay: 0.15s; }
+.reveal-3 { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE: TABLET (max 900px) ── */
+@media (max-width: 900px) {
+  #main-nav { padding: 16px 24px; }
+  #main-nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-mobile { display: flex; }
+
+  .hero-content { left: 24px; right: 24px; bottom: 10%; }
+  .hero-title { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+  .hero-sub { font-size: 0.88rem; }
+  .hero-cta { flex-direction: column; gap: 10px; }
+  .slide-dots { right: 16px; }
+
+  .about-strip { grid-template-columns: 1fr; }
+  .about-image { min-height: 240px; }
+  .about-image::after { display: none; }
+  .about-text { padding: 48px 24px; }
+
+  .angebot { padding: 64px 24px; }
+  .angebot-grid { grid-template-columns: 1fr; }
+  .angebot-card { padding: 36px 24px; }
+
+  .torten { grid-template-columns: 1fr; }
+  .torten-text { padding: 56px 24px; }
+  .torten-visual { min-height: 280px; }
+  .torten-badge { bottom: 20px; left: 20px; font-size: 0.95rem; padding: 12px 16px; }
+
+  .oeffnung { grid-template-columns: 1fr; }
+  .oeffnung-col {
+    padding: 40px 24px;
+    border-right: none;
+    border-bottom: 1px solid rgba(253,250,245,0.07);
+  }
+  .oeffnung-col:last-child { border-bottom: none; }
+
+  #footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+/* ── RESPONSIVE: SMARTPHONE (max 560px) ── */
+@media (max-width: 560px) {
+  .hero { min-height: 500px; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.14em; }
+  .slide-dots { display: none; }
+  .btn-primary, .btn-ghost, .btn-ghost-dark { width: 100%; text-align: center; }
+  .angebot-number { font-size: 2.8rem; }
+  .torten-text { padding: 48px 20px; }
+  .oeffnung-col { padding: 36px 20px; }
+  .footer-links { gap: 16px; }
+}
+</style>
+</head>
+<body data-page="home">
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-adresse">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── 1. HERO SLIDESHOW ── -->
+<header class="hero" role="banner">
+  <div class="slides">
+    <div class="slide active">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80&fit=crop"
+           alt="Frisch gebackenes Brot — Bäckerei Brotzeit Rostock">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1920&q=80&fit=crop"
+           alt="Handwerkliche Konditorei — Torten und Gebäck Brotzeit Rostock">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1504718855392-c0f33b372e72?w=1920&q=80&fit=crop"
+           alt="Frühstück und Kaffeespezialitäten — Café Brotzeit Rostock">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?w=1920&q=80&fit=crop"
+           alt="Brote und Brötchen — Bäckerei Sparre Rostock">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Bäckerei · Konditorei · Café · Rostock</p>
+    <h1 class="hero-title">Ein Stück<br><em>Rostock.</em></h1>
+    <p class="hero-sub">Handwerkliches Backen, Kaffeespezialitäten und individuelle Torten — am Vögenteich 24, mitten in Rostock.</p>
+    <div class="hero-cta">
+      <a href="speisekarte.html" class="btn-primary">Zur Speisekarte</a>
+      <a href="torten.html" class="btn-ghost">Torten anfragen</a>
+    </div>
+  </div>
+  <div class="slide-dots" role="tablist" aria-label="Bildnavigation">
+    <button class="dot active" data-index="0" aria-label="Bild 1"></button>
+    <button class="dot" data-index="1" aria-label="Bild 2"></button>
+    <button class="dot" data-index="2" aria-label="Bild 3"></button>
+    <button class="dot" data-index="3" aria-label="Bild 4"></button>
+  </div>
+</header>
+
+<!-- ── 2. ÜBER UNS TEASER ── -->
+<section class="about-strip" id="ueber-uns" aria-labelledby="about-heading">
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=80&fit=crop"
+         alt="Backstube Bäckerei Sparre — handwerkliches Backen in Rostock">
+  </div>
+  <div class="about-text">
+    <p class="section-eyebrow">Über uns</p>
+    <h2 class="section-title" id="about-heading">Handwerk,<br><em>das schmeckt.</em></h2>
+    <p class="section-lead">Die Brotzeit ist aus der Bäckerei Sparre gewachsen — Bäckerei, Konditorei und Café an einem Ort. Am Vögenteich 24, mitten in Rostock.</p>
+    <div class="about-mehr">
+      <a href="ueber-uns.html" class="btn-ghost">Mehr erfahren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. ANGEBOT ── -->
+<section class="angebot" id="angebot" aria-labelledby="angebot-heading">
+  <div class="angebot-intro">
+    <p class="section-eyebrow reveal">Was wir machen</p>
+    <h2 class="section-title reveal" id="angebot-heading">Bäckerei & Café Rostock —<br><em>täglich frisch.</em></h2>
+  </div>
+  <div class="angebot-grid">
+    <article class="angebot-card reveal">
+      <div class="angebot-number">01</div>
+      <h3 class="angebot-title">Frühstück & Mittag</h3>
+      <p class="angebot-desc">Belegte Brote, Frühstücksteller, warme Gerichte — täglich frisch. Montag bis Samstag ab 7 Uhr.</p>
+      <a href="speisekarte.html" class="angebot-link">Zur Karte</a>
+    </article>
+    <article class="angebot-card reveal reveal-2">
+      <div class="angebot-number">02</div>
+      <h3 class="angebot-title">Bäckerei & Konditorei</h3>
+      <p class="angebot-desc">Brote, Brötchen, Kuchen und Törtchen. Handwerk aus der Backstube der Familie Sparre.</p>
+      <a href="speisekarte.html" class="angebot-link">Mehr erfahren</a>
+    </article>
+    <article class="angebot-card reveal reveal-3">
+      <div class="angebot-number">03</div>
+      <h3 class="angebot-title">Kaffee & Getränke</h3>
+      <p class="angebot-desc">Kaffeespezialitäten, Tee, frische Säfte. Ein Ort zum Ankommen — nicht nur zum schnellen Durchgehen.</p>
+      <a href="speisekarte.html" class="angebot-link">Mehr erfahren</a>
+    </article>
+  </div>
+</section>
+
+<!-- ── 4. TORTEN ── -->
+<section class="torten" id="torten" aria-labelledby="torten-heading">
+  <div class="torten-text">
+    <p class="section-eyebrow reveal">Individuelle Torten</p>
+    <h2 class="section-title reveal" id="torten-heading">Individuelle Torten<br><em>in Rostock.</em></h2>
+    <p class="section-lead reveal">Geburtstag, Hochzeit, Jubiläum — wir fertigen jede Torte nach Wunsch. Motiv, Größe, Geschmack: alles persönlich besprochen.</p>
+    <nav class="torten-categories reveal" aria-label="Tortenkategorien">
+      <a href="torten.html" class="torten-cat">Hochzeitstorten <span class="torten-cat-arrow">→</span></a>
+      <a href="torten.html" class="torten-cat">Geburtstagstorten <span class="torten-cat-arrow">→</span></a>
+      <a href="torten.html" class="torten-cat">Motivtorten <span class="torten-cat-arrow">→</span></a>
+      <a href="torten.html" class="torten-cat">Cupcakes & Petitfours <span class="torten-cat-arrow">→</span></a>
+    </nav>
+    <a href="torten.html" class="btn-ghost-dark">Torte anfragen</a>
+  </div>
+  <div class="torten-visual">
+    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80&fit=crop"
+         alt="Individuelle Hochzeitstorte — Konditorei Brotzeit Rostock">
+    <div class="torten-badge">Rostock bestellt.<br>Wir backen.</div>
+  </div>
+</section>
+
+<!-- ── 5. ÖFFNUNGSZEITEN ── -->
+<section class="oeffnung" id="oeffnungszeiten" aria-labelledby="oeffnung-heading">
+  <div class="oeffnung-col">
+    <p class="section-eyebrow">Wann wir da sind</p>
+    <h2 class="section-title" id="oeffnung-heading">Öffnungs­zeiten</h2>
+    <div class="address-block">
+      <strong>Brotzeit Rostock</strong>
+      Am Vögenteich 24<br>
+      18055 Rostock<br><br>
+      <a href="tel:+493818772950">0381 87729509</a>
+      <a href="mailto:maxi@sparre.de">maxi@sparre.de</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/brotzeitrostock/" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      <a href="https://www.facebook.com/brotzeitrostock/" target="_blank" rel="noopener" class="social-link">Facebook</a>
+    </div>
+  </div>
+  <div class="oeffnung-col">
+    <p class="section-eyebrow">&nbsp;</p>
+    <div class="time-row"><span class="day">Montag</span><span class="hours">07:00 – 17:30</span></div>
+    <div class="time-row"><span class="day">Dienstag</span><span class="hours">07:00 – 17:30</span></div>
+    <div class="time-row"><span class="day">Mittwoch</span><span class="hours">07:00 – 17:30</span></div>
+    <div class="time-row"><span class="day">Donnerstag</span><span class="hours">07:00 – 17:30</span></div>
+    <div class="time-row"><span class="day">Freitag</span><span class="hours">07:00 – 17:30</span></div>
+    <div class="time-row"><span class="day">Samstag</span><span class="hours">07:30 – 16:30</span></div>
+    <div class="time-row closed"><span class="day">Sonntag</span><span class="hours">geschlossen</span></div>
+  </div>
+  <div class="oeffnung-col">
+    <p class="section-eyebrow">Jetzt schreiben</p>
+    <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:16px;line-height:1.2;">Fragen oder<br><em style="color:var(--brown-light);">Torte anfragen?</em></h3>
+    <p style="font-size:0.88rem;color:rgba(253,250,245,0.5);line-height:1.8;margin-bottom:24px;">Persönlich im Laden oder per E-Mail — wir antworten innerhalb von 24 Stunden.</p>
+    <a href="kontakt.html" class="btn-primary">Zur Kontaktseite</a>
+  </div>
+</section>
+
+<!-- ── 6. FOOTER ── -->
+<footer id="footer" role="contentinfo">
+  <a href="index.html" class="footer-logo">Brot<span>zeit</span> Rostock</a>
+  <ul class="footer-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Brotzeit Rostock</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* NAV scroll */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* Burger */
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    mobile.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobile.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      mobile.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* Slideshow */
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(i) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(parseInt(dot.dataset.index));
+      timer = setInterval(() => goTo((current + 1) % slides.length), 5000);
+    });
+  });
+
+  timer = setInterval(() => goTo((current + 1) % slides.length), 5000);
+
+  /* Reveal on scroll */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+});
+</script>
+</body>
+</html>

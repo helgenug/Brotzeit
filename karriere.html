@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karriere – Brotzeit Rostock | Jetzt bewerben</title>
+<meta name="description" content="Werde Teil des Teams bei Brotzeit Rostock. Offene Stellen in Bäckerei, Konditorei und Service. Bewerbung per E-Mail.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/karriere.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Karriere", "item": "https://brotzeit-rostock.de/karriere.html" }
+      ]
+    },
+    {
+      "@type": "JobPosting",
+      "title": "Bäcker / Konditor (m/w/d)",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Brotzeit Rostock",
+        "sameAs": "https://brotzeit-rostock.de"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Am Vögenteich 24",
+          "addressLocality": "Rostock",
+          "postalCode": "18055",
+          "addressCountry": "DE"
+        }
+      },
+      "employmentType": "FULL_TIME",
+      "datePosted": "2026-04-04"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── KARRIERE-SPECIFIC ── */
+
+/* Intro Text */
+.karriere-intro {
+  max-width: 680px;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.95;
+  margin-top: 20px;
+}
+
+/* Stellen-Kacheln */
+.stellen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.stellen-card {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.stellen-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--brown-light);
+}
+.stellen-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+.stellen-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.stellen-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  flex: 1;
+  margin-bottom: 24px;
+}
+.stellen-card .btn-primary {
+  align-self: flex-start;
+}
+
+/* Initiativ-Sektion */
+.initiativ-section {
+  background: var(--warm-dark);
+}
+.initiativ-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.initiativ-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.initiativ-text h2 em { font-style: italic; color: var(--brown-light); }
+.initiativ-text p {
+  font-size: 0.9rem;
+  color: rgba(253,250,245,0.55);
+  line-height: 1.85;
+  max-width: 460px;
+}
+
+@media (max-width: 900px) {
+  .stellen-grid { grid-template-columns: 1fr; }
+  .initiativ-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html" class="active">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html" class="active">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80&fit=crop"
+       alt="Team in der Bäckereiküche — Karriere bei Brotzeit Rostock"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Karriere · Brotzeit Rostock</p>
+    <h1>Werde Teil <em>unseres Teams.</em></h1>
+    <p class="page-teaser-lead">Handwerk, Konditorei, Service — wir freuen uns über Verstärkung.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Karriere</span>
+</nav>
+
+<!-- ── SEKTION 1: STELLEN ── -->
+<section aria-labelledby="stellen-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Offene Stellen</p>
+    <h2 class="section-title reveal" id="stellen-heading">Gemeinsam <em>backen wir mehr.</em></h2>
+    <p class="karriere-intro reveal">
+      Wir sind ein kleines Team mit viel Herzblut für gutes Handwerk. Ob Bäcker, Konditor oder im Service — wenn du gerne backst, anpackst und Freude am Umgang mit Menschen hast, bist du bei uns richtig.
+    </p>
+    <div class="stellen-grid">
+      <article class="stellen-card reveal reveal-delay-1">
+        <p class="stellen-badge">Vollzeit · Teilzeit</p>
+        <h3 class="stellen-title">Bäcker / Konditor (m/w/d)</h3>
+        <p class="stellen-desc">Du liebst es, mit Teig zu arbeiten und Qualität zu schaffen, die man schmeckt. In unserem Team bringst du handwerkliches Können täglich zum Einsatz — von der Backstube bis zum Verkauf.</p>
+        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20B%C3%A4cker%20Konditor" class="btn-primary">Jetzt bewerben</a>
+      </article>
+      <article class="stellen-card reveal reveal-delay-2">
+        <p class="stellen-badge">Vollzeit · Teilzeit</p>
+        <h3 class="stellen-title">Fachverkäufer im Lebensmittelhandwerk (m/w/d)</h3>
+        <p class="stellen-desc">Du weißt, was in unseren Produkten steckt, und gibst das gerne weiter. Mit Begeisterung für gute Backwaren und Spaß am Kontakt mit Gästen bist du bei uns genau richtig.</p>
+        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20Fachverk%C3%A4ufer" class="btn-primary">Jetzt bewerben</a>
+      </article>
+      <article class="stellen-card reveal reveal-delay-3">
+        <p class="stellen-badge">Minijob · Aushilfe</p>
+        <h3 class="stellen-title">Aushilfe / Minijob (m/w/d)</h3>
+        <p class="stellen-desc">Flexible Unterstützung an Stoßzeiten oder am Wochenende — ideal für Studierende oder alle, die einfach gerne in einem Bäckerei-Café arbeiten möchten.</p>
+        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20Aushilfe" class="btn-primary">Jetzt bewerben</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: INITIATIVBEWERBUNG ── -->
+<section class="initiativ-section" aria-labelledby="initiativ-heading">
+  <div class="section-wrap">
+    <div class="initiativ-inner">
+      <div class="initiativ-text">
+        <p class="section-eyebrow reveal" style="color:var(--brown-light);">Kein passendes Angebot?</p>
+        <h2 class="reveal" id="initiativ-heading">Initiativbewerbung <em>willkommen.</em></h2>
+        <p class="reveal reveal-delay-1">Schick uns einfach eine Initiativbewerbung — wir melden uns, sobald etwas Passendes frei ist.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <a href="mailto:maxi@sparre.de?subject=Initiativbewerbung%20Brotzeit%20Rostock"
+           class="btn-ghost-light">Initiativbewerbung senden</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

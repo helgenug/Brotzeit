@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speisekarte – Brotzeit Rostock | Frühstück, Mittagstisch &amp; Backwaren</title>
+<meta name="description" content="Täglich frisches Frühstück, wechselnder Mittagstisch und handwerkliche Backwaren. Brotzeit Rostock, Am Vögenteich 24.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/speisekarte.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Speisekarte", "item": "https://brotzeit-rostock.de/speisekarte.html" }
+      ]
+    },
+    {
+      "@type": "Menu",
+      "name": "Speisekarte Brotzeit Rostock",
+      "url": "https://brotzeit-rostock.de/speisekarte.html",
+      "inLanguage": "de",
+      "provider": {
+        "@type": "Bakery",
+        "name": "Brotzeit Rostock",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Am Vögenteich 24",
+          "addressLocality": "Rostock",
+          "postalCode": "18055",
+          "addressCountry": "DE"
+        }
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── SPEISEKARTE-SPECIFIC ── */
+.karten-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+.karte-card {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  padding: 36px 28px;
+  position: relative;
+  transition: box-shadow 0.3s;
+}
+.karte-card:hover { box-shadow: 0 8px 32px rgba(42,31,20,0.1); }
+.karte-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--sand);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.karte-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 10px;
+}
+.karte-items {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+.karte-zeit {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.karten-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.karten-note a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.karten-note a:hover { text-decoration: underline; }
+
+/* Saisonale Kacheln */
+.saisonal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.saisonal-tile {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.saisonal-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.saisonal-tile:hover img { transform: scale(1.04); }
+.saisonal-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42,31,20,0.82) 0%, rgba(42,31,20,0.15) 60%);
+}
+.saisonal-tile-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+}
+.saisonal-tile-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.saisonal-tile-text {
+  font-size: 0.82rem;
+  color: rgba(253,250,245,0.72);
+  line-height: 1.7;
+}
+
+/* Öffnungszeiten reminder */
+.oeffnung-reminder {
+  background: var(--warm-dark);
+}
+.oeffnung-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.oeffnung-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 8px;
+}
+.oeffnung-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.oz-table { width: 100%; border-collapse: collapse; }
+.oz-table tr { border-bottom: 1px solid rgba(253,250,245,0.07); }
+.oz-table tr:last-child { border-bottom: none; }
+.oz-table td {
+  padding: 9px 0;
+  font-size: 0.88rem;
+  color: rgba(253,250,245,0.6);
+}
+.oz-table td:last-child {
+  text-align: right;
+  color: rgba(253,250,245,0.85);
+}
+.oz-table tr.closed td { color: rgba(253,250,245,0.3); }
+
+@media (max-width: 900px) {
+  .karten-grid { grid-template-columns: 1fr; }
+  .saisonal-grid { grid-template-columns: 1fr; }
+  .oeffnung-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html" class="active">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html" class="active">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="https://images.unsplash.com/photo-1504718855392-c0f33b372e72?w=1600&q=80&fit=crop"
+       alt="Frühstück und Backwaren — Brotzeit Rostock Speisekarte"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Speisekarte · Brotzeit Rostock</p>
+    <h1>Täglich frisch. <em>Täglich anders.</em></h1>
+    <p class="page-teaser-lead">Frühstück ab 7 Uhr, wechselnder Mittagstisch, Backwaren aus der Backstube. Die Karte wechselt wöchentlich.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Speisekarte</span>
+</nav>
+
+<!-- ── SEKTION 1: DREI KARTEN ── -->
+<section aria-labelledby="karten-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Was wir täglich anbieten</p>
+    <h2 class="section-title reveal" id="karten-heading">Frühstück, Mittag <em>&amp; Backstube.</em></h2>
+    <p class="section-lead reveal">Drei Welten unter einem Dach — jeden Tag frisch zubereitet und handwerklich hergestellt.</p>
+    <div class="karten-grid">
+      <article class="karte-card reveal reveal-delay-1">
+        <div class="karte-num">01</div>
+        <h3 class="karte-title">Frühstück &amp; Brunch</h3>
+        <p class="karte-items">Belegte Brote · Frühstücksteller · Rührei · Lachs · Aufschnitt · Käse · Joghurt</p>
+        <p class="karte-zeit">Täglich ab 7 Uhr</p>
+      </article>
+      <article class="karte-card reveal reveal-delay-2">
+        <div class="karte-num">02</div>
+        <h3 class="karte-title">Mittagstisch</h3>
+        <p class="karte-items">Wechselnde warme Gerichte · Suppen · Tagesgerichte nach Saison · herzhafte Backwaren</p>
+        <p class="karte-zeit">Mo–Fr · wechselnd</p>
+      </article>
+      <article class="karte-card reveal reveal-delay-3">
+        <div class="karte-num">03</div>
+        <h3 class="karte-title">Backwaren &amp; Brot</h3>
+        <p class="karte-items">Brote · Brötchen · Kuchen · Törtchen · Konditoreigebäck aus der Backstube</p>
+        <p class="karte-zeit">Täglich frisch</p>
+      </article>
+    </div>
+    <p class="karten-note reveal">
+      Die Karte wechselt wöchentlich. Aktuelle Angebote immer im Laden oder auf
+      <a href="https://www.instagram.com/brotzeitrostock/" target="_blank" rel="noopener">Instagram</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: SAISONALES ── -->
+<section style="background: var(--sand);" aria-labelledby="saisonal-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Immer zur richtigen Zeit</p>
+    <h2 class="section-title reveal" id="saisonal-heading">Saisonales &amp; <em>Besonderes.</em></h2>
+    <div class="saisonal-grid">
+      <div class="saisonal-tile reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=80&fit=crop"
+             alt="Österliche Hefezöpfe und Osterlämmer — Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Ostern</h3>
+          <p class="saisonal-tile-text">Hefezöpfe, Osterlämmer, Schokoeier aus der Konditorei.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80&fit=crop"
+             alt="Muttertagstorten und Frühstücksboxen — Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Muttertag</h3>
+          <p class="saisonal-tile-text">Individualtorten, Blumentörtchen, Frühstücksboxen.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal">
+        <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=600&q=80&fit=crop"
+             alt="Valentinstag Pralinen und Herztorten — Konditorei Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Valentinstag</h3>
+          <p class="saisonal-tile-text">Pralinen, Herztorten, kleine Überraschungen.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80&fit=crop"
+             alt="Weihnachten Stollen und Lebkuchen — Bäckerei Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Weihnachten</h3>
+          <p class="saisonal-tile-text">Stollen, Lebkuchen, Christstollen nach Hausrezept.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 3: ÖFFNUNGSZEITEN-REMINDER ── -->
+<section class="oeffnung-reminder" aria-labelledby="oz-heading">
+  <div class="section-wrap">
+    <div class="oeffnung-inner">
+      <div>
+        <p class="oeffnung-label reveal">Öffnungszeiten</p>
+        <h2 class="oeffnung-heading reveal" id="oz-heading">Täglich vor Ort.</h2>
+        <table class="oz-table reveal">
+          <tbody>
+            <tr><td>Montag – Freitag</td><td>07:00 – 17:30 Uhr</td></tr>
+            <tr><td>Samstag</td><td>07:30 – 16:30 Uhr</td></tr>
+            <tr class="closed"><td>Sonntag</td><td>geschlossen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="reveal">
+        <p style="font-size:0.92rem;color:rgba(253,250,245,0.6);line-height:1.9;margin-bottom:28px;">
+          Sie haben Fragen zum aktuellen Angebot, zur Mittagskarte oder zu besonderen Wünschen?<br>
+          Sprechen Sie uns gerne persönlich an oder schreiben Sie uns.
+        </p>
+        <a href="kontakt.html" class="btn-ghost-light">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über uns – Brotzeit Rostock | Bäckerei Sparre seit Jahrzehnten</title>
+<meta name="description" content="Die Brotzeit ist aus der Bäckerei Sparre gewachsen. Handwerkliches Backen, Konditorei und Café am Vögenteich 24 in Rostock.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/ueber-uns.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Über uns", "item": "https://brotzeit-rostock.de/ueber-uns.html" }
+      ]
+    },
+    {
+      "@type": "AboutPage",
+      "name": "Über uns — Brotzeit Rostock",
+      "url": "https://brotzeit-rostock.de/ueber-uns.html",
+      "description": "Die Brotzeit ist aus der Bäckerei Sparre gewachsen — handwerkliches Backen, Konditorei und Café am Vögenteich 24 in Rostock.",
+      "about": {
+        "@type": "Bakery",
+        "name": "Brotzeit Rostock",
+        "foundingLocation": "Rostock",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Am Vögenteich 24",
+          "addressLocality": "Rostock",
+          "postalCode": "18055",
+          "addressCountry": "DE"
+        }
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── ÜBER UNS SPECIFIC ── */
+
+/* Sektion 1: Text links, Bild rechts */
+.about-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.about-body {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.95;
+  margin-top: 20px;
+}
+.about-bild {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.about-bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sektion 2: Werte */
+.werte-section { background: var(--sand); }
+.werte-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+.wert-card {
+  background: var(--white);
+  padding: 36px 28px;
+  border-top: 3px solid var(--brown-light);
+}
+.wert-icon {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--brown-light);
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+.wert-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 10px;
+}
+.wert-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+/* Sektion 3: Instagram */
+.insta-section {
+  background: var(--warm-dark);
+  text-align: center;
+}
+.insta-handle {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--brown-light);
+  margin: 16px 0 28px;
+}
+.insta-lead {
+  font-size: 0.95rem;
+  color: rgba(253,250,245,0.55);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.85;
+}
+
+@media (max-width: 900px) {
+  .about-two-col { grid-template-columns: 1fr; gap: 32px; }
+  .about-bild { aspect-ratio: 16/9; order: -1; }
+  .werte-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html" class="active">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="ueber-uns.html" class="active">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1600&q=80&fit=crop"
+       alt="Backstube Bäckerei Sparre — handwerkliches Backen in Rostock"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Über uns · Bäckerei Sparre</p>
+    <h1>Handwerk, <em>das schmeckt.</em></h1>
+    <p class="page-teaser-lead">Die Brotzeit ist aus der Bäckerei Sparre gewachsen — Bäckerei, Konditorei und Café. Am Vögenteich 24, Rostock.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Über uns</span>
+</nav>
+
+<!-- ── SEKTION 1: TEXT & BILD ── -->
+<section aria-labelledby="about-heading">
+  <div class="section-wrap">
+    <div class="about-two-col">
+      <div>
+        <p class="section-eyebrow reveal">Unsere Geschichte</p>
+        <h2 class="section-title reveal" id="about-heading">Aus der Bäckerei <em>Sparre.</em></h2>
+        <div class="divider reveal"></div>
+        <p class="about-body reveal">
+          Die Brotzeit entstand aus der Bäckerei Sparre — einem Rostocker Handwerksbetrieb, der seit Jahrzehnten für seine handwerkliche Qualität bekannt ist. Am Vögenteich 24 vereint die Brotzeit Bäckerei, Konditorei und Café unter einem Dach.
+        </p>
+        <p class="about-body reveal reveal-delay-1">
+          Täglich frisch gebacken, täglich für Rostock. Was wir machen, machen wir mit Überzeugung: aus guten Zutaten, mit eigenen Händen, nach eigenem Rezept.
+        </p>
+        <div style="margin-top:32px;" class="reveal reveal-delay-2">
+          <a href="kontakt.html" class="btn-ghost">Kontakt aufnehmen</a>
+        </div>
+      </div>
+      <div class="about-bild reveal">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&fit=crop"
+             alt="Frisch gebackenes Brot — Bäckerei Sparre Rostock"
+             loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: WERTE ── -->
+<section class="werte-section" aria-labelledby="werte-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Was uns ausmacht</p>
+    <h2 class="section-title reveal" id="werte-heading">Drei Dinge, <em>die zählen.</em></h2>
+    <div class="werte-grid">
+      <article class="wert-card reveal reveal-delay-1">
+        <div class="wert-icon">I</div>
+        <h3 class="wert-title">Handwerk</h3>
+        <p class="wert-text">Jedes Brot, jede Torte, jedes Brötchen — aus eigener Produktion. Kein Halbfertigprodukt, keine Abkürzung.</p>
+      </article>
+      <article class="wert-card reveal reveal-delay-2">
+        <div class="wert-icon">II</div>
+        <h3 class="wert-title">Frische</h3>
+        <p class="wert-text">Täglich gebacken. Was heute im Laden liegt, wurde heute gebacken. Punkt.</p>
+      </article>
+      <article class="wert-card reveal reveal-delay-3">
+        <div class="wert-icon">III</div>
+        <h3 class="wert-title">Rostock</h3>
+        <p class="wert-text">Ein Laden für die Nachbarschaft, die Mittagspause und den besonderen Anlass. Für Rostock — seit Jahrzehnten.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 3: INSTAGRAM ── -->
+<section class="insta-section" aria-label="Instagram">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal" style="color:var(--brown-light);text-align:center;">Einblicke in die Backstube</p>
+    <p class="insta-handle reveal">@brotzeitrostock</p>
+    <p class="insta-lead reveal">Frisch gebacken, frisch gepostet — folgt uns auf Instagram und bleibt auf dem Laufenden.</p>
+    <div class="reveal">
+      <a href="https://www.instagram.com/brotzeitrostock/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn-ghost-light">Auf Instagram folgen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

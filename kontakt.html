@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt – Brotzeit Rostock | Am Vögenteich 24</title>
+<meta name="description" content="Brotzeit Rostock kontaktieren: Am Vögenteich 24, 18055 Rostock. Telefon, E-Mail, Öffnungszeiten und Google Maps.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/kontakt.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://brotzeit-rostock.de/kontakt.html" }
+      ]
+    },
+    {
+      "@type": "Bakery",
+      "name": "Brotzeit Rostock",
+      "url": "https://brotzeit-rostock.de",
+      "telephone": "+493818772950",
+      "email": "maxi@sparre.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Vögenteich 24",
+        "addressLocality": "Rostock",
+        "postalCode": "18055",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 54.0897,
+        "longitude": 12.1327
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:30", "closes": "16:30" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── KONTAKT-SPECIFIC ── */
+
+/* Sektion 1: 3-spaltig */
+.kontakt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.kontakt-adresse-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 20px;
+}
+.kontakt-info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.kontakt-info-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.kontakt-info-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.kontakt-info-value a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.kontakt-info-value a:hover { text-decoration: underline; }
+
+.oz-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.oz-table tr { border-bottom: 1px solid var(--sand); }
+.oz-table tr:last-child { border-bottom: none; }
+.oz-table td {
+  padding: 8px 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.oz-table td:last-child {
+  text-align: right;
+  color: var(--text);
+}
+.oz-table tr.closed td { color: rgba(42,31,20,0.3); }
+
+.kontakt-map iframe {
+  border: 0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+/* Sektion 2: Anfahrt */
+.anfahrt-section {
+  background: var(--warm-dark);
+}
+.anfahrt-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.anfahrt-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.anfahrt-text {
+  font-size: 0.9rem;
+  color: rgba(253,250,245,0.6);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .kontakt-grid { grid-template-columns: 1fr; }
+  .anfahrt-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html" class="active">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html" class="active">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&fit=crop"
+       alt="Café Eingang — Brotzeit Rostock Am Vögenteich 24"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Kontakt · Brotzeit Rostock</p>
+    <h1>So findet ihr <em>uns.</em></h1>
+    <p class="page-teaser-lead">Am Vögenteich 24, mitten in Rostock. Persönlich, per E-Mail oder telefonisch.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Kontakt</span>
+</nav>
+
+<!-- ── SEKTION 1: ADRESSE, KARTE, FORMULAR ── -->
+<section aria-labelledby="kontakt-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Hier sind wir</p>
+    <h2 class="section-title reveal" id="kontakt-heading">Am Vögenteich 24, <em>Rostock.</em></h2>
+    <div class="divider reveal"></div>
+    <div class="kontakt-grid">
+
+      <!-- Spalte 1: Adresse & Öffnungszeiten -->
+      <address class="reveal" style="font-style:normal;">
+        <h3 class="kontakt-adresse-title">Adresse &amp; Öffnungszeiten</h3>
+        <div class="kontakt-info-row">
+          <span class="kontakt-info-label">Adresse</span>
+          <span class="kontakt-info-value">Am Vögenteich 24<br>18055 Rostock</span>
+        </div>
+        <div class="kontakt-info-row">
+          <span class="kontakt-info-label">Telefon</span>
+          <span class="kontakt-info-value">
+            <a href="tel:+493818772950">0381 87729509</a>
+          </span>
+        </div>
+        <div class="kontakt-info-row">
+          <span class="kontakt-info-label">E-Mail</span>
+          <span class="kontakt-info-value">
+            <a href="mailto:maxi@sparre.de">maxi@sparre.de</a>
+          </span>
+        </div>
+        <div style="margin-top:20px;">
+          <p class="kontakt-info-label" style="margin-bottom:0;">Öffnungszeiten</p>
+          <table class="oz-table">
+            <tbody>
+              <tr><td>Mo – Fr</td><td>07:00 – 17:30 Uhr</td></tr>
+              <tr><td>Samstag</td><td>07:30 – 16:30 Uhr</td></tr>
+              <tr class="closed"><td>Sonntag</td><td>geschlossen</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </address>
+
+      <!-- Spalte 2: Google Maps -->
+      <div class="kontakt-map reveal reveal-delay-1">
+        <!-- Bitte durch echten Embed-Code von maps.google.com → "Teilen" → "Karte einbetten" ersetzen -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2335.123!2d12.1327!3d54.0897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDA1JzIyLjkiTiAxMsKwMDcnNTcuNyJF!5e0!3m2!1sde!2sde!4v1234567890"
+          width="100%"
+          height="320"
+          style="border:0;border-radius:4px;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Brotzeit Rostock auf Google Maps">
+        </iframe>
+      </div>
+
+      <!-- Spalte 3: Kontaktformular -->
+      <div class="reveal reveal-delay-2">
+        <h3 class="kontakt-adresse-title">Nachricht senden</h3>
+        <form action="mailto:maxi@sparre.de" method="post" enctype="text/plain" aria-label="Kontaktformular">
+          <div class="form-group">
+            <label for="k-name">Name</label>
+            <input type="text" id="k-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="k-email">E-Mail</label>
+            <input type="email" id="k-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="k-betreff">Betreff</label>
+            <select id="k-betreff" name="betreff">
+              <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
+              <option value="Torte bestellen">Torte bestellen</option>
+              <option value="Tisch reservieren">Tisch reservieren</option>
+              <option value="Karriere">Karriere</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="k-nachricht">Nachricht</label>
+            <textarea id="k-nachricht" name="nachricht" placeholder="Ihre Nachricht …"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Nachricht senden</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: ANFAHRT ── -->
+<section class="anfahrt-section" aria-labelledby="anfahrt-heading">
+  <div class="section-wrap">
+    <div class="anfahrt-inner">
+      <div>
+        <p class="section-eyebrow reveal" style="color:var(--brown-light);">So kommen Sie zu uns</p>
+        <h2 class="anfahrt-title reveal" id="anfahrt-heading">Mit Bus oder Auto.</h2>
+        <p class="anfahrt-text reveal">
+          Parkplätze am Vögenteich verfügbar. Die Zufahrt über den Vögenteich ist gut ausgeschildert.
+        </p>
+        <p class="anfahrt-text reveal reveal-delay-1">
+          ÖPNV: Linie 1 und 2, Haltestelle Steintor (ca. 5 Minuten Fußweg).
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:16px;">
+        <a href="https://maps.google.com/?q=Am+V%C3%B6genteich+24+Rostock"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-ghost-light">Route planen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

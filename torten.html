@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individuelle Torten – Brotzeit Rostock | Hochzeitstorten, Motivtorten, Cupcakes</title>
+<meta name="description" content="Individuelle Torten nach Maß: Hochzeitstorten, Geburtstagstorten, Motivtorten und Cupcakes. Handwerkliche Konditorei Rostock. Jetzt anfragen.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/torten.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Torten", "item": "https://brotzeit-rostock.de/torten.html" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Individuelle Torten — Brotzeit Rostock",
+      "url": "https://brotzeit-rostock.de/torten.html",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Hochzeitstorten" },
+        { "@type": "ListItem", "position": 2, "name": "Geburtstagstorten" },
+        { "@type": "ListItem", "position": 3, "name": "Motivtorten" },
+        { "@type": "ListItem", "position": 4, "name": "Cupcakes & Petitfours" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── TORTEN-SPECIFIC ── */
+
+/* Sektion 1: Intro 2-spaltig */
+.torten-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.torten-intro-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.torten-intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prozess-list {
+  list-style: none;
+  margin-top: 32px;
+}
+.prozess-item {
+  display: flex;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--sand);
+}
+.prozess-item:last-child { border-bottom: none; }
+.prozess-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--brown-light);
+  min-width: 32px;
+  line-height: 1.3;
+}
+.prozess-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  margin-bottom: 4px;
+}
+.prozess-text span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Sektion 2: Kategorien 2x2 */
+.kategorien-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+.kategorie-card {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+.kategorie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.kategorie-card:hover img { transform: scale(1.05); }
+.kategorie-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42,31,20,0.88) 0%, rgba(42,31,20,0.1) 55%);
+  transition: background 0.3s;
+}
+.kategorie-card:hover .kategorie-overlay {
+  background: linear-gradient(to top, rgba(42,31,20,0.92) 0%, rgba(42,31,20,0.2) 55%);
+}
+.kategorie-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+}
+.kategorie-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.kategorie-cta {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.kategorie-card:hover .kategorie-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sektion 3: Saisonales (gleich wie speisekarte) */
+.saisonal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.saisonal-tile {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.saisonal-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.saisonal-tile:hover img { transform: scale(1.04); }
+.saisonal-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42,31,20,0.82) 0%, rgba(42,31,20,0.15) 60%);
+}
+.saisonal-tile-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+}
+.saisonal-tile-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.saisonal-tile-text {
+  font-size: 0.82rem;
+  color: rgba(253,250,245,0.72);
+  line-height: 1.7;
+}
+
+/* Sektion 4: Anfrage */
+.anfrage-section {
+  background: var(--warm-dark);
+}
+.anfrage-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+.anfrage-info .section-eyebrow { color: var(--brown-light); }
+.anfrage-info h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.anfrage-info h2 em { font-style: italic; color: var(--brown-light); }
+.anfrage-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+.anfrage-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.anfrage-icon {
+  font-size: 0.85rem;
+  color: var(--brown-light);
+  min-width: 20px;
+  margin-top: 2px;
+}
+.anfrage-row-text strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.4);
+  margin-bottom: 3px;
+}
+.anfrage-row-text span {
+  font-size: 0.88rem;
+  color: rgba(253,250,245,0.7);
+}
+.anfrage-row-text a {
+  font-size: 0.88rem;
+  color: var(--brown-light);
+  text-decoration: none;
+}
+.anfrage-row-text a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .torten-intro { grid-template-columns: 1fr; }
+  .torten-intro-img { aspect-ratio: 16/9; }
+  .kategorien-grid { grid-template-columns: 1fr; }
+  .saisonal-grid { grid-template-columns: 1fr; }
+  .anfrage-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html" class="active">Torten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html" class="active">Torten</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=80&fit=crop"
+       alt="Individuelle Hochzeitstorte — Konditorei Brotzeit Rostock"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Konditorei · Brotzeit Rostock</p>
+    <h1>Jede Torte ein <em>Einzelstück.</em></h1>
+    <p class="page-teaser-lead">Hochzeitstorten, Geburtstagstorten, Motivtorten — jede Torte entsteht nach Wunsch. Wir besprechen alles persönlich.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Torten</span>
+</nav>
+
+<!-- ── SEKTION 1: INTRO PROZESS ── -->
+<section aria-labelledby="prozess-heading">
+  <div class="section-wrap">
+    <div class="torten-intro">
+      <div class="torten-intro-img reveal">
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=80&fit=crop"
+             alt="Handgefertigte Torte in der Konditorei Brotzeit Rostock"
+             loading="lazy">
+      </div>
+      <div>
+        <p class="section-eyebrow reveal">Der Weg zur Torte</p>
+        <h2 class="section-title reveal" id="prozess-heading">Von der Idee zur <em>fertigen Torte.</em></h2>
+        <p class="section-lead reveal">Jede Torte entsteht in enger Absprache — damit das Ergebnis genau so wird, wie Sie es sich vorstellen.</p>
+        <ol class="prozess-list" aria-label="Prozess">
+          <li class="prozess-item reveal reveal-delay-1">
+            <span class="prozess-num">1</span>
+            <div class="prozess-text">
+              <strong>Anfrage</strong>
+              <span>E-Mail oder persönlich im Laden — einfach melden.</span>
+            </div>
+          </li>
+          <li class="prozess-item reveal reveal-delay-2">
+            <span class="prozess-num">2</span>
+            <div class="prozess-text">
+              <strong>Persönliches Gespräch</strong>
+              <span>Geschmack, Motiv, Größe, Datum — alles wird besprochen.</span>
+            </div>
+          </li>
+          <li class="prozess-item reveal reveal-delay-3">
+            <span class="prozess-num">3</span>
+            <div class="prozess-text">
+              <strong>Angebot &amp; Bestätigung</strong>
+              <span>Schriftlich und verbindlich — so dass alles klar ist.</span>
+            </div>
+          </li>
+          <li class="prozess-item reveal">
+            <span class="prozess-num">4</span>
+            <div class="prozess-text">
+              <strong>Abholung</strong>
+              <span>Am Vögenteich 24 oder Lieferung auf Anfrage.</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: KATEGORIEN ── -->
+<section style="background: var(--sand);" aria-labelledby="kategorien-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Alle Anlässe</p>
+    <h2 class="section-title reveal" id="kategorien-heading">Welche Torte <em>darf es sein?</em></h2>
+    <div class="kategorien-grid">
+      <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=800&q=80&fit=crop"
+             alt="Hochzeitstorten handgefertigt — Konditorei Brotzeit Rostock"
+             loading="lazy">
+        <div class="kategorie-overlay"></div>
+        <div class="kategorie-content">
+          <h3 class="kategorie-title">Hochzeitstorten</h3>
+          <p class="kategorie-cta">Jetzt anfragen →</p>
+        </div>
+      </a>
+      <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop"
+             alt="Geburtstagstorten individuell — Brotzeit Rostock"
+             loading="lazy">
+        <div class="kategorie-overlay"></div>
+        <div class="kategorie-content">
+          <h3 class="kategorie-title">Geburtstagstorten</h3>
+          <p class="kategorie-cta">Jetzt anfragen →</p>
+        </div>
+      </a>
+      <a href="mailto:maxi@sparre.de" class="kategorie-card reveal">
+        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80&fit=crop"
+             alt="Motivtorten nach Wunsch — Konditorei Brotzeit Rostock"
+             loading="lazy">
+        <div class="kategorie-overlay"></div>
+        <div class="kategorie-content">
+          <h3 class="kategorie-title">Motivtorten</h3>
+          <p class="kategorie-cta">Jetzt anfragen →</p>
+        </div>
+      </a>
+      <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?w=800&q=80&fit=crop"
+             alt="Cupcakes und Petitfours — Konditorei Brotzeit Rostock"
+             loading="lazy">
+        <div class="kategorie-overlay"></div>
+        <div class="kategorie-content">
+          <h3 class="kategorie-title">Cupcakes &amp; Petitfours</h3>
+          <p class="kategorie-cta">Jetzt anfragen →</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 3: SAISONALES ── -->
+<section aria-labelledby="saisonal-torten-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Immer zur richtigen Zeit</p>
+    <h2 class="section-title reveal" id="saisonal-torten-heading">Saisonales &amp; <em>Besonderes.</em></h2>
+    <div class="saisonal-grid">
+      <div class="saisonal-tile reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=80&fit=crop"
+             alt="Österliche Torten und Hefezöpfe — Konditorei Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Ostern</h3>
+          <p class="saisonal-tile-text">Hefezöpfe, Osterlämmer, Schokoeier aus der Konditorei.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80&fit=crop"
+             alt="Muttertagstorten und Blumentörtchen — Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Muttertag</h3>
+          <p class="saisonal-tile-text">Individualtorten, Blumentörtchen, Frühstücksboxen.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal">
+        <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=600&q=80&fit=crop"
+             alt="Valentinstag Herztorten und Pralinen — Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Valentinstag</h3>
+          <p class="saisonal-tile-text">Pralinen, Herztorten, kleine Überraschungen.</p>
+        </div>
+      </div>
+      <div class="saisonal-tile reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80&fit=crop"
+             alt="Weihnachtstorten und Stollen — Bäckerei Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Weihnachten</h3>
+          <p class="saisonal-tile-text">Stollen, Lebkuchen, Christstollen nach Hausrezept.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 4: ANFRAGE ── -->
+<section class="anfrage-section" aria-labelledby="anfrage-heading">
+  <div class="section-wrap">
+    <div class="anfrage-inner">
+      <div class="anfrage-info">
+        <p class="section-eyebrow reveal">Torte bestellen</p>
+        <h2 class="reveal" id="anfrage-heading">Ihre Torte nach <em>Wunsch.</em></h2>
+        <div class="anfrage-detail">
+          <div class="anfrage-row reveal">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Persönlich</strong>
+              <span>Am Vögenteich 24, 18055 Rostock</span>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-1">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>E-Mail</strong>
+              <a href="mailto:maxi@sparre.de">maxi@sparre.de</a>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-2">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Telefon</strong>
+              <a href="tel:+493818772950">0381 87729509</a>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-3">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Vorlaufzeit</strong>
+              <span>Bitte mindestens 7–10 Tage im Voraus anfragen.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form action="mailto:maxi@sparre.de" method="post" enctype="text/plain" aria-label="Tortenanfrage">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="t-name">Name</label>
+              <input type="text" id="t-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="t-email">E-Mail</label>
+              <input type="email" id="t-email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="t-anlass">Anlass</label>
+            <select id="t-anlass" name="anlass">
+              <option value="Hochzeit">Hochzeit</option>
+              <option value="Geburtstag">Geburtstag</option>
+              <option value="Motiv">Motivtorte</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="t-datum">Wunschdatum</label>
+              <input type="date" id="t-datum" name="datum">
+            </div>
+            <div class="form-group">
+              <label for="t-personen">Personenzahl</label>
+              <input type="number" id="t-personen" name="personen" min="1" placeholder="z.B. 20">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="t-nachricht">Ihre Wünsche</label>
+            <textarea id="t-nachricht" name="nachricht" placeholder="Geschmack, Motiv, besondere Wünsche …"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Anfrage senden</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
