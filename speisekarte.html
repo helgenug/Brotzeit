@@ -452,6 +452,64 @@
   .konfig-wrap { grid-template-columns: 1fr; }
   .konfig-summary { position: static; }
 }
+
+/* ── Bestellzettel: im Alltag unsichtbar, beim Drucken die ganze Seite ── */
+#bestellzettel { display: none; }
+
+@media print {
+  body.druckmodus > *:not(#bestellzettel) { display: none !important; }
+  body.druckmodus { background: #fff; }
+  body.druckmodus #bestellzettel {
+    display: block;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 8px;
+    color: #2A1F14;
+    font-family: var(--font-body);
+  }
+  .zettel-kopf {
+    border-bottom: 2px solid #2A1F14;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+  .zettel-logo {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .zettel-logo span { color: #B8935A; }
+  .zettel-untertitel { font-size: 0.8rem; color: #7A6A58; margin-top: 2px; }
+  .zettel-titel {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .zettel-datum { font-size: 0.8rem; color: #7A6A58; margin-bottom: 20px; }
+  .zettel-tabelle { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .zettel-tabelle th {
+    text-align: left;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7A6A58;
+    font-weight: 400;
+    border-bottom: 1px solid #2A1F14;
+    padding: 6px 8px;
+  }
+  .zettel-tabelle td { padding: 8px; border-bottom: 1px solid #E8DCCB; }
+  .zettel-tabelle th:nth-child(n+3), .zettel-tabelle td:nth-child(n+3) { text-align: right; }
+  .zettel-tabelle th:first-child, .zettel-tabelle td:first-child { text-align: center; width: 60px; }
+  .zettel-tabelle tfoot td {
+    border-bottom: none;
+    border-top: 2px solid #2A1F14;
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding-top: 12px;
+  }
+  .zettel-fuss { margin-top: 28px; font-size: 0.72rem; color: #7A6A58; line-height: 1.8; }
+}
 </style>
 </head>
 <body>
@@ -567,6 +625,7 @@
         </div>
         <div class="konfig-actions">
           <a class="btn-ghost-light" id="konfig-mail" href="mailto:maxi@sparre.de?subject=Frühstücksbestellung">Per E-Mail bestellen</a>
+          <button class="btn-ghost-light" id="konfig-pdf" type="button">Als PDF speichern</button>
           <button class="btn-ghost-light" id="konfig-copy" type="button">Liste kopieren</button>
           <button class="btn-ghost-light" id="konfig-reset" type="button">Zurücksetzen</button>
         </div>
@@ -651,6 +710,29 @@
     </div>
   </div>
 </section>
+
+<!-- ── BESTELLZETTEL (nur für Druck / PDF-Export sichtbar) ── -->
+<div id="bestellzettel" aria-hidden="true">
+  <div class="zettel-kopf">
+    <p class="zettel-logo">Brot<span>zeit</span></p>
+    <p class="zettel-untertitel">Bäckerei · Konditorei · Café — Am Vögenteich 24, 18055 Rostock</p>
+  </div>
+  <h1 class="zettel-titel">Mein Frühstück</h1>
+  <p class="zettel-datum" id="zettel-datum"></p>
+  <table class="zettel-tabelle">
+    <thead>
+      <tr><th>Anzahl</th><th>Artikel</th><th>Einzelpreis</th><th>Summe</th></tr>
+    </thead>
+    <tbody id="zettel-positionen"></tbody>
+    <tfoot>
+      <tr><td colspan="3">Gesamt</td><td id="zettel-gesamt"></td></tr>
+    </tfoot>
+  </table>
+  <p class="zettel-fuss">
+    Alle Preise in Euro, inkl. MwSt. — kein verbindlicher Kaufvertrag, die Bestellung wird persönlich bestätigt.<br>
+    Brotzeit Rostock · Am Vögenteich 24, 18055 Rostock · Tel. 0381 87729509 · maxi@sparre.de
+  </p>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer id="main-footer" role="contentinfo">
@@ -850,6 +932,37 @@ document.addEventListener('DOMContentLoaded', () => {
     gruppenEl.querySelectorAll('.konfig-anzahl').forEach(el => { el.textContent = '0'; });
     gruppenEl.querySelectorAll('.konfig-item').forEach(el => el.classList.remove('gewaehlt'));
     renderKonfig();
+  });
+
+  document.getElementById('konfig-pdf').addEventListener('click', ev => {
+    const eintraege = [];
+    let summe = 0;
+    auswahl.forEach(e => {
+      if (e.anzahl > 0) {
+        eintraege.push(e);
+        summe += e.anzahl * e.preis;
+      }
+    });
+    if (!eintraege.length) {
+      ev.target.textContent = 'Erst etwas auswählen';
+      setTimeout(() => { ev.target.textContent = 'Als PDF speichern'; }, 2000);
+      return;
+    }
+    document.getElementById('zettel-datum').textContent =
+      'Zusammengestellt am ' + new Date().toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+    document.getElementById('zettel-positionen').innerHTML = eintraege.map(e =>
+      '<tr><td>' + e.anzahl + '×</td><td>' + esc(e.name) + '</td><td>' + fmt(e.preis) +
+      ' €</td><td>' + fmt(e.anzahl * e.preis) + ' €</td></tr>').join('');
+    document.getElementById('zettel-gesamt').textContent = fmt(summe) + ' €';
+    /* Druckmodus: blendet die Seite aus und zeigt nur den Bestellzettel.
+       Im Druckdialog "Als PDF speichern" wählen. */
+    document.body.classList.add('druckmodus');
+    const aufraeumen = () => document.body.classList.remove('druckmodus');
+    window.addEventListener('afterprint', aufraeumen, { once: true });
+    setTimeout(() => {
+      window.print();
+      setTimeout(aufraeumen, 500);
+    }, 50);
   });
 
   document.getElementById('konfig-copy').addEventListener('click', ev => {
