@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speisekarte – Brotzeit Rostock | Frühstück, Mittagstisch &amp; Backwaren</title>
-<meta name="description" content="Täglich frisches Frühstück, wechselnder Mittagstisch und handwerkliche Backwaren. Brotzeit Rostock, Am Vögenteich 24.">
+<title>Frühstück & Brunch Rostock | Brot, Brötchen & Speisekarte Brotzeit</title>
+<meta name="description" content="Frühstück und Brunch in Rostock: belegte Brote, Brötchen, Brot, Mittagstisch, Kuchen und Törtchen bei Brotzeit am Vögenteich 24.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/speisekarte.html">
 
@@ -21,7 +21,7 @@
     },
     {
       "@type": "Menu",
-      "name": "Speisekarte Brotzeit Rostock",
+      "name": "Speisekarte Brotzeit Rostock - Frühstück, Brunch, Brot und Backwaren",
       "url": "https://brotzeit-rostock.de/speisekarte.html",
       "inLanguage": "de",
       "provider": {
@@ -182,10 +182,275 @@
 }
 .oz-table tr.closed td { color: rgba(253,250,245,0.3); }
 
+/* ── Interaktive Preisliste ── */
+.preise-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
+}
+.preise-tab {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 9px 20px;
+  border: 1px solid var(--brown-light);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--warm-dark);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.preise-tab:hover { border-color: var(--warm-dark); }
+.preise-tab.active {
+  background: var(--warm-dark);
+  border-color: var(--warm-dark);
+  color: var(--white);
+}
+.preise-search { margin-top: 18px; }
+.preise-search input {
+  width: 100%;
+  max-width: 420px;
+  padding: 11px 16px;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+}
+.preise-search input:focus { outline: none; border-color: var(--brown-light); }
+.preise-board {
+  columns: 2;
+  column-gap: 28px;
+  margin-top: 28px;
+}
+.preise-gruppe {
+  break-inside: avoid;
+  background: var(--white);
+  border: 1px solid var(--sand);
+  padding: 26px 26px 14px;
+  margin-bottom: 28px;
+}
+.preise-gruppe-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--sand);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+.preise-gruppe-titel {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+}
+.preise-gruppe-hinweis {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.preise-spalten {
+  display: flex;
+  gap: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.preise-spalten span { width: 52px; text-align: right; }
+.preise-row {
+  display: flex;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(232,220,203,0.55);
+}
+.preise-row:last-child { border-bottom: none; }
+.preise-name { flex: 1; min-width: 0; font-size: 0.92rem; }
+.preise-info {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.preise-wert {
+  width: 52px;
+  text-align: right;
+  font-size: 0.92rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.preise-wert.leer { color: var(--brown-light); }
+.preise-leer-hinweis {
+  margin-top: 24px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.preise-stand {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Frühstückskonfigurator ── */
+.konfig-wrap {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 36px;
+  align-items: start;
+  margin-top: 40px;
+}
+.konfig-gruppe {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  margin-bottom: 14px;
+}
+.konfig-gruppe summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+}
+.konfig-gruppe summary::-webkit-details-marker { display: none; }
+.konfig-gruppe summary::after {
+  content: "+";
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--brown-light);
+  transition: transform 0.25s;
+}
+.konfig-gruppe[open] summary::after { content: "–"; }
+.konfig-gruppe-hinweis {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-left: auto;
+  padding-right: 6px;
+}
+.konfig-items { padding: 0 24px 14px; }
+.konfig-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(232,220,203,0.55);
+}
+.konfig-item:last-child { border-bottom: none; }
+.konfig-item-name { flex: 1; min-width: 0; font-size: 0.9rem; }
+.konfig-item-preis {
+  font-size: 0.88rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.konfig-stepper { display: flex; align-items: center; gap: 8px; }
+.konfig-stepper button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--brown-light);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--warm-dark);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.konfig-stepper button:hover { background: var(--warm-dark); border-color: var(--warm-dark); color: var(--white); }
+.konfig-anzahl {
+  min-width: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.konfig-item.gewaehlt .konfig-item-name { font-weight: 400; }
+.konfig-item.gewaehlt .konfig-anzahl { color: var(--accent); font-weight: 500; }
+.konfig-summary {
+  position: sticky;
+  top: 96px;
+  background: var(--warm-dark);
+  padding: 30px 28px;
+}
+.konfig-summary h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.konfig-summary-liste { margin-bottom: 18px; }
+.konfig-summary-liste p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+  color: rgba(253,250,245,0.75);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(253,250,245,0.08);
+}
+.konfig-summary-leer {
+  font-size: 0.85rem;
+  color: rgba(253,250,245,0.5);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.konfig-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 8px;
+  margin-bottom: 22px;
+}
+.konfig-total-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+}
+.konfig-total-wert {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--white);
+}
+.konfig-actions { display: flex; flex-direction: column; gap: 10px; }
+.konfig-actions .btn-ghost-light {
+  text-align: center;
+  cursor: pointer;
+  background: transparent;
+}
+.konfig-summary-note {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: rgba(253,250,245,0.45);
+  line-height: 1.7;
+}
+
 @media (max-width: 900px) {
   .karten-grid { grid-template-columns: 1fr; }
   .saisonal-grid { grid-template-columns: 1fr; }
   .oeffnung-inner { grid-template-columns: 1fr; gap: 32px; }
+  .preise-board { columns: 1; }
+  .konfig-wrap { grid-template-columns: 1fr; }
+  .konfig-summary { position: static; }
 }
 </style>
 </head>
@@ -226,7 +491,7 @@
   <div class="page-teaser-content">
     <p class="page-teaser-eyebrow">Speisekarte · Brotzeit Rostock</p>
     <h1>Täglich frisch. <em>Täglich anders.</em></h1>
-    <p class="page-teaser-lead">Frühstück ab 7 Uhr, wechselnder Mittagstisch, Backwaren aus der Backstube. Die Karte wechselt wöchentlich.</p>
+    <p class="page-teaser-lead">Frühstück und Brunch ab 7 Uhr, wechselnder Mittagstisch, frisches Brot, Brötchen und Backwaren aus der Backstube. Die Karte wechselt wöchentlich.</p>
   </div>
 </header>
 
@@ -242,12 +507,12 @@
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Was wir täglich anbieten</p>
     <h2 class="section-title reveal" id="karten-heading">Frühstück, Mittag <em>&amp; Backstube.</em></h2>
-    <p class="section-lead reveal">Drei Welten unter einem Dach — jeden Tag frisch zubereitet und handwerklich hergestellt.</p>
+    <p class="section-lead reveal">Drei Welten unter einem Dach — Frühstück und Brunch in Rostock, Mittagstisch für die Pause und Brot aus handwerklicher Bäckerei.</p>
     <div class="karten-grid">
       <article class="karte-card reveal reveal-delay-1">
         <div class="karte-num">01</div>
         <h3 class="karte-title">Frühstück &amp; Brunch</h3>
-        <p class="karte-items">Belegte Brote · Frühstücksteller · Rührei · Lachs · Aufschnitt · Käse · Joghurt</p>
+        <p class="karte-items">Belegte Brote · Frühstücksteller · Brunch · Rührei · Lachs · Aufschnitt · Käse · Joghurt</p>
         <p class="karte-zeit">Täglich ab 7 Uhr</p>
       </article>
       <article class="karte-card reveal reveal-delay-2">
@@ -259,7 +524,7 @@
       <article class="karte-card reveal reveal-delay-3">
         <div class="karte-num">03</div>
         <h3 class="karte-title">Backwaren &amp; Brot</h3>
-        <p class="karte-items">Brote · Brötchen · Kuchen · Törtchen · Konditoreigebäck aus der Backstube</p>
+        <p class="karte-items">Brot · Brötchen · Kuchen · Törtchen · Konditoreigebäck aus der Backstube der Bäckerei Sparre</p>
         <p class="karte-zeit">Täglich frisch</p>
       </article>
     </div>
@@ -267,6 +532,47 @@
       Die Karte wechselt wöchentlich. Aktuelle Angebote immer im Laden oder auf
       <a href="https://www.instagram.com/brotzeitrostock/" target="_blank" rel="noopener">Instagram</a>.
     </p>
+  </div>
+</section>
+
+<!-- ── SEKTION 1B: INTERAKTIVE PREISLISTE ── -->
+<section id="preise" aria-labelledby="preise-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Schwarz auf weiß</p>
+    <h2 class="section-title reveal" id="preise-heading">Unsere <em>Preise.</em></h2>
+    <p class="section-lead reveal">Getränke, Brötchen und alles fürs Frühstück — ehrlich ausgezeichnet. Einfach eine Kategorie wählen oder direkt suchen.</p>
+    <div class="preise-tabs reveal" id="preise-tabs" role="tablist" aria-label="Preiskategorien"></div>
+    <div class="preise-search reveal">
+      <input type="search" id="preise-search" placeholder="Suchen, z. B. Cappuccino oder Croissant" aria-label="In der Preisliste suchen">
+    </div>
+    <div class="preise-board" id="preise-board" aria-live="polite"></div>
+    <p class="preise-stand" id="preise-stand"></p>
+  </div>
+</section>
+
+<!-- ── SEKTION 1C: FRÜHSTÜCKSKONFIGURATOR ── -->
+<section id="fruehstueck-konfigurator" style="background: var(--sand);" aria-labelledby="konfig-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Frühstück nach deinem Geschmack</p>
+    <h2 class="section-title reveal" id="konfig-heading">Stell dir dein Frühstück <em>zusammen.</em></h2>
+    <p class="section-lead reveal">Brötchen aussuchen, Belag dazu — der Preis rechnet sich live mit. Die fertige Liste schickst du uns per E-Mail oder zeigst sie einfach an der Kasse.</p>
+    <div class="konfig-wrap">
+      <div id="konfig-gruppen"></div>
+      <aside class="konfig-summary" aria-label="Deine Auswahl">
+        <h3>Dein Frühstück</h3>
+        <div id="konfig-liste"></div>
+        <div class="konfig-total">
+          <span class="konfig-total-label">Gesamt</span>
+          <span class="konfig-total-wert" id="konfig-total">0,00 €</span>
+        </div>
+        <div class="konfig-actions">
+          <a class="btn-ghost-light" id="konfig-mail" href="mailto:maxi@sparre.de?subject=Frühstücksbestellung">Per E-Mail bestellen</a>
+          <button class="btn-ghost-light" id="konfig-copy" type="button">Liste kopieren</button>
+          <button class="btn-ghost-light" id="konfig-reset" type="button">Zurücksetzen</button>
+        </div>
+        <p class="konfig-summary-note">Kein Online-Shop, keine Vorkasse — die Bestellung wird persönlich bestätigt. Alle Preise inkl. MwSt.</p>
+      </aside>
+    </div>
   </div>
 </section>
 
@@ -338,7 +644,7 @@
       <div class="reveal">
         <p style="font-size:0.92rem;color:rgba(253,250,245,0.6);line-height:1.9;margin-bottom:28px;">
           Sie haben Fragen zum aktuellen Angebot, zur Mittagskarte oder zu besonderen Wünschen?<br>
-          Sprechen Sie uns gerne persönlich an oder schreiben Sie uns.
+          Sprechen Sie uns gerne persönlich an oder schreiben Sie uns. Wir sind zentral in Rostock erreichbar, auch aus Stadtmitte, Dierkow, Toitenwinkel und Warnemünde.
         </p>
         <a href="kontakt.html" class="btn-ghost-light">Kontakt aufnehmen</a>
       </div>
@@ -381,5 +687,193 @@
 </footer>
 
 <script src="shared.js"></script>
+<script src="json/preise.js"></script>
+<script>
+/* Seitenspezifisch: interaktive Preisliste + Frühstückskonfigurator.
+   Alle Preise kommen aus json/preise.js — hier steht nur Darstellung. */
+document.addEventListener('DOMContentLoaded', () => {
+  const DATEN = window.BROTZEIT_PREISE;
+  if (!DATEN) return;
+
+  const fmt = v => v.toFixed(2).replace('.', ',');
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+  /* ── PREISLISTE ── */
+  const tabsEl = document.getElementById('preise-tabs');
+  const boardEl = document.getElementById('preise-board');
+  const suchEl = document.getElementById('preise-search');
+  let aktiveKat = DATEN.kategorien[0].id;
+
+  document.getElementById('preise-stand').textContent =
+    'Alle Preise in Euro, inkl. MwSt. · Stand ' + DATEN.stand + ' · Änderungen vorbehalten.';
+
+  DATEN.kategorien.forEach(kat => {
+    const btn = document.createElement('button');
+    btn.className = 'preise-tab';
+    btn.type = 'button';
+    btn.setAttribute('role', 'tab');
+    btn.textContent = kat.label;
+    btn.addEventListener('click', () => {
+      aktiveKat = kat.id;
+      suchEl.value = '';
+      renderPreise();
+    });
+    tabsEl.appendChild(btn);
+  });
+
+  function gruppeHTML(gruppe, spalten, katLabel) {
+    const rows = gruppe.items.map(item => {
+      const werte = spalten
+        ? spalten.map((_, i) => {
+            const v = item.p[i];
+            return '<span class="preise-wert' + (v == null ? ' leer' : '') + '">' + (v == null ? '–' : fmt(v)) + '</span>';
+          }).join('')
+        : '<span class="preise-wert">' + fmt(item.p[0]) + '</span>';
+      return '<div class="preise-row"><span class="preise-name">' + esc(item.name) +
+        (item.info ? '<span class="preise-info">' + esc(item.info) + '</span>' : '') +
+        '</span>' + werte + '</div>';
+    }).join('');
+    const kopf = spalten
+      ? '<div class="preise-spalten">' + spalten.map(s => '<span>' + s + '</span>').join('') + '</div>'
+      : '';
+    return '<div class="preise-gruppe"><div class="preise-gruppe-head"><span>' +
+      '<span class="preise-gruppe-titel">' + esc(gruppe.titel) + '</span>' +
+      (katLabel ? '<span class="preise-gruppe-hinweis">' + esc(katLabel) + '</span>' : '') +
+      (gruppe.hinweis ? '<span class="preise-gruppe-hinweis">' + esc(gruppe.hinweis) + '</span>' : '') +
+      '</span>' + kopf + '</div>' + rows + '</div>';
+  }
+
+  function renderPreise() {
+    const q = suchEl.value.trim().toLowerCase();
+    let html = '';
+    if (q.length >= 2) {
+      /* Suche über alle Kategorien */
+      DATEN.kategorien.forEach(kat => {
+        kat.gruppen.forEach(gruppe => {
+          const treffer = gruppe.items.filter(item =>
+            (item.name + ' ' + (item.info || '')).toLowerCase().includes(q));
+          if (treffer.length) {
+            html += gruppeHTML({ titel: gruppe.titel, hinweis: gruppe.hinweis, items: treffer }, kat.spalten, kat.label);
+          }
+        });
+      });
+      if (!html) html = '<p class="preise-leer-hinweis">Kein Treffer — fragt uns gerne direkt im Laden.</p>';
+      tabsEl.querySelectorAll('.preise-tab').forEach(b => b.classList.remove('active'));
+    } else {
+      const kat = DATEN.kategorien.find(k => k.id === aktiveKat);
+      html = kat.gruppen.map(g => gruppeHTML(g, kat.spalten, null)).join('');
+      tabsEl.querySelectorAll('.preise-tab').forEach((b, i) =>
+        b.classList.toggle('active', DATEN.kategorien[i].id === aktiveKat));
+    }
+    boardEl.innerHTML = html;
+  }
+  suchEl.addEventListener('input', renderPreise);
+  renderPreise();
+
+  /* ── FRÜHSTÜCKSKONFIGURATOR ── */
+  const konfigKats = DATEN.kategorien.filter(k => k.konfigurator);
+  const gruppenEl = document.getElementById('konfig-gruppen');
+  const listeEl = document.getElementById('konfig-liste');
+  const totalEl = document.getElementById('konfig-total');
+  const mailEl = document.getElementById('konfig-mail');
+  const auswahl = new Map(); /* key -> { name, preis, anzahl } */
+
+  let offenGesetzt = false;
+  konfigKats.forEach((kat, ki) => {
+    kat.gruppen.forEach((gruppe, gi) => {
+      const det = document.createElement('details');
+      det.className = 'konfig-gruppe';
+      if (!offenGesetzt) { det.open = true; offenGesetzt = true; }
+      det.innerHTML = '<summary><span>' + esc(gruppe.titel) + '</span>' +
+        (gruppe.hinweis ? '<span class="konfig-gruppe-hinweis">' + esc(gruppe.hinweis) + '</span>' : '') +
+        '</summary><div class="konfig-items">' +
+        gruppe.items.map((item, ii) => {
+          const key = ki + '-' + gi + '-' + ii;
+          return '<div class="konfig-item" data-key="' + key + '">' +
+            '<span class="konfig-item-name">' + esc(item.name) +
+            (item.info ? '<span class="preise-info">' + esc(item.info) + '</span>' : '') + '</span>' +
+            '<span class="konfig-item-preis">' + fmt(item.p[0]) + '</span>' +
+            '<span class="konfig-stepper">' +
+            '<button type="button" data-minus aria-label="' + esc(item.name) + ' entfernen">−</button>' +
+            '<span class="konfig-anzahl">0</span>' +
+            '<button type="button" data-plus aria-label="' + esc(item.name) + ' hinzufügen">+</button>' +
+            '</span></div>';
+        }).join('') + '</div>';
+      gruppenEl.appendChild(det);
+      gruppe.items.forEach((item, ii) => {
+        auswahl.set(ki + '-' + gi + '-' + ii, { name: item.name, preis: item.p[0], anzahl: 0 });
+      });
+    });
+  });
+
+  function bestellText() {
+    const zeilen = [];
+    let summe = 0;
+    auswahl.forEach(e => {
+      if (e.anzahl > 0) {
+        zeilen.push(e.anzahl + '× ' + e.name + ' — ' + fmt(e.anzahl * e.preis) + ' €');
+        summe += e.anzahl * e.preis;
+      }
+    });
+    return { zeilen, summe };
+  }
+
+  function renderKonfig() {
+    const { zeilen, summe } = bestellText();
+    listeEl.innerHTML = zeilen.length
+      ? '<div class="konfig-summary-liste">' + zeilen.map(z => {
+          const [links, rechts] = z.split(' — ');
+          return '<p><span>' + esc(links) + '</span><span>' + esc(rechts) + '</span></p>';
+        }).join('') + '</div>'
+      : '<p class="konfig-summary-leer">Noch nichts gewählt — klick dich links durch Brötchen, Eier, Aufschnitt und mehr.</p>';
+    totalEl.textContent = fmt(summe) + ' €';
+    const body = 'Hallo Brotzeit-Team,%0D%0A%0D%0Aich möchte folgendes Frühstück bestellen:%0D%0A%0D%0A' +
+      zeilen.map(z => encodeURIComponent(z)).join('%0D%0A') +
+      '%0D%0A%0D%0AGesamt: ' + encodeURIComponent(fmt(summe) + ' €') +
+      '%0D%0A%0D%0AName:%0D%0AAbholung am/um:%0D%0AAnmerkungen (z. B. Sorte bei Frischkäse oder Marmelade):%0D%0A';
+    mailEl.href = 'mailto:maxi@sparre.de?subject=' + encodeURIComponent('Frühstücksbestellung Brotzeit') + '&body=' + body;
+  }
+
+  gruppenEl.addEventListener('click', ev => {
+    const btn = ev.target.closest('button[data-plus], button[data-minus]');
+    if (!btn) return;
+    const row = btn.closest('.konfig-item');
+    const eintrag = auswahl.get(row.dataset.key);
+    eintrag.anzahl = Math.max(0, eintrag.anzahl + (btn.hasAttribute('data-plus') ? 1 : -1));
+    row.querySelector('.konfig-anzahl').textContent = eintrag.anzahl;
+    row.classList.toggle('gewaehlt', eintrag.anzahl > 0);
+    renderKonfig();
+  });
+
+  document.getElementById('konfig-reset').addEventListener('click', () => {
+    auswahl.forEach(e => { e.anzahl = 0; });
+    gruppenEl.querySelectorAll('.konfig-anzahl').forEach(el => { el.textContent = '0'; });
+    gruppenEl.querySelectorAll('.konfig-item').forEach(el => el.classList.remove('gewaehlt'));
+    renderKonfig();
+  });
+
+  document.getElementById('konfig-copy').addEventListener('click', ev => {
+    const { zeilen, summe } = bestellText();
+    const text = 'Mein Brotzeit-Frühstück:\n' + zeilen.join('\n') + '\nGesamt: ' + fmt(summe) + ' €';
+    const fertig = () => {
+      ev.target.textContent = 'Kopiert ✓';
+      setTimeout(() => { ev.target.textContent = 'Liste kopieren'; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(fertig);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      fertig();
+    }
+  });
+
+  renderKonfig();
+});
+</script>
 </body>
 </html>

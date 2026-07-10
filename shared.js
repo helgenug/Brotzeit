@@ -53,6 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => observer.observe(el));
+
+    /* Absicherung: Falls der Observer nicht anspringt (z. B. eingebettete
+       Vorschau, sehr alte Browser), alles Sichtbare nach kurzer Zeit zeigen —
+       Inhalte dürfen niemals dauerhaft versteckt bleiben. */
+    const zeigeSichtbare = () => {
+      const vh = Math.max(window.innerHeight, document.documentElement.clientHeight, 700);
+      revealEls.forEach(el => {
+        if (!el.classList.contains('visible')) {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh + 40 && r.bottom > -40) {
+            el.classList.add('visible');
+            observer.unobserve(el);
+          }
+        }
+      });
+    };
+    window.addEventListener('load', () => setTimeout(zeigeSichtbare, 400));
+    window.addEventListener('scroll', zeigeSichtbare, { passive: true });
   }
 
 });
