@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestellung | Brotzeit Rostock</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── BESTELLUNG-SPECIFIC ──
+   Eigenständige Seite ohne Haupt-Nav: Sie wird primär über den QR-Code
+   an der Kasse geöffnet, meist auf dem Handy des Kunden. Muss auf den
+   ersten Blick lesbar sein — auch aus etwas Entfernung an der Kasse. */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 60px;
+}
+.bestellung-logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--warm-dark);
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+.bestellung-logo span { color: var(--accent); }
+
+.bestellung-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+  padding: 32px 28px 28px;
+}
+.bestellung-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.bestellung-name {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.bestellung-zeit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.bestellung-liste {
+  border-top: 1px solid var(--sand);
+  border-bottom: 1px solid var(--sand);
+  padding: 18px 0;
+  margin-bottom: 18px;
+}
+.bestellung-zeile {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.95rem;
+  padding: 7px 0;
+}
+.bestellung-zeile .anz {
+  color: var(--accent);
+  font-weight: 500;
+  margin-right: 8px;
+}
+.bestellung-zeile .preis {
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+.bestellung-summe {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-display);
+}
+.bestellung-summe .label {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.bestellung-summe .wert {
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+}
+.bestellung-hinweis {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin-top: 24px;
+  line-height: 1.5;
+}
+.bestellung-fehler {
+  text-align: center;
+  padding: 40px 20px;
+}
+.bestellung-fehler p { margin-bottom: 20px; color: var(--text-muted); }
+.bestellung-fehler a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="bestellung-logo">Brot<span>zeit</span></a>
+
+<div id="bestellung-inhalt">
+  <!-- wird per JS befüllt -->
+</div>
+
+<script>
+(function () {
+  const zielEl = document.getElementById('bestellung-inhalt');
+
+  function esc(s) {
+    return String(s).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+  }
+  function fmt(n) {
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fehler(text) {
+    zielEl.innerHTML =
+      '<div class="bestellung-fehler">' +
+      '<p>' + esc(text) + '</p>' +
+      '<a href="speisekarte.html#fruehstueck-konfigurator">Zum Frühstückskonfigurator →</a>' +
+      '</div>';
+  }
+
+  const hash = location.hash.replace(/^#/, '');
+  const match = hash.match(/(?:^|&)d=([^&]+)/);
+  if (!match) {
+    fehler('Keine Bestellung gefunden. Bitte den QR-Code erneut scannen.');
+    return;
+  }
+
+  let data;
+  try {
+    const b64 = match[1].replace(/-/g, '+').replace(/_/g, '/');
+    const json = decodeURIComponent(escape(atob(b64)));
+    data = JSON.parse(json);
+    if (!data || !Array.isArray(data.i)) throw new Error('ungültig');
+  } catch (e) {
+    fehler('Die Bestellung konnte nicht gelesen werden. Bitte den QR-Code erneut scannen.');
+    return;
+  }
+
+  const datum = data.t ? new Date(data.t) : new Date();
+  const zeitText = datum.toLocaleDateString('de-DE') + ' · ' +
+    datum.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+
+  const zeilenHtml = data.i.map(([anzahl, name, preis]) =>
+    '<div class="bestellung-zeile">' +
+    '<span><span class="anz">' + esc(anzahl) + '×</span>' + esc(name) + '</span>' +
+    '<span class="preis">' + fmt(anzahl * preis) + ' €</span>' +
+    '</div>'
+  ).join('');
+
+  zielEl.innerHTML =
+    '<div class="bestellung-card">' +
+    '<div class="bestellung-eyebrow">Bestellung für die Kasse</div>' +
+    '<div class="bestellung-name">' + esc(data.n || '—') + '</div>' +
+    '<div class="bestellung-zeit">' + esc(zeitText) + '</div>' +
+    '<div class="bestellung-liste">' + zeilenHtml + '</div>' +
+    '<div class="bestellung-summe"><span class="label">Gesamt</span><span class="wert">' + fmt(data.s || 0) + ' €</span></div>' +
+    '</div>' +
+    '<p class="bestellung-hinweis">Diesen Bildschirm bitte an der Kasse zeigen. Bezahlt wird direkt vor Ort — kein Online-Kauf.</p>';
+})();
+</script>
+
+</body>
+</html>

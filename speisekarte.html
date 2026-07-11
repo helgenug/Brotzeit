@@ -1070,17 +1070,28 @@ document.addEventListener('DOMContentLoaded', () => {
     qrBoxEl.hidden = true;
   }
 
-  /* QR-Inhalt: Klartext, den die Kasse beim Scannen direkt lesen kann */
+  /* QR-Inhalt: eine URL (nicht reiner Klartext!). Grund: iPhones erkennen beim
+     Scannen mit der Kamera nur bestimmte Formate (URL, WLAN, Kontakt, ...).
+     Reinen Text ohne solches Muster interpretiert iOS als Suchanfrage und
+     öffnet Safari mit einer Google-Suche danach – die Bestellung landet also
+     nie auf dem Bildschirm. Eine echte URL wird dagegen von allen Geräten
+     (iOS, Android, Windows) direkt geöffnet und zeigt bestellung.html mit
+     der fertig aufbereiteten Bestellung.
+     Die Daten selbst stecken komprimiert (Base64-JSON) im URL-Fragment
+     (#d=...) – das Fragment wird nie an einen Server geschickt, es bleibt
+     also alles clientseitig, genau wie vorher. */
   function qrPayload(vorname) {
-    const { zeilen, summe } = bestellText();
-    return 'BROTZEIT BESTELLUNG\n' +
-      'Name: ' + vorname + '\n' +
-      new Date().toLocaleDateString('de-DE') + ' ' +
-      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
-      '----------------------\n' +
-      zeilen.join('\n') + '\n' +
-      '----------------------\n' +
-      'Gesamt: ' + fmt(summe) + ' EUR';
+    const { summe } = bestellText();
+    const items = [];
+    auswahl.forEach(e => {
+      if (e.anzahl > 0) items.push([e.anzahl, e.name, e.preis]);
+    });
+    const data = { n: vorname, t: Date.now(), i: items, s: summe };
+    const json = JSON.stringify(data);
+    const b64 = btoa(unescape(encodeURIComponent(json)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return location.origin + location.pathname.replace(/[^/]*$/, '') +
+      'bestellung.html#d=' + b64;
   }
 
   function qrDataURL(vorname, cellSize) {
