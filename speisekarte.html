@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frühstück & Brunch Rostock | Brot, Brötchen & Speisekarte Brotzeit</title>
-<meta name="description" content="Frühstück und Brunch in Rostock: belegte Brote, Brötchen, Brot, Mittagstisch, Kuchen und Törtchen bei Brotzeit am Vögenteich 24.">
+<title>Frühstück & Speisekarte Rostock | Brot, Brötchen, Snacks – Brotzeit</title>
+<meta name="description" content="Frühstück in Rostock: belegte Brote, Brötchen, Brot, Bäcker-Sushi, Canapés, Kuchen und Törtchen bei Brotzeit am Vögenteich 24.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/speisekarte.html">
 
@@ -21,7 +21,7 @@
     },
     {
       "@type": "Menu",
-      "name": "Speisekarte Brotzeit Rostock - Frühstück, Brunch, Brot und Backwaren",
+      "name": "Speisekarte Brotzeit Rostock - Frühstück, Brot, Backwaren und Snacks",
       "url": "https://brotzeit-rostock.de/speisekarte.html",
       "inLanguage": "de",
       "provider": {
@@ -101,6 +101,15 @@
 .karten-note a:hover { text-decoration: underline; }
 
 /* Saisonale Kacheln */
+.saisonal-block-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 52px;
+}
+.saisonal-block-label:first-of-type { margin-top: 36px; }
+.saisonal-block-label + .saisonal-grid { margin-top: 18px; }
 .saisonal-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -181,6 +190,20 @@
   color: rgba(253,250,245,0.85);
 }
 .oz-table tr.closed td { color: rgba(253,250,245,0.3); }
+
+/* ── Bäcker-Sushi & Canapés ── */
+.snacks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.snacks-hinweis {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
 
 /* ── Interaktive Preisliste ── */
 .preise-tabs {
@@ -431,6 +454,46 @@
   font-weight: 400;
   color: var(--white);
 }
+.konfig-name { margin-bottom: 16px; }
+.konfig-name label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 8px;
+}
+.konfig-name input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(253,250,245,0.06);
+  border: 1px solid rgba(253,250,245,0.25);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+.konfig-name input::placeholder { color: rgba(253,250,245,0.35); }
+.konfig-name input:focus { outline: none; border-color: var(--brown-light); }
+.konfig-qr-box {
+  margin-top: 18px;
+  background: var(--white);
+  border-radius: 6px;
+  padding: 20px 16px 14px;
+  text-align: center;
+}
+.konfig-qr-box img {
+  width: 180px;
+  height: 180px;
+  image-rendering: pixelated;
+}
+.konfig-qr-hint {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
 .konfig-actions { display: flex; flex-direction: column; gap: 10px; }
 .konfig-actions .btn-ghost-light {
   text-align: center;
@@ -451,6 +514,7 @@
   .preise-board { columns: 1; }
   .konfig-wrap { grid-template-columns: 1fr; }
   .konfig-summary { position: static; }
+  .snacks-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Bestellzettel: im Alltag unsichtbar, beim Drucken die ganze Seite ── */
@@ -486,7 +550,11 @@
     font-weight: 500;
     margin-bottom: 2px;
   }
+  .zettel-name { font-size: 1rem; font-weight: 400; margin-bottom: 2px; }
   .zettel-datum { font-size: 0.8rem; color: #7A6A58; margin-bottom: 20px; }
+  .zettel-qr { margin-top: 26px; text-align: center; }
+  .zettel-qr img { width: 150px; height: 150px; }
+  .zettel-qr p { font-size: 0.72rem; color: #7A6A58; margin-top: 6px; }
   .zettel-tabelle { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   .zettel-tabelle th {
     text-align: left;
@@ -549,7 +617,7 @@
   <div class="page-teaser-content">
     <p class="page-teaser-eyebrow">Speisekarte · Brotzeit Rostock</p>
     <h1>Täglich frisch. <em>Täglich anders.</em></h1>
-    <p class="page-teaser-lead">Frühstück und Brunch ab 7 Uhr, wechselnder Mittagstisch, frisches Brot, Brötchen und Backwaren aus der Backstube. Die Karte wechselt wöchentlich.</p>
+    <p class="page-teaser-lead">Frühstück ab 7 Uhr, frisches Brot, Brötchen und Backwaren aus der Backstube — dazu Bäcker-Sushi, Canapés und Snacks. Die Karte wechselt wöchentlich.</p>
   </div>
 </header>
 
@@ -564,20 +632,20 @@
 <section aria-labelledby="karten-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Was wir täglich anbieten</p>
-    <h2 class="section-title reveal" id="karten-heading">Frühstück, Mittag <em>&amp; Backstube.</em></h2>
-    <p class="section-lead reveal">Drei Welten unter einem Dach — Frühstück und Brunch in Rostock, Mittagstisch für die Pause und Brot aus handwerklicher Bäckerei.</p>
+    <h2 class="section-title reveal" id="karten-heading">Frühstück, Snacks <em>&amp; Backstube.</em></h2>
+    <p class="section-lead reveal">Drei Welten unter einem Dach — Frühstück in Rostock, Snacks für zwischendurch und Brot aus handwerklicher Bäckerei.</p>
     <div class="karten-grid">
       <article class="karte-card reveal reveal-delay-1">
         <div class="karte-num">01</div>
-        <h3 class="karte-title">Frühstück &amp; Brunch</h3>
-        <p class="karte-items">Belegte Brote · Frühstücksteller · Brunch · Rührei · Lachs · Aufschnitt · Käse · Joghurt</p>
+        <h3 class="karte-title">Frühstück</h3>
+        <p class="karte-items">Belegte Brote · Frühstücksteller · Rührei · Lachs · Aufschnitt · Käse · Joghurt</p>
         <p class="karte-zeit">Täglich ab 7 Uhr</p>
       </article>
       <article class="karte-card reveal reveal-delay-2">
         <div class="karte-num">02</div>
-        <h3 class="karte-title">Mittagstisch</h3>
-        <p class="karte-items">Wechselnde warme Gerichte · Suppen · Tagesgerichte nach Saison · herzhafte Backwaren</p>
-        <p class="karte-zeit">Mo–Fr · wechselnd</p>
+        <h3 class="karte-title">Bäcker-Sushi &amp; Canapés</h3>
+        <p class="karte-items">Bäcker-Sushi · Canapés · Rollen · Schnittchen · Snacks &amp; Salate — für Feier, Büro und zwischendurch</p>
+        <p class="karte-zeit">Neu im Sortiment</p>
       </article>
       <article class="karte-card reveal reveal-delay-3">
         <div class="karte-num">03</div>
@@ -590,6 +658,40 @@
       Die Karte wechselt wöchentlich. Aktuelle Angebote immer im Laden oder auf
       <a href="https://www.instagram.com/brotzeitrostock/" target="_blank" rel="noopener">Instagram</a>.
     </p>
+  </div>
+</section>
+
+<!-- ── SEKTION 1A: BÄCKER-SUSHI, CANAPÉS & MEHR ── -->
+<!-- Fotos folgen (Fototermin Katrin) — dann Karten um Bilder ergänzen.
+     Canapé-Preise liefert Maximilian Sparre nach → json/preise.js. -->
+<section id="snacks" style="background: var(--white);" aria-labelledby="snacks-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Neu bei uns</p>
+    <h2 class="section-title reveal" id="snacks-heading">Bäcker-Sushi, Canapés <em>&amp; mehr.</em></h2>
+    <p class="section-lead reveal">Herzhafte Kleinigkeiten aus der Backstube — für die Feier, fürs Büro oder einfach für zwischendurch.</p>
+    <div class="snacks-grid">
+      <article class="karte-card reveal reveal-delay-1">
+        <h3 class="karte-title">Bäcker-Sushi</h3>
+        <p class="karte-items">Herzhafte Röllchen aus Brot mit feinem Belag — geschnitten und angerichtet wie Sushi. Die besondere Alternative zur klassischen Platte.</p>
+        <p class="karte-zeit">Auf Bestellung &amp; im Laden</p>
+      </article>
+      <article class="karte-card reveal reveal-delay-2">
+        <h3 class="karte-title">Canapés</h3>
+        <p class="karte-items">Fein belegte Häppchen für Empfänge, Feiern und Firmenbestellungen — süß oder herzhaft, nach Absprache zusammengestellt.</p>
+        <p class="karte-zeit">Auf Bestellung</p>
+      </article>
+      <article class="karte-card reveal reveal-delay-2">
+        <h3 class="karte-title">Snacks &amp; Salate</h3>
+        <p class="karte-items">Frische Snacks, belegte Brötchen und knackige Salate — ideal für die Pause zwischendurch.</p>
+        <p class="karte-zeit">Täglich frisch im Laden</p>
+      </article>
+      <article class="karte-card reveal reveal-delay-3">
+        <h3 class="karte-title">Warme &amp; kalte Getränke</h3>
+        <p class="karte-items">Kaffeespezialitäten, erlesener Tee, heiße Schokolade und kalte Erfrischungen — alle Preise stehen in unserer Preisliste.</p>
+        <p class="karte-zeit"><a href="#preise" style="color: var(--accent); text-decoration: none;">Zur Preisliste ↓</a></p>
+      </article>
+    </div>
+    <p class="snacks-hinweis reveal">Fotos und Preise für Bäcker-Sushi und Canapés folgen in Kürze — fragt gerne direkt im Laden oder per <a href="mailto:maxi@sparre.de" style="color: var(--accent); text-decoration: none;">E-Mail</a>.</p>
   </div>
 </section>
 
@@ -613,7 +715,7 @@
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Frühstück nach deinem Geschmack</p>
     <h2 class="section-title reveal" id="konfig-heading">Stell dir dein Frühstück <em>zusammen.</em></h2>
-    <p class="section-lead reveal">Brötchen aussuchen, Belag dazu — der Preis rechnet sich live mit. Die fertige Liste schickst du uns per E-Mail oder zeigst sie einfach an der Kasse.</p>
+    <p class="section-lead reveal">Brötchen aussuchen, Belag dazu — der Preis rechnet sich live mit. Zum Schluss Vornamen eingeben, QR-Code erzeugen und an der Kasse scannen lassen. Wir rufen dich, sobald dein Frühstück fertig ist.</p>
     <div class="konfig-wrap">
       <div id="konfig-gruppen"></div>
       <aside class="konfig-summary" aria-label="Deine Auswahl">
@@ -623,27 +725,40 @@
           <span class="konfig-total-label">Gesamt</span>
           <span class="konfig-total-wert" id="konfig-total">0,00 €</span>
         </div>
+        <div class="konfig-name">
+          <label for="konfig-vorname">Dein Vorname — wir rufen dich auf</label>
+          <input type="text" id="konfig-vorname" placeholder="z. B. Maxi" maxlength="30" autocomplete="given-name">
+        </div>
         <div class="konfig-actions">
-          <a class="btn-ghost-light" id="konfig-mail" href="mailto:maxi@sparre.de?subject=Frühstücksbestellung">Per E-Mail bestellen</a>
+          <button class="btn-ghost-light" id="konfig-qr" type="button">QR-Code für die Kasse erzeugen</button>
           <button class="btn-ghost-light" id="konfig-pdf" type="button">Als PDF speichern</button>
           <button class="btn-ghost-light" id="konfig-copy" type="button">Liste kopieren</button>
           <button class="btn-ghost-light" id="konfig-reset" type="button">Zurücksetzen</button>
         </div>
-        <p class="konfig-summary-note">Kein Online-Shop, keine Vorkasse — die Bestellung wird persönlich bestätigt. Alle Preise inkl. MwSt.</p>
+        <div class="konfig-qr-box" id="konfig-qr-box" hidden>
+          <img id="konfig-qr-img" alt="QR-Code deiner Frühstücksbestellung — an der Kasse scannen lassen">
+          <p class="konfig-qr-hint" id="konfig-qr-hint"></p>
+        </div>
+        <p class="konfig-summary-note">Kein Online-Shop, keine Vorkasse — einfach den Code an der Kasse scannen lassen und vor Ort bezahlen. Alle Preise inkl. MwSt.</p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- ── SEKTION 2: SAISONALES ── -->
-<section style="background: var(--sand);" aria-labelledby="saisonal-heading">
+<!-- ── SEKTION 2: SAISONALES & NEUHEITEN ── -->
+<!-- Zwei Blöcke: 01 Saisonales (jahreszeitlich wechselnd, z. B. Eiscafé im
+     Sommer — Vorlage unten einkommentieren), 02 Neuheiten (neue Produkte).
+     Kachel ändern = img + Titel + 1 Satz Text tauschen, mehr nicht. -->
+<section aria-labelledby="saisonal-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Immer zur richtigen Zeit</p>
-    <h2 class="section-title reveal" id="saisonal-heading">Saisonales &amp; <em>Besonderes.</em></h2>
+    <h2 class="section-title reveal" id="saisonal-heading">Saisonales &amp; <em>Neuheiten.</em></h2>
+
+    <p class="saisonal-block-label reveal">01 · Saisonales</p>
     <div class="saisonal-grid">
       <div class="saisonal-tile reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=80&fit=crop"
-             alt="Österliche Hefezöpfe und Osterlämmer — Brotzeit Rostock"
+        <img src="images/brotzeit-rostock-brot-handwerk-baeckerei.jpg"
+             alt="Handwerklich gebackenes Brot und Hefegebäck — Ostern bei Brotzeit Rostock"
              loading="lazy">
         <div class="saisonal-tile-overlay"></div>
         <div class="saisonal-tile-content">
@@ -662,8 +777,8 @@
         </div>
       </div>
       <div class="saisonal-tile reveal">
-        <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=600&q=80&fit=crop"
-             alt="Valentinstag Pralinen und Herztorten — Konditorei Brotzeit Rostock"
+        <img src="images/brotzeit-rostock-petit-fours-toertchen-konditorei.jpg"
+             alt="Feine Törtchen und Petit Fours — Valentinstag bei Brotzeit Rostock"
              loading="lazy">
         <div class="saisonal-tile-overlay"></div>
         <div class="saisonal-tile-content">
@@ -681,6 +796,41 @@
           <p class="saisonal-tile-text">Stollen, Lebkuchen, Christstollen nach Hausrezept.</p>
         </div>
       </div>
+      <!-- VORLAGE Eiscafé (im Sommer einkommentieren, Bild ergänzen):
+      <div class="saisonal-tile">
+        <img src="images/BILD-EISCAFE.jpg" alt="Eiscafé bei Brotzeit Rostock" loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Eiscafé</h3>
+          <p class="saisonal-tile-text">Eisspezialitäten und kalte Kaffeekreationen — den ganzen Sommer.</p>
+        </div>
+      </div>
+      -->
+    </div>
+
+    <p class="saisonal-block-label reveal">02 · Neuheiten</p>
+    <div class="saisonal-grid">
+      <div class="saisonal-tile reveal reveal-delay-1">
+        <!-- Platzhalterbild — echtes Bäcker-Sushi-Foto folgt (Fototermin Katrin) -->
+        <img src="images/brotzeit-rostock-mittagstisch-veggie-rostock.jpg"
+             alt="Frische herzhafte Snacks — Bäcker-Sushi bei Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Bäcker-Sushi</h3>
+          <p class="saisonal-tile-text">Herzhafte Röllchen aus Brot — die besondere Alternative zur Platte.</p>
+        </div>
+      </div>
+      <a class="saisonal-tile reveal reveal-delay-2" href="#fruehstueck-konfigurator" style="display: block; color: inherit; text-decoration: none;">
+        <img src="images/brotzeit-rostock-fruehstueck-gebaeck-petit-fours-konditorei.jpg"
+             alt="Frühstück und Gebäck — Online-Frühstückskonfigurator Brotzeit Rostock"
+             loading="lazy">
+        <div class="saisonal-tile-overlay"></div>
+        <div class="saisonal-tile-content">
+          <h3 class="saisonal-tile-title">Frühstück online zusammenstellen</h3>
+          <p class="saisonal-tile-text">Auswählen, Preis live sehen, Liste mitbringen — direkt hier auf der Seite.</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -702,7 +852,7 @@
       </div>
       <div class="reveal">
         <p style="font-size:0.92rem;color:rgba(253,250,245,0.6);line-height:1.9;margin-bottom:28px;">
-          Sie haben Fragen zum aktuellen Angebot, zur Mittagskarte oder zu besonderen Wünschen?<br>
+          Sie haben Fragen zum aktuellen Angebot oder zu besonderen Wünschen?<br>
           Sprechen Sie uns gerne persönlich an oder schreiben Sie uns. Wir sind zentral in Rostock erreichbar, auch aus Stadtmitte, Dierkow, Toitenwinkel und Warnemünde.
         </p>
         <a href="kontakt.html" class="btn-ghost-light">Kontakt aufnehmen</a>
@@ -718,6 +868,7 @@
     <p class="zettel-untertitel">Bäckerei · Konditorei · Café — Am Vögenteich 24, 18055 Rostock</p>
   </div>
   <h1 class="zettel-titel">Mein Frühstück</h1>
+  <p class="zettel-name" id="zettel-name"></p>
   <p class="zettel-datum" id="zettel-datum"></p>
   <table class="zettel-tabelle">
     <thead>
@@ -728,9 +879,13 @@
       <tr><td colspan="3">Gesamt</td><td id="zettel-gesamt"></td></tr>
     </tfoot>
   </table>
+  <div class="zettel-qr" id="zettel-qr-wrap" hidden>
+    <img id="zettel-qr-img" alt="QR-Code der Bestellung — an der Kasse scannen lassen">
+    <p>An der Kasse scannen lassen</p>
+  </div>
   <p class="zettel-fuss">
-    Alle Preise in Euro, inkl. MwSt. — kein verbindlicher Kaufvertrag, die Bestellung wird persönlich bestätigt.<br>
-    Brotzeit Rostock · Am Vögenteich 24, 18055 Rostock · Tel. 0381 87729509 · maxi@sparre.de
+    Alle Preise in Euro, inkl. MwSt. — kein verbindlicher Kaufvertrag, bezahlt wird an der Kasse.<br>
+    Brotzeit Rostock · Am Vögenteich 24, 18055 Rostock · Tel. 0381 87729509
   </p>
 </div>
 
@@ -770,6 +925,7 @@
 
 <script src="shared.js"></script>
 <script src="json/preise.js"></script>
+<script src="js/qrcode.min.js"></script>
 <script>
 /* Seitenspezifisch: interaktive Preisliste + Frühstückskonfigurator.
    Alle Preise kommen aus json/preise.js — hier steht nur Darstellung. */
@@ -857,7 +1013,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const gruppenEl = document.getElementById('konfig-gruppen');
   const listeEl = document.getElementById('konfig-liste');
   const totalEl = document.getElementById('konfig-total');
-  const mailEl = document.getElementById('konfig-mail');
+  const vornameEl = document.getElementById('konfig-vorname');
+  const qrBoxEl = document.getElementById('konfig-qr-box');
   const auswahl = new Map(); /* key -> { name, preis, anzahl } */
 
   let offenGesetzt = false;
@@ -909,12 +1066,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('') + '</div>'
       : '<p class="konfig-summary-leer">Noch nichts gewählt — klick dich links durch Brötchen, Eier, Aufschnitt und mehr.</p>';
     totalEl.textContent = fmt(summe) + ' €';
-    const body = 'Hallo Brotzeit-Team,%0D%0A%0D%0Aich möchte folgendes Frühstück bestellen:%0D%0A%0D%0A' +
-      zeilen.map(z => encodeURIComponent(z)).join('%0D%0A') +
-      '%0D%0A%0D%0AGesamt: ' + encodeURIComponent(fmt(summe) + ' €') +
-      '%0D%0A%0D%0AName:%0D%0AAbholung am/um:%0D%0AAnmerkungen (z. B. Sorte bei Frischkäse oder Marmelade):%0D%0A';
-    mailEl.href = 'mailto:maxi@sparre.de?subject=' + encodeURIComponent('Frühstücksbestellung Brotzeit') + '&body=' + body;
+    /* Auswahl geändert → alter QR-Code gilt nicht mehr */
+    qrBoxEl.hidden = true;
   }
+
+  /* QR-Inhalt: Klartext, den die Kasse beim Scannen direkt lesen kann */
+  function qrPayload(vorname) {
+    const { zeilen, summe } = bestellText();
+    return 'BROTZEIT BESTELLUNG\n' +
+      'Name: ' + vorname + '\n' +
+      new Date().toLocaleDateString('de-DE') + ' ' +
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
+      '----------------------\n' +
+      zeilen.join('\n') + '\n' +
+      '----------------------\n' +
+      'Gesamt: ' + fmt(summe) + ' EUR';
+  }
+
+  function qrDataURL(vorname, cellSize) {
+    const qr = qrcode(0, 'M');
+    /* UTF-8-Bytes, damit Umlaute beim Scannen korrekt ankommen */
+    qr.addData(unescape(encodeURIComponent(qrPayload(vorname))), 'Byte');
+    qr.make();
+    return qr.createDataURL(cellSize || 6, 0);
+  }
+
+  document.getElementById('konfig-qr').addEventListener('click', ev => {
+    const { zeilen } = bestellText();
+    if (!zeilen.length) {
+      ev.target.textContent = 'Erst etwas auswählen';
+      setTimeout(() => { ev.target.textContent = 'QR-Code für die Kasse erzeugen'; }, 2000);
+      return;
+    }
+    const vorname = vornameEl.value.trim();
+    if (!vorname) {
+      ev.target.textContent = 'Bitte Vornamen eingeben';
+      vornameEl.focus();
+      setTimeout(() => { ev.target.textContent = 'QR-Code für die Kasse erzeugen'; }, 2000);
+      return;
+    }
+    document.getElementById('konfig-qr-img').src = qrDataURL(vorname);
+    document.getElementById('konfig-qr-hint').textContent =
+      'Einfach an der Kasse scannen lassen — wir rufen „' + vorname + '", sobald alles fertig ist.';
+    qrBoxEl.hidden = false;
+  });
 
   gruppenEl.addEventListener('click', ev => {
     const btn = ev.target.closest('button[data-plus], button[data-minus]');
@@ -948,8 +1143,12 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => { ev.target.textContent = 'Als PDF speichern'; }, 2000);
       return;
     }
+    const vorname = vornameEl.value.trim();
+    document.getElementById('zettel-name').textContent = vorname ? 'Für: ' + vorname : '';
     document.getElementById('zettel-datum').textContent =
       'Zusammengestellt am ' + new Date().toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+    document.getElementById('zettel-qr-img').src = qrDataURL(vorname || '—', 5);
+    document.getElementById('zettel-qr-wrap').hidden = false;
     document.getElementById('zettel-positionen').innerHTML = eintraege.map(e =>
       '<tr><td>' + e.anzahl + '×</td><td>' + esc(e.name) + '</td><td>' + fmt(e.preis) +
       ' €</td><td>' + fmt(e.anzahl * e.preis) + ' €</td></tr>').join('');
