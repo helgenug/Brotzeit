@@ -171,8 +171,13 @@
 <!-- ── PAGE TEASER ── -->
 <header class="page-teaser" role="banner">
   <img class="page-teaser-img"
-       src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&fit=crop"
-       alt="Café Eingang — Brotzeit Rostock Am Vögenteich 24"
+       src="images/1600/brotzeit-rostock-vitrine-bedienung.jpg"
+       srcset="images/480/brotzeit-rostock-vitrine-bedienung.jpg 480w,
+               images/960/brotzeit-rostock-vitrine-bedienung.jpg 960w,
+               images/1600/brotzeit-rostock-vitrine-bedienung.jpg 1600w,
+               images/2800/brotzeit-rostock-vitrine-bedienung.jpg 2800w"
+       sizes="100vw"
+       alt="Bedienung an der Vitrine mit frischen Törtchen — Brotzeit Rostock"
        loading="eager">
   <div class="page-teaser-overlay"></div>
   <div class="page-teaser-content">
@@ -246,14 +251,19 @@
       <!-- Spalte 3: Kontaktformular -->
       <div class="reveal reveal-delay-2">
         <h3 class="kontakt-adresse-title">Nachricht senden</h3>
-        <form action="mailto:maxi@sparre.de" method="post" enctype="text/plain" aria-label="Kontaktformular">
+        <!-- Formspree: Bitte durch die echte Formular-Endpoint-URL ersetzen
+             (formspree.io → New Form → Endpoint kopieren). Bis dahin sendet
+             dieses Formular nicht. -->
+        <form action="https://formspree.io/f/REPLACE_WITH_KONTAKT_FORM_ID" method="POST" aria-label="Kontaktformular">
+          <input type="hidden" name="_subject" value="Neue Nachricht über die Website – Brotzeit Rostock">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-group">
             <label for="k-name">Name</label>
             <input type="text" id="k-name" name="name" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="k-email">E-Mail</label>
-            <input type="email" id="k-email" name="email" autocomplete="email" required>
+            <input type="email" id="k-email" name="_replyto" autocomplete="email" required>
           </div>
           <div class="form-group">
             <label for="k-betreff">Betreff</label>

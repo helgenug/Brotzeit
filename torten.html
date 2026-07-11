@@ -44,6 +44,38 @@
 <style>
 /* ── TORTEN-SPECIFIC ── */
 
+/* Page-Teaser-Slideshow (analog speisekarte.html) */
+.teaser-slides { position: absolute; inset: 0; }
+.teaser-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.teaser-slide.active { opacity: 1; }
+.teaser-slide .page-teaser-img { position: absolute; inset: 0; }
+.teaser-dots {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+}
+.teaser-dot {
+  width: 22px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  background: rgba(253,250,245,0.35);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.teaser-dot.active { background: var(--brown-light); width: 34px; }
+@media (max-width: 640px) {
+  .teaser-dots { display: none; }
+}
+
 /* Sektion 1: Intro 2-spaltig */
 .torten-intro {
   display: grid;
@@ -286,17 +318,77 @@
   <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
 </div>
 
-<!-- ── PAGE TEASER ── -->
+<!-- ── PAGE TEASER (Slideshow) ── -->
 <header class="page-teaser" role="banner">
-  <img class="page-teaser-img"
-       src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=80&fit=crop"
-       alt="Individuelle Hochzeitstorte — Konditorei Brotzeit Rostock"
-       loading="eager">
+  <div class="teaser-slides">
+    <div class="teaser-slide active">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-toertchen-brotzeit-label.jpg"
+           srcset="images/480/brotzeit-rostock-toertchen-brotzeit-label.jpg 480w,
+                   images/960/brotzeit-rostock-toertchen-brotzeit-label.jpg 960w,
+                   images/1600/brotzeit-rostock-toertchen-brotzeit-label.jpg 1600w,
+                   images/2800/brotzeit-rostock-toertchen-brotzeit-label.jpg 2800w"
+           sizes="100vw"
+           alt="Törtchenreihe mit Brotzeit-Branding auf Schieferbrett — Konditorei Brotzeit Rostock"
+           loading="eager">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-toertchen-reihe-beeren.jpg"
+           srcset="images/480/brotzeit-rostock-toertchen-reihe-beeren.jpg 480w,
+                   images/960/brotzeit-rostock-toertchen-reihe-beeren.jpg 960w,
+                   images/1600/brotzeit-rostock-toertchen-reihe-beeren.jpg 1600w,
+                   images/2800/brotzeit-rostock-toertchen-reihe-beeren.jpg 2800w"
+           sizes="100vw"
+           alt="Bunte Petit Fours mit frischen Beeren in der Vitrine — Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-motivtorte-happy-birthday.jpg"
+           srcset="images/480/brotzeit-rostock-motivtorte-happy-birthday.jpg 480w,
+                   images/960/brotzeit-rostock-motivtorte-happy-birthday.jpg 960w,
+                   images/1600/brotzeit-rostock-motivtorte-happy-birthday.jpg 1600w,
+                   images/2800/brotzeit-rostock-motivtorte-happy-birthday.jpg 2800w"
+           sizes="100vw"
+           alt="Individuelle Motivtorte mit Herzen und Happy-Birthday-Schriftzug — Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-toertchen-vielfalt.jpg"
+           srcset="images/480/brotzeit-rostock-toertchen-vielfalt.jpg 480w,
+                   images/960/brotzeit-rostock-toertchen-vielfalt.jpg 960w,
+                   images/1600/brotzeit-rostock-toertchen-vielfalt.jpg 1600w,
+                   images/2800/brotzeit-rostock-toertchen-vielfalt.jpg 2800w"
+           sizes="100vw"
+           alt="Vielfalt an Petit Fours mit Blaubeeren und Erdbeeren — Konditorei Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg"
+           srcset="images/480/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg 480w,
+                   images/960/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg 960w,
+                   images/1600/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg 1600w,
+                   images/2800/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg 2800w"
+           sizes="100vw"
+           alt="Himbeer-Törtchen mit weißer Schokolade — Brotzeit Rostock"
+           loading="lazy">
+    </div>
+  </div>
   <div class="page-teaser-overlay"></div>
   <div class="page-teaser-content">
     <p class="page-teaser-eyebrow">Konditorei · Brotzeit Rostock</p>
     <h1>Jede Torte ein <em>Einzelstück.</em></h1>
     <p class="page-teaser-lead">Hochzeitstorten, Geburtstagstorten, Jugendweihe- und Taufe-Torten, Motivtorten und Törtchen — jede Torte entsteht nach Wunsch. Wir besprechen alles persönlich in Rostock.</p>
+  </div>
+  <div class="teaser-dots" role="tablist" aria-label="Bildnavigation">
+    <button class="teaser-dot active" data-index="0" aria-label="Bild 1"></button>
+    <button class="teaser-dot" data-index="1" aria-label="Bild 2"></button>
+    <button class="teaser-dot" data-index="2" aria-label="Bild 3"></button>
+    <button class="teaser-dot" data-index="3" aria-label="Bild 4"></button>
+    <button class="teaser-dot" data-index="4" aria-label="Bild 5"></button>
   </div>
 </header>
 
@@ -312,8 +404,13 @@
   <div class="section-wrap">
     <div class="torten-intro">
       <div class="torten-intro-img reveal">
-        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=80&fit=crop"
-             alt="Handgefertigte Torte in der Konditorei Brotzeit Rostock"
+        <img src="images/1600/brotzeit-rostock-torte-rosen-beeren.jpg"
+             srcset="images/480/brotzeit-rostock-torte-rosen-beeren.jpg 480w,
+                     images/960/brotzeit-rostock-torte-rosen-beeren.jpg 960w,
+                     images/1600/brotzeit-rostock-torte-rosen-beeren.jpg 1600w,
+                     images/2800/brotzeit-rostock-torte-rosen-beeren.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Handgefertigte Torte mit roten Rosen und Beeren — Konditorei Brotzeit Rostock"
              loading="lazy">
       </div>
       <div>
@@ -363,8 +460,13 @@
     <p class="section-lead reveal">Von der eleganten Hochzeitstorte über die Geburtstagstorte bis zu Törtchen, Cupcakes und Anlass-Torten für Jugendweihe oder Taufe.</p>
     <div class="kategorien-grid">
       <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=800&q=80&fit=crop"
-             alt="Hochzeitstorten handgefertigt — Konditorei Brotzeit Rostock"
+        <img src="images/1600/brotzeit-rostock-hochzeitstorte-brautpaar.jpg"
+             srcset="images/480/brotzeit-rostock-hochzeitstorte-brautpaar.jpg 480w,
+                     images/960/brotzeit-rostock-hochzeitstorte-brautpaar.jpg 960w,
+                     images/1600/brotzeit-rostock-hochzeitstorte-brautpaar.jpg 1600w,
+                     images/2800/brotzeit-rostock-hochzeitstorte-brautpaar.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Hochzeitstorte mit Brautpaar-Figur und Rosen — Konditorei Brotzeit Rostock"
              loading="lazy">
         <div class="kategorie-overlay"></div>
         <div class="kategorie-content">
@@ -373,8 +475,13 @@
         </div>
       </a>
       <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop"
-             alt="Geburtstagstorten individuell — Brotzeit Rostock"
+        <img src="images/1600/brotzeit-rostock-geburtstagstorte-erdbeer.jpg"
+             srcset="images/480/brotzeit-rostock-geburtstagstorte-erdbeer.jpg 480w,
+                     images/960/brotzeit-rostock-geburtstagstorte-erdbeer.jpg 960w,
+                     images/1600/brotzeit-rostock-geburtstagstorte-erdbeer.jpg 1600w,
+                     images/2800/brotzeit-rostock-geburtstagstorte-erdbeer.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Geburtstagstorte mit Erdbeeren und weißer Schokolade — Brotzeit Rostock"
              loading="lazy">
         <div class="kategorie-overlay"></div>
         <div class="kategorie-content">
@@ -383,8 +490,13 @@
         </div>
       </a>
       <a href="mailto:maxi@sparre.de" class="kategorie-card reveal">
-        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80&fit=crop"
-             alt="Motivtorten nach Wunsch — Konditorei Brotzeit Rostock"
+        <img src="images/1600/brotzeit-rostock-motivtorte-individuell.jpg"
+             srcset="images/480/brotzeit-rostock-motivtorte-individuell.jpg 480w,
+                     images/960/brotzeit-rostock-motivtorte-individuell.jpg 960w,
+                     images/1600/brotzeit-rostock-motivtorte-individuell.jpg 1600w,
+                     images/2800/brotzeit-rostock-motivtorte-individuell.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Individuelle Motivtorte mit Namens-Topper und Blumen — Konditorei Brotzeit Rostock"
              loading="lazy">
         <div class="kategorie-overlay"></div>
         <div class="kategorie-content">
@@ -393,8 +505,13 @@
         </div>
       </a>
       <a href="mailto:maxi@sparre.de" class="kategorie-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?w=800&q=80&fit=crop"
-             alt="Cupcakes und Petitfours — Konditorei Brotzeit Rostock"
+        <img src="images/1600/brotzeit-rostock-cupcakes-petitfours.jpg"
+             srcset="images/480/brotzeit-rostock-cupcakes-petitfours.jpg 480w,
+                     images/960/brotzeit-rostock-cupcakes-petitfours.jpg 960w,
+                     images/1600/brotzeit-rostock-cupcakes-petitfours.jpg 1600w,
+                     images/2800/brotzeit-rostock-cupcakes-petitfours.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Torte mit Kamillenblüten, Beeren und Cupcakes — Brotzeit Rostock"
              loading="lazy">
         <div class="kategorie-overlay"></div>
         <div class="kategorie-content">
@@ -575,5 +692,34 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+/* Seitenspezifisch: Teaser-Slideshow (analog speisekarte.html). */
+document.addEventListener('DOMContentLoaded', () => {
+  const teaserSlides = document.querySelectorAll('.teaser-slide');
+  const teaserDots = document.querySelectorAll('.teaser-dot');
+  if (teaserSlides.length > 1) {
+    let teaserCurrent = 0;
+    let teaserTimer;
+
+    function teaserGoTo(i) {
+      teaserSlides[teaserCurrent].classList.remove('active');
+      teaserDots[teaserCurrent].classList.remove('active');
+      teaserCurrent = i;
+      teaserSlides[teaserCurrent].classList.add('active');
+      teaserDots[teaserCurrent].classList.add('active');
+    }
+
+    teaserDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        clearInterval(teaserTimer);
+        teaserGoTo(parseInt(dot.dataset.index));
+        teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+      });
+    });
+
+    teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+  }
+});
+</script>
 </body>
 </html>

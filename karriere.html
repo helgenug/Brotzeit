@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karriere – Brotzeit Rostock | Jetzt bewerben</title>
-<meta name="description" content="Werde Teil des Teams bei Brotzeit Rostock. Offene Stellen in Bäckerei, Konditorei und Service. Bewerbung per E-Mail.">
+<meta name="description" content="Werde Teil des Teams bei Brotzeit Rostock. Offene Stellen in Bäckerei, Konditorei und Service. Jetzt direkt online bewerben.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/karriere.html">
 
@@ -111,36 +111,95 @@
   align-self: flex-start;
 }
 
-/* Initiativ-Sektion */
-.initiativ-section {
+/* Bewerbungsformular-Sektion */
+.bewerbung-section {
   background: var(--warm-dark);
 }
-.initiativ-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+.bewerbung-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
 }
-.initiativ-text h2 {
+.bewerbung-info .section-eyebrow { color: var(--brown-light); }
+.bewerbung-info h2 {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 300;
   color: var(--white);
   line-height: 1.2;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
-.initiativ-text h2 em { font-style: italic; color: var(--brown-light); }
-.initiativ-text p {
+.bewerbung-info h2 em { font-style: italic; color: var(--brown-light); }
+.bewerbung-info > p.bewerbung-lead {
   font-size: 0.9rem;
-  color: rgba(253,250,245,0.55);
+  color: rgba(253,250,245,0.6);
   line-height: 1.85;
-  max-width: 460px;
+  max-width: 440px;
+}
+.bewerbung-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+.bewerbung-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.bewerbung-icon {
+  font-size: 0.85rem;
+  color: var(--brown-light);
+  min-width: 20px;
+  margin-top: 2px;
+}
+.bewerbung-row-text strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.4);
+  margin-bottom: 3px;
+}
+.bewerbung-row-text span {
+  font-size: 0.88rem;
+  color: rgba(253,250,245,0.7);
+}
+.bewerbung-row-text a {
+  font-size: 0.88rem;
+  color: var(--brown-light);
+  text-decoration: none;
+}
+.bewerbung-row-text a:hover { text-decoration: underline; }
+
+.form-group input[type="file"] {
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.form-group input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: none;
+  background: var(--brown-mid);
+  color: var(--white);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.form-group input[type="file"]:hover::file-selector-button { background: var(--accent); }
+.form-hint {
+  font-size: 0.78rem;
+  color: rgba(253,250,245,0.4);
+  margin-top: -12px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 900px) {
   .stellen-grid { grid-template-columns: 1fr; }
-  .initiativ-inner { flex-direction: column; align-items: flex-start; }
+  .bewerbung-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 </style>
 </head>
@@ -174,8 +233,13 @@
 <!-- ── PAGE TEASER ── -->
 <header class="page-teaser" role="banner">
   <img class="page-teaser-img"
-       src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80&fit=crop"
-       alt="Team in der Bäckereiküche — Karriere bei Brotzeit Rostock"
+       src="images/1600/brotzeit-rostock-filiale-aussenansicht.jpg"
+       srcset="images/480/brotzeit-rostock-filiale-aussenansicht.jpg 480w,
+               images/960/brotzeit-rostock-filiale-aussenansicht.jpg 960w,
+               images/1600/brotzeit-rostock-filiale-aussenansicht.jpg 1600w,
+               images/2800/brotzeit-rostock-filiale-aussenansicht.jpg 2800w"
+       sizes="100vw"
+       alt="Filiale von Brotzeit Rostock am Vögenteich mit Schriftzug „ein Stück Rostock“"
        loading="eager">
   <div class="page-teaser-overlay"></div>
   <div class="page-teaser-content">
@@ -205,36 +269,107 @@
         <p class="stellen-badge">Vollzeit · Teilzeit</p>
         <h3 class="stellen-title">Bäcker / Konditor (m/w/d)</h3>
         <p class="stellen-desc">Du liebst es, mit Teig zu arbeiten und Qualität zu schaffen, die man schmeckt. In unserem Team bringst du handwerkliches Können täglich zum Einsatz — von der Backstube bis zum Verkauf.</p>
-        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20B%C3%A4cker%20Konditor" class="btn-primary">Jetzt bewerben</a>
+        <a href="#bewerbung" class="btn-primary job-apply-btn" data-stelle="Bäcker / Konditor (m/w/d)">Jetzt bewerben</a>
       </article>
       <article class="stellen-card reveal reveal-delay-2">
         <p class="stellen-badge">Vollzeit · Teilzeit</p>
         <h3 class="stellen-title">Fachverkäufer im Lebensmittelhandwerk (m/w/d)</h3>
         <p class="stellen-desc">Du weißt, was in unseren Produkten steckt, und gibst das gerne weiter. Mit Begeisterung für gute Backwaren und Spaß am Kontakt mit Gästen bist du bei uns genau richtig.</p>
-        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20Fachverk%C3%A4ufer" class="btn-primary">Jetzt bewerben</a>
+        <a href="#bewerbung" class="btn-primary job-apply-btn" data-stelle="Fachverkäufer im Lebensmittelhandwerk (m/w/d)">Jetzt bewerben</a>
       </article>
       <article class="stellen-card reveal reveal-delay-3">
         <p class="stellen-badge">Minijob · Aushilfe</p>
         <h3 class="stellen-title">Aushilfe / Minijob (m/w/d)</h3>
         <p class="stellen-desc">Flexible Unterstützung an Stoßzeiten oder am Wochenende — ideal für Studierende oder alle, die einfach gerne in einem Bäckerei-Café arbeiten möchten.</p>
-        <a href="mailto:maxi@sparre.de?subject=Bewerbung%20Brotzeit%20Rostock%20-%20Aushilfe" class="btn-primary">Jetzt bewerben</a>
+        <a href="#bewerbung" class="btn-primary job-apply-btn" data-stelle="Aushilfe / Minijob (m/w/d)">Jetzt bewerben</a>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ── SEKTION 2: INITIATIVBEWERBUNG ── -->
-<section class="initiativ-section" aria-labelledby="initiativ-heading">
+<!-- ── SEKTION 2: BEWERBUNGSFORMULAR ── -->
+<section class="bewerbung-section" id="bewerbung" aria-labelledby="bewerbung-heading">
   <div class="section-wrap">
-    <div class="initiativ-inner">
-      <div class="initiativ-text">
-        <p class="section-eyebrow reveal" style="color:var(--brown-light);">Kein passendes Angebot?</p>
-        <h2 class="reveal" id="initiativ-heading">Initiativbewerbung <em>willkommen.</em></h2>
-        <p class="reveal reveal-delay-1">Schick uns einfach eine Initiativbewerbung — wir melden uns, sobald etwas Passendes frei ist.</p>
+    <div class="bewerbung-inner">
+      <div class="bewerbung-info">
+        <p class="section-eyebrow reveal">Jetzt bewerben</p>
+        <h2 class="reveal" id="bewerbung-heading">Werde Teil <em>unseres Teams.</em></h2>
+        <p class="bewerbung-lead reveal reveal-delay-1">Egal ob für eine der offenen Stellen oder initiativ — schick uns einfach deine Bewerbung. Wir melden uns persönlich bei dir.</p>
+        <div class="bewerbung-detail">
+          <div class="bewerbung-row reveal">
+            <span class="bewerbung-icon">●</span>
+            <div class="bewerbung-row-text">
+              <strong>Persönlich</strong>
+              <span>Am Vögenteich 24, 18055 Rostock</span>
+            </div>
+          </div>
+          <div class="bewerbung-row reveal reveal-delay-1">
+            <span class="bewerbung-icon">●</span>
+            <div class="bewerbung-row-text">
+              <strong>E-Mail</strong>
+              <a href="mailto:maxi@sparre.de">maxi@sparre.de</a>
+            </div>
+          </div>
+          <div class="bewerbung-row reveal reveal-delay-2">
+            <span class="bewerbung-icon">●</span>
+            <div class="bewerbung-row-text">
+              <strong>Telefon</strong>
+              <a href="tel:+493818772950">0381 87729509</a>
+            </div>
+          </div>
+          <div class="bewerbung-row reveal reveal-delay-3">
+            <span class="bewerbung-icon">●</span>
+            <div class="bewerbung-row-text">
+              <strong>Unterlagen</strong>
+              <span>Lebenslauf gerne direkt hier hochladen oder persönlich vorbeibringen.</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="reveal reveal-delay-2">
-        <a href="mailto:maxi@sparre.de?subject=Initiativbewerbung%20Brotzeit%20Rostock"
-           class="btn-ghost-light">Initiativbewerbung senden</a>
+        <!-- Formspree: Bitte durch die echte Formular-Endpoint-URL ersetzen
+             (formspree.io → New Form → Endpoint kopieren). Bis dahin sendet
+             dieses Formular nicht. -->
+        <form action="https://formspree.io/f/REPLACE_WITH_BEWERBUNG_FORM_ID" method="POST" enctype="multipart/form-data" aria-label="Bewerbungsformular">
+          <input type="hidden" name="_subject" value="Neue Bewerbung – Brotzeit Rostock">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b-name">Name</label>
+              <input type="text" id="b-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="b-email">E-Mail</label>
+              <input type="email" id="b-email" name="_replyto" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b-telefon">Telefon (optional)</label>
+              <input type="tel" id="b-telefon" name="telefon" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="b-stelle">Stelle</label>
+              <select id="b-stelle" name="stelle">
+                <option value="Bäcker / Konditor (m/w/d)">Bäcker / Konditor (m/w/d)</option>
+                <option value="Fachverkäufer im Lebensmittelhandwerk (m/w/d)">Fachverkäufer im Lebensmittelhandwerk (m/w/d)</option>
+                <option value="Aushilfe / Minijob (m/w/d)">Aushilfe / Minijob (m/w/d)</option>
+                <option value="Initiativbewerbung">Initiativbewerbung</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="b-nachricht">Kurz zu dir</label>
+            <textarea id="b-nachricht" name="nachricht" placeholder="Erfahrung, Verfügbarkeit, Wunschstart …"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="b-lebenslauf">Lebenslauf (optional)</label>
+            <input type="file" id="b-lebenslauf" name="lebenslauf" accept=".pdf,.doc,.docx,image/*">
+          </div>
+          <p class="form-hint">PDF, Word oder Bild, max. 10 MB.</p>
+          <button type="submit" class="btn-primary">Bewerbung senden</button>
+        </form>
       </div>
     </div>
   </div>
@@ -275,5 +410,17 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+/* Seitenspezifisch: "Jetzt bewerben" wählt die passende Stelle im Formular vor. */
+document.addEventListener('DOMContentLoaded', () => {
+  const stelleSelect = document.getElementById('b-stelle');
+  document.querySelectorAll('.job-apply-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stelle = btn.dataset.stelle;
+      if (stelleSelect && stelle) stelleSelect.value = stelle;
+    });
+  });
+});
+</script>
 </body>
 </html>

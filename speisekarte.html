@@ -47,6 +47,39 @@
 
 <style>
 /* ── SPEISEKARTE-SPECIFIC ── */
+
+/* Page-Teaser-Slideshow (nur speisekarte.html) */
+.teaser-slides { position: absolute; inset: 0; }
+.teaser-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.teaser-slide.active { opacity: 1; }
+.teaser-slide .page-teaser-img { position: absolute; inset: 0; }
+.teaser-dots {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+}
+.teaser-dot {
+  width: 22px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  background: rgba(253,250,245,0.35);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.teaser-dot.active { background: var(--brown-light); width: 34px; }
+@media (max-width: 640px) {
+  .teaser-dots { display: none; }
+}
+
 .karten-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -607,17 +640,77 @@
   <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
 </div>
 
-<!-- ── PAGE TEASER ── -->
+<!-- ── PAGE TEASER (Slideshow) ── -->
 <header class="page-teaser" role="banner">
-  <img class="page-teaser-img"
-       src="https://images.unsplash.com/photo-1504718855392-c0f33b372e72?w=1600&q=80&fit=crop"
-       alt="Frühstück und Backwaren — Brotzeit Rostock Speisekarte"
-       loading="eager">
+  <div class="teaser-slides">
+    <div class="teaser-slide active">
+      <img class="page-teaser-img"
+           src="images/1600/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg"
+           srcset="images/480/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg 480w,
+                   images/960/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg 960w,
+                   images/1600/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg 1600w,
+                   images/2800/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg 2800w"
+           sizes="100vw"
+           alt="Reich gedeckter Frühstücksteller mit Rührei, Lachs, Beeren und Brötchen – Frühstück Brotzeit Rostock"
+           loading="eager">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg"
+           srcset="images/480/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg 480w,
+                   images/960/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg 960w,
+                   images/1600/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg 1600w,
+                   images/2800/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg 2800w"
+           sizes="100vw"
+           alt="Getoastetes Brot mit Spiegelei, Avocado und Speck – Frühstück Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg"
+           srcset="images/480/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg 480w,
+                   images/960/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg 960w,
+                   images/1600/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg 1600w,
+                   images/2800/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg 2800w"
+           sizes="100vw"
+           alt="Belegtes Vollkornbrot mit Rucola, Tomaten und Sprossen – Frühstück Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/fruehstueck-brotzeit-rostock-beeren-muesli.jpg"
+           srcset="images/480/fruehstueck-brotzeit-rostock-beeren-muesli.jpg 480w,
+                   images/960/fruehstueck-brotzeit-rostock-beeren-muesli.jpg 960w,
+                   images/1600/fruehstueck-brotzeit-rostock-beeren-muesli.jpg 1600w,
+                   images/2800/fruehstueck-brotzeit-rostock-beeren-muesli.jpg 2800w"
+           sizes="100vw"
+           alt="Frische Beeren mit Müsli und Orangensaft – Frühstück Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg"
+           srcset="images/480/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg 480w,
+                   images/960/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg 960w,
+                   images/1600/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg 1600w,
+                   images/2800/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg 2800w"
+           sizes="100vw"
+           alt="Frische Brötchen mit Marmelade, Honig und Beeren – Frühstück Brotzeit Rostock"
+           loading="lazy">
+    </div>
+  </div>
   <div class="page-teaser-overlay"></div>
   <div class="page-teaser-content">
     <p class="page-teaser-eyebrow">Speisekarte · Brotzeit Rostock</p>
     <h1>Täglich frisch. <em>Täglich anders.</em></h1>
     <p class="page-teaser-lead">Frühstück ab 7 Uhr, frisches Brot, Brötchen und Backwaren aus der Backstube — dazu Bäcker-Sushi, Canapés und Snacks. Die Karte wechselt wöchentlich.</p>
+  </div>
+  <div class="teaser-dots" role="tablist" aria-label="Bildnavigation">
+    <button class="teaser-dot active" data-index="0" aria-label="Bild 1"></button>
+    <button class="teaser-dot" data-index="1" aria-label="Bild 2"></button>
+    <button class="teaser-dot" data-index="2" aria-label="Bild 3"></button>
+    <button class="teaser-dot" data-index="3" aria-label="Bild 4"></button>
+    <button class="teaser-dot" data-index="4" aria-label="Bild 5"></button>
   </div>
 </header>
 
@@ -927,6 +1020,35 @@
 <script src="json/preise.js"></script>
 <script src="js/qrcode.min.js"></script>
 <script>
+/* Seitenspezifisch: Teaser-Slideshow (nur speisekarte.html). */
+document.addEventListener('DOMContentLoaded', () => {
+  const teaserSlides = document.querySelectorAll('.teaser-slide');
+  const teaserDots = document.querySelectorAll('.teaser-dot');
+  if (teaserSlides.length > 1) {
+    let teaserCurrent = 0;
+    let teaserTimer;
+
+    function teaserGoTo(i) {
+      teaserSlides[teaserCurrent].classList.remove('active');
+      teaserDots[teaserCurrent].classList.remove('active');
+      teaserCurrent = i;
+      teaserSlides[teaserCurrent].classList.add('active');
+      teaserDots[teaserCurrent].classList.add('active');
+    }
+
+    teaserDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        clearInterval(teaserTimer);
+        teaserGoTo(parseInt(dot.dataset.index));
+        teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+      });
+    });
+
+    teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+  }
+});
+</script>
+<script>
 /* Seitenspezifisch: interaktive Preisliste + Frühstückskonfigurator.
    Alle Preise kommen aus json/preise.js — hier steht nur Darstellung. */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1070,28 +1192,17 @@ document.addEventListener('DOMContentLoaded', () => {
     qrBoxEl.hidden = true;
   }
 
-  /* QR-Inhalt: eine URL (nicht reiner Klartext!). Grund: iPhones erkennen beim
-     Scannen mit der Kamera nur bestimmte Formate (URL, WLAN, Kontakt, ...).
-     Reinen Text ohne solches Muster interpretiert iOS als Suchanfrage und
-     öffnet Safari mit einer Google-Suche danach – die Bestellung landet also
-     nie auf dem Bildschirm. Eine echte URL wird dagegen von allen Geräten
-     (iOS, Android, Windows) direkt geöffnet und zeigt bestellung.html mit
-     der fertig aufbereiteten Bestellung.
-     Die Daten selbst stecken komprimiert (Base64-JSON) im URL-Fragment
-     (#d=...) – das Fragment wird nie an einen Server geschickt, es bleibt
-     also alles clientseitig, genau wie vorher. */
+  /* QR-Inhalt: Klartext, den die Kasse beim Scannen direkt lesen kann */
   function qrPayload(vorname) {
-    const { summe } = bestellText();
-    const items = [];
-    auswahl.forEach(e => {
-      if (e.anzahl > 0) items.push([e.anzahl, e.name, e.preis]);
-    });
-    const data = { n: vorname, t: Date.now(), i: items, s: summe };
-    const json = JSON.stringify(data);
-    const b64 = btoa(unescape(encodeURIComponent(json)))
-      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return location.origin + location.pathname.replace(/[^/]*$/, '') +
-      'bestellung.html#d=' + b64;
+    const { zeilen, summe } = bestellText();
+    return 'BROTZEIT BESTELLUNG\n' +
+      'Name: ' + vorname + '\n' +
+      new Date().toLocaleDateString('de-DE') + ' ' +
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
+      '----------------------\n' +
+      zeilen.join('\n') + '\n' +
+      '----------------------\n' +
+      'Gesamt: ' + fmt(summe) + ' EUR';
   }
 
   function qrDataURL(vorname, cellSize) {
@@ -1103,6 +1214,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.getElementById('konfig-qr').addEventListener('click', ev => {
+    if (typeof qrcode === 'undefined') {
+      /* js/qrcode.min.js wurde nicht geladen (fehlt z. B. beim Upload) */
+      ev.target.textContent = 'Fehler: js/qrcode.min.js fehlt';
+      setTimeout(() => { ev.target.textContent = 'QR-Code für die Kasse erzeugen'; }, 4000);
+      return;
+    }
     const { zeilen } = bestellText();
     if (!zeilen.length) {
       ev.target.textContent = 'Erst etwas auswählen';

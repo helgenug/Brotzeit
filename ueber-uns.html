@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Über uns – Brotzeit Rostock | Bäckerei Sparre seit Jahrzehnten</title>
-<meta name="description" content="Die Brotzeit ist aus der Bäckerei Sparre gewachsen. Handwerkliches Backen, Konditorei und Café am Vögenteich 24 in Rostock.">
+<meta name="description" content="Brotzeit Rostock ist aus der Bäckerei Sparre gewachsen: handwerkliches Brot, Brötchen, Torten, Törtchen, Frühstück und Café am Vögenteich 24.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/ueber-uns.html">
 
@@ -48,6 +48,38 @@
 
 <style>
 /* ── ÜBER UNS SPECIFIC ── */
+
+/* Page-Teaser-Slideshow (analog speisekarte.html) */
+.teaser-slides { position: absolute; inset: 0; }
+.teaser-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.teaser-slide.active { opacity: 1; }
+.teaser-slide .page-teaser-img { position: absolute; inset: 0; }
+.teaser-dots {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+}
+.teaser-dot {
+  width: 22px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  background: rgba(253,250,245,0.35);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.teaser-dot.active { background: var(--brown-light); width: 34px; }
+@media (max-width: 640px) {
+  .teaser-dots { display: none; }
+}
 
 /* Sektion 1: Text links, Bild rechts */
 .about-two-col {
@@ -160,17 +192,77 @@
   <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
 </div>
 
-<!-- ── PAGE TEASER ── -->
+<!-- ── PAGE TEASER (Slideshow) ── -->
 <header class="page-teaser" role="banner">
-  <img class="page-teaser-img"
-       src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1600&q=80&fit=crop"
-       alt="Backstube Bäckerei Sparre — handwerkliches Backen in Rostock"
-       loading="eager">
+  <div class="teaser-slides">
+    <div class="teaser-slide active">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-laden-innenansicht.jpg"
+           srcset="images/480/brotzeit-rostock-laden-innenansicht.jpg 480w,
+                   images/960/brotzeit-rostock-laden-innenansicht.jpg 960w,
+                   images/1600/brotzeit-rostock-laden-innenansicht.jpg 1600w,
+                   images/2800/brotzeit-rostock-laden-innenansicht.jpg 2800w"
+           sizes="100vw"
+           alt="Brotregal und Kaffeetheke im Laden — Brotzeit Rostock"
+           loading="eager">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-brotlaib-schriftzug.jpg"
+           srcset="images/480/brotzeit-rostock-brotlaib-schriftzug.jpg 480w,
+                   images/960/brotzeit-rostock-brotlaib-schriftzug.jpg 960w,
+                   images/1600/brotzeit-rostock-brotlaib-schriftzug.jpg 1600w,
+                   images/2800/brotzeit-rostock-brotlaib-schriftzug.jpg 2800w"
+           sizes="100vw"
+           alt="Frisch gebackenes Brot vor dem Schriftzug „ein Stück Rostock“ — Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-broetchen-auslage.jpg"
+           srcset="images/480/brotzeit-rostock-broetchen-auslage.jpg 480w,
+                   images/960/brotzeit-rostock-broetchen-auslage.jpg 960w,
+                   images/1600/brotzeit-rostock-broetchen-auslage.jpg 1600w,
+                   images/2800/brotzeit-rostock-broetchen-auslage.jpg 2800w"
+           sizes="100vw"
+           alt="Frische Brötchen in der Auslage — Bäckerei Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-toertchen-vitrine-blueten.jpg"
+           srcset="images/480/brotzeit-rostock-toertchen-vitrine-blueten.jpg 480w,
+                   images/960/brotzeit-rostock-toertchen-vitrine-blueten.jpg 960w,
+                   images/1600/brotzeit-rostock-toertchen-vitrine-blueten.jpg 1600w,
+                   images/2800/brotzeit-rostock-toertchen-vitrine-blueten.jpg 2800w"
+           sizes="100vw"
+           alt="Handgefertigte Törtchen mit Blütendeko in der Vitrine — Konditorei Brotzeit Rostock"
+           loading="lazy">
+    </div>
+    <div class="teaser-slide">
+      <img class="page-teaser-img"
+           src="images/1600/brotzeit-rostock-ladenfassade-voegenteich.jpg"
+           srcset="images/480/brotzeit-rostock-ladenfassade-voegenteich.jpg 480w,
+                   images/960/brotzeit-rostock-ladenfassade-voegenteich.jpg 960w,
+                   images/1600/brotzeit-rostock-ladenfassade-voegenteich.jpg 1600w,
+                   images/2800/brotzeit-rostock-ladenfassade-voegenteich.jpg 2800w"
+           sizes="100vw"
+           alt="Ladenfassade und Sitzplätze am Vögenteich — Brotzeit Rostock"
+           loading="lazy">
+    </div>
+  </div>
   <div class="page-teaser-overlay"></div>
   <div class="page-teaser-content">
     <p class="page-teaser-eyebrow">Über uns · Bäckerei Sparre</p>
     <h1>Handwerk, <em>das schmeckt.</em></h1>
     <p class="page-teaser-lead">Die Brotzeit ist aus der Bäckerei Sparre gewachsen — Bäckerei, Konditorei und Café. Am Vögenteich 24, Rostock.</p>
+  </div>
+  <div class="teaser-dots" role="tablist" aria-label="Bildnavigation">
+    <button class="teaser-dot active" data-index="0" aria-label="Bild 1"></button>
+    <button class="teaser-dot" data-index="1" aria-label="Bild 2"></button>
+    <button class="teaser-dot" data-index="2" aria-label="Bild 3"></button>
+    <button class="teaser-dot" data-index="3" aria-label="Bild 4"></button>
+    <button class="teaser-dot" data-index="4" aria-label="Bild 5"></button>
   </div>
 </header>
 
@@ -193,15 +285,20 @@
           Die Brotzeit entstand aus der Bäckerei Sparre — einem Rostocker Handwerksbetrieb, der seit Jahrzehnten für seine handwerkliche Qualität bekannt ist. Am Vögenteich 24 vereint die Brotzeit Bäckerei, Konditorei und Café unter einem Dach.
         </p>
         <p class="about-body reveal reveal-delay-1">
-          Täglich frisch gebacken, täglich für Rostock. Was wir machen, machen wir mit Überzeugung: aus guten Zutaten, mit eigenen Händen, nach eigenem Rezept.
+          Täglich frisch gebacken, täglich für Rostock — von der Stadtmitte bis Dierkow, Toitenwinkel und Warnemünde. Was wir machen, machen wir mit Überzeugung: aus guten Zutaten, mit eigenen Händen, nach eigenem Rezept.
         </p>
         <div style="margin-top:32px;" class="reveal reveal-delay-2">
           <a href="kontakt.html" class="btn-ghost">Kontakt aufnehmen</a>
         </div>
       </div>
       <div class="about-bild reveal">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&fit=crop"
-             alt="Frisch gebackenes Brot — Bäckerei Sparre Rostock"
+        <img src="images/1600/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg"
+             srcset="images/480/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg 480w,
+                     images/960/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg 960w,
+                     images/1600/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg 1600w,
+                     images/2800/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 50vw"
+             alt="Sonnenblumenkernbrot in Nahaufnahme — Bäckerei Sparre Rostock"
              loading="lazy">
       </div>
     </div>
@@ -283,5 +380,34 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+/* Seitenspezifisch: Teaser-Slideshow (analog speisekarte.html). */
+document.addEventListener('DOMContentLoaded', () => {
+  const teaserSlides = document.querySelectorAll('.teaser-slide');
+  const teaserDots = document.querySelectorAll('.teaser-dot');
+  if (teaserSlides.length > 1) {
+    let teaserCurrent = 0;
+    let teaserTimer;
+
+    function teaserGoTo(i) {
+      teaserSlides[teaserCurrent].classList.remove('active');
+      teaserDots[teaserCurrent].classList.remove('active');
+      teaserCurrent = i;
+      teaserSlides[teaserCurrent].classList.add('active');
+      teaserDots[teaserCurrent].classList.add('active');
+    }
+
+    teaserDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        clearInterval(teaserTimer);
+        teaserGoTo(parseInt(dot.dataset.index));
+        teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+      });
+    });
+
+    teaserTimer = setInterval(() => teaserGoTo((teaserCurrent + 1) % teaserSlides.length), 5000);
+  }
+});
+</script>
 </body>
 </html>

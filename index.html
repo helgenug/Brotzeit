@@ -321,6 +321,46 @@ body {
 .btn-ghost-dark:hover { border-color: var(--accent); background: rgba(200,97,42,0.05); }
 
 /* ── ÜBER UNS TEASER ── */
+/* ── LAUFBAND ── */
+.laufband {
+  background: var(--cream);
+  border-top: 1px solid rgba(42,31,20,0.08);
+  border-bottom: 1px solid rgba(42,31,20,0.08);
+  padding: 30px 0;
+  overflow: hidden;
+}
+.laufband-track {
+  display: flex;
+  width: max-content;
+  animation: laufband-scroll 42s linear infinite;
+}
+.laufband-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brown-mid);
+  padding: 0 28px;
+}
+.laufband-sep {
+  color: var(--brown-light);
+  font-size: 0.65rem;
+}
+@keyframes laufband-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .laufband-track { animation: none; }
+}
+@media (max-width: 640px) {
+  .laufband { padding: 22px 0; }
+  .laufband-item { font-size: 0.66rem; padding: 0 20px; }
+}
+
 .about-strip {
   background: var(--warm-dark);
   display: grid;
@@ -722,11 +762,47 @@ body {
   </div>
 </header>
 
+<!-- ── LAUFBAND (Trenner Hero → Über uns) ── -->
+<div class="laufband" aria-hidden="true">
+  <div class="laufband-track">
+    <span class="laufband-item">Täglich frisch gebacken</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Handwerk aus der Backstube</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Frühstück ab 7 Uhr</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Individuelle Torten nach Wunsch</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Bäcker-Sushi & Canapés</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Am Vögenteich 24 · Rostock</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Täglich frisch gebacken</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Handwerk aus der Backstube</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Frühstück ab 7 Uhr</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Individuelle Torten nach Wunsch</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Bäcker-Sushi & Canapés</span>
+    <span class="laufband-sep">✳</span>
+    <span class="laufband-item">Am Vögenteich 24 · Rostock</span>
+    <span class="laufband-sep">✳</span>
+  </div>
+</div>
+
 <!-- ── 2. ÜBER UNS TEASER ── -->
 <section class="about-strip" id="ueber-uns" aria-labelledby="about-heading">
   <div class="about-image">
-    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=80&fit=crop"
-         alt="Backstube Bäckerei Sparre — handwerkliches Backen in Rostock">
+    <img src="images/1600/brotzeit-team-rostock.jpg"
+         srcset="images/480/brotzeit-team-rostock.jpg 480w,
+                 images/960/brotzeit-team-rostock.jpg 960w,
+                 images/1600/brotzeit-team-rostock.jpg 1600w,
+                 images/2800/brotzeit-team-rostock.jpg 2800w"
+         sizes="(max-width: 900px) 100vw, 50vw"
+         alt="Brotzeit-Team Rostock an der Theke — frisches Brot und Törtchen aus der Backstube"
+         loading="lazy">
   </div>
   <div class="about-text">
     <p class="section-eyebrow">Über uns</p>
@@ -783,8 +859,14 @@ body {
     <p class="seo-note">Individuelle Torten in Rostock für Stadtmitte, Dierkow, Toitenwinkel, Warnemünde und Umgebung.</p>
   </div>
   <div class="torten-visual">
-    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80&fit=crop"
-         alt="Individuelle Hochzeitstorte — Konditorei Brotzeit Rostock">
+    <img src="images/1600/brotzeit-rostock-motivtorte-herzen.jpg"
+         srcset="images/480/brotzeit-rostock-motivtorte-herzen.jpg 480w,
+                 images/960/brotzeit-rostock-motivtorte-herzen.jpg 960w,
+                 images/1600/brotzeit-rostock-motivtorte-herzen.jpg 1600w,
+                 images/2800/brotzeit-rostock-motivtorte-herzen.jpg 2800w"
+         sizes="(max-width: 900px) 100vw, 50vw"
+         alt="Individuelle Motivtorte mit Herzen und Schriftzug — Konditorei Brotzeit Rostock"
+         loading="lazy">
     <div class="torten-badge">Rostock bestellt.<br>Wir backen.</div>
   </div>
 </section>
