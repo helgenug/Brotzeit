@@ -615,12 +615,13 @@
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- ── NAV ── [AREAL 10: Navigation — GLOBAL, identisch auf allen Seiten] -->
 <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
   <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
   <ul class="nav-links">
     <li><a href="speisekarte.html" class="active">Speisekarte</a></li>
     <li><a href="torten.html">Torten</a></li>
+    <li><a href="canapes.html">Canapés</a></li>
     <li><a href="ueber-uns.html">Über uns</a></li>
     <li><a href="karriere.html">Karriere</a></li>
     <li><a href="kontakt.html">Kontakt</a></li>
@@ -634,13 +635,14 @@
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
   <a href="speisekarte.html" class="active">Speisekarte</a>
   <a href="torten.html">Torten</a>
+  <a href="canapes.html">Canapés</a>
   <a href="ueber-uns.html">Über uns</a>
   <a href="karriere.html">Karriere</a>
   <a href="kontakt.html">Kontakt</a>
   <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
 </div>
 
-<!-- ── PAGE TEASER (Slideshow) ── -->
+<!-- ── PAGE TEASER (Slideshow) ── [AREAL 20: Page-Teaser] -->
 <header class="page-teaser" role="banner">
   <div class="teaser-slides">
     <div class="teaser-slide active">
@@ -721,7 +723,7 @@
   <span class="breadcrumb-current">Speisekarte</span>
 </nav>
 
-<!-- ── SEKTION 1: DREI KARTEN ── -->
+<!-- ── SEKTION 1: DREI KARTEN ── [AREAL 30: Drei Karten] -->
 <section aria-labelledby="karten-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Was wir täglich anbieten</p>
@@ -754,7 +756,7 @@
   </div>
 </section>
 
-<!-- ── SEKTION 1A: BÄCKER-SUSHI, CANAPÉS & MEHR ── -->
+<!-- ── SEKTION 1A: BÄCKER-SUSHI, CANAPÉS & MEHR ── [AREAL 40: Bäcker-Sushi & Canapés] -->
 <!-- Fotos folgen (Fototermin Katrin) — dann Karten um Bilder ergänzen.
      Canapé-Preise liefert Maximilian Sparre nach → json/preise.js. -->
 <section id="snacks" style="background: var(--white);" aria-labelledby="snacks-heading">
@@ -768,11 +770,11 @@
         <p class="karte-items">Herzhafte Röllchen aus Brot mit feinem Belag — geschnitten und angerichtet wie Sushi. Die besondere Alternative zur klassischen Platte.</p>
         <p class="karte-zeit">Auf Bestellung &amp; im Laden</p>
       </article>
-      <article class="karte-card reveal reveal-delay-2">
+      <a href="canapes.html" class="karte-card reveal reveal-delay-2" style="display: block; color: inherit; text-decoration: none;">
         <h3 class="karte-title">Canapés</h3>
         <p class="karte-items">Fein belegte Häppchen für Empfänge, Feiern und Firmenbestellungen — süß oder herzhaft, nach Absprache zusammengestellt.</p>
-        <p class="karte-zeit">Auf Bestellung</p>
-      </article>
+        <p class="karte-zeit">Alle Sorten &amp; Bestellung →</p>
+      </a>
       <article class="karte-card reveal reveal-delay-2">
         <h3 class="karte-title">Snacks &amp; Salate</h3>
         <p class="karte-items">Frische Snacks, belegte Brötchen und knackige Salate — ideal für die Pause zwischendurch.</p>
@@ -784,11 +786,11 @@
         <p class="karte-zeit"><a href="#preise" style="color: var(--accent); text-decoration: none;">Zur Preisliste ↓</a></p>
       </article>
     </div>
-    <p class="snacks-hinweis reveal">Fotos und Preise für Bäcker-Sushi und Canapés folgen in Kürze — fragt gerne direkt im Laden oder per <a href="mailto:maxi@sparre.de" style="color: var(--accent); text-decoration: none;">E-Mail</a>.</p>
+    <p class="snacks-hinweis reveal">Alle Canapé-Sorten gibt's in der <a href="canapes.html" style="color: var(--accent); text-decoration: none;">Canapé-Galerie</a>. Fotos und Preise für Bäcker-Sushi folgen in Kürze — fragt gerne direkt im Laden oder per <a href="mailto:maxi@sparre.de" style="color: var(--accent); text-decoration: none;">E-Mail</a>.</p>
   </div>
 </section>
 
-<!-- ── SEKTION 1B: INTERAKTIVE PREISLISTE ── -->
+<!-- ── SEKTION 1B: INTERAKTIVE PREISLISTE ── [AREAL 50: Preisliste] -->
 <section id="preise" aria-labelledby="preise-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Schwarz auf weiß</p>
@@ -803,7 +805,7 @@
   </div>
 </section>
 
-<!-- ── SEKTION 1C: FRÜHSTÜCKSKONFIGURATOR ── -->
+<!-- ── SEKTION 1C: FRÜHSTÜCKSKONFIGURATOR ── [AREAL 60: Frühstückskonfigurator] -->
 <section id="fruehstueck-konfigurator" style="background: var(--sand);" aria-labelledby="konfig-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Frühstück nach deinem Geschmack</p>
@@ -838,7 +840,7 @@
   </div>
 </section>
 
-<!-- ── SEKTION 2: SAISONALES & NEUHEITEN ── -->
+<!-- ── SEKTION 2: SAISONALES & NEUHEITEN ── [AREAL 70: Saisonales & Neuheiten] -->
 <!-- Zwei Blöcke: 01 Saisonales (jahreszeitlich wechselnd, z. B. Eiscafé im
      Sommer — Vorlage unten einkommentieren), 02 Neuheiten (neue Produkte).
      Kachel ändern = img + Titel + 1 Satz Text tauschen, mehr nicht. -->
@@ -928,7 +930,7 @@
   </div>
 </section>
 
-<!-- ── SEKTION 3: ÖFFNUNGSZEITEN-REMINDER ── -->
+<!-- ── SEKTION 3: ÖFFNUNGSZEITEN-REMINDER ── [AREAL 80: Öffnungszeiten-Reminder] -->
 <section class="oeffnung-reminder" aria-labelledby="oz-heading">
   <div class="section-wrap">
     <div class="oeffnung-inner">
@@ -954,7 +956,7 @@
   </div>
 </section>
 
-<!-- ── BESTELLZETTEL (nur für Druck / PDF-Export sichtbar) ── -->
+<!-- ── BESTELLZETTEL (nur für Druck / PDF-Export sichtbar) ── [AREAL 90: Bestellzettel (Druckvorlage)] -->
 <div id="bestellzettel" aria-hidden="true">
   <div class="zettel-kopf">
     <p class="zettel-logo">Brot<span>zeit</span></p>
@@ -982,7 +984,7 @@
   </p>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- ── FOOTER ── [AREAL 100: Footer — GLOBAL, identisch auf allen Seiten] -->
 <footer id="main-footer" role="contentinfo">
   <div class="footer-top">
     <div class="footer-brand">
@@ -993,6 +995,7 @@
       <h4>Angebot</h4>
       <a href="speisekarte.html">Speisekarte</a>
       <a href="torten.html">Torten</a>
+      <a href="canapes.html">Canapés</a>
     </div>
     <div class="footer-col">
       <h4>Unternehmen</h4>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canapés Rostock | Feine Häppchen für jeden Anlass – Brotzeit</title>
+<meta name="description" content="Canapés von Brotzeit Rostock: elf raffinierte Sorten auf frischem Brot, verfeinert mit Cremes und Obstdeko. Perfekt für Feiern und Events. Jetzt anfragen.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brotzeit-rostock.de/canapes.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Canapés", "item": "https://brotzeit-rostock.de/canapes.html" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Canapés — Brotzeit Rostock",
+      "url": "https://brotzeit-rostock.de/canapes.html",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Serranoschinken" },
+        { "@type": "ListItem", "position": 2, "name": "Gouda" },
+        { "@type": "ListItem", "position": 3, "name": "Putenbrust" },
+        { "@type": "ListItem", "position": 4, "name": "Tomate Mozzarella" },
+        { "@type": "ListItem", "position": 5, "name": "Französische Salami" },
+        { "@type": "ListItem", "position": 6, "name": "Leerdammer" },
+        { "@type": "ListItem", "position": 7, "name": "Pastrami" },
+        { "@type": "ListItem", "position": 8, "name": "Bonbel Butterkäse" },
+        { "@type": "ListItem", "position": 9, "name": "Räucherlachs" },
+        { "@type": "ListItem", "position": 10, "name": "Kochschinken" },
+        { "@type": "ListItem", "position": 11, "name": "Tomate Feta" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── CANAPÉS-SPECIFIC ── */
+
+/* Sektion 2: Galerie 3×4 */
+.canape-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.canape-tile {
+  position: relative;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--sand);
+}
+.canape-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.canape-tile:hover img { transform: scale(1.05); }
+
+/* Sektion 3: Bestellformular (analog torten.html Anfrage) */
+.anfrage-section {
+  background: var(--warm-dark);
+}
+.anfrage-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+.anfrage-info .section-eyebrow { color: var(--brown-light); }
+.anfrage-info h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.anfrage-info h2 em { font-style: italic; color: var(--brown-light); }
+.anfrage-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+.anfrage-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.anfrage-icon {
+  font-size: 0.85rem;
+  color: var(--brown-light);
+  min-width: 20px;
+  margin-top: 2px;
+}
+.anfrage-row-text strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.4);
+  margin-bottom: 3px;
+}
+.anfrage-row-text span {
+  font-size: 0.88rem;
+  color: rgba(253,250,245,0.7);
+}
+.anfrage-row-text a {
+  font-size: 0.88rem;
+  color: var(--brown-light);
+  text-decoration: none;
+}
+.anfrage-row-text a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .canape-grid { grid-template-columns: repeat(2, 1fr); }
+  .anfrage-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 560px) {
+  .canape-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── [AREAL 10: Navigation — GLOBAL, identisch auf allen Seiten] -->
+<nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+  <ul class="nav-links">
+    <li><a href="speisekarte.html">Speisekarte</a></li>
+    <li><a href="torten.html">Torten</a></li>
+    <li><a href="canapes.html" class="active">Canapés</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILES OVERLAY-MENÜ ── -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
+  <a href="speisekarte.html">Speisekarte</a>
+  <a href="torten.html">Torten</a>
+  <a href="canapes.html" class="active">Canapés</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt</a>
+  <p class="nav-mobile-sub">Am Vögenteich 24 · Rostock</p>
+</div>
+
+<!-- ── PAGE TEASER ── [AREAL 20: Page-Teaser] -->
+<header class="page-teaser" role="banner">
+  <img class="page-teaser-img"
+       src="images/1600/brotzeit-rostock-mittagstisch-veggie-rostock.jpg"
+       srcset="images/480/brotzeit-rostock-mittagstisch-veggie-rostock.jpg 480w,
+               images/960/brotzeit-rostock-mittagstisch-veggie-rostock.jpg 960w,
+               images/1600/brotzeit-rostock-mittagstisch-veggie-rostock.jpg 1600w,
+               images/2800/brotzeit-rostock-mittagstisch-veggie-rostock.jpg 2800w"
+       sizes="100vw"
+       alt="Frisch belegtes Brot mit Gemüse und Sprossen — Canapés Brotzeit Rostock"
+       loading="eager">
+  <div class="page-teaser-overlay"></div>
+  <div class="page-teaser-content">
+    <p class="page-teaser-eyebrow">Feine Häppchen · Brotzeit Rostock</p>
+    <h1>Canapés für <em>jeden Anlass.</em></h1>
+    <p class="page-teaser-lead">Elf raffinierte Sorten auf frischem Brot — verfeinert mit Cremes, Kräutern und Obstdeko. Perfekt für Feiern, Meetings und besondere Anlässe in Rostock.</p>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Canapés</span>
+</nav>
+
+<!-- ── SEKTION 1: EINLEITUNG ── [AREAL 30: Einleitung] -->
+<section aria-labelledby="canape-intro-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Handgefertigt in der Backstube</p>
+    <h2 class="section-title reveal" id="canape-intro-heading">Canapés — <em>die volle Vielfalt.</em></h2>
+    <p class="section-lead reveal">Von Serranoschinken bis Räucherlachs: Unsere Canapés entstehen auf kräftigem Roggenvollkorn- oder saftigem Weizenbrot, verfeinert mit feinen Cremes, frischem Feldsalat oder Rucola und dekorativem Obst. Ideal für Buffets, Feiern und Firmenevents in Rostock.</p>
+  </div>
+</section>
+
+<!-- ── SEKTION 2: GALERIE ── [AREAL 40: Galerie (11 Sorten)] -->
+<section style="background: var(--sand);" aria-labelledby="canape-galerie-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Unsere Sorten</p>
+    <h2 class="section-title reveal" id="canape-galerie-heading">Elf Sorten, <em>eine Auswahl.</em></h2>
+    <p class="section-lead reveal">Ein Klick führt direkt zur Anfrage — wir stellen die Auswahl gern individuell für dich zusammen.</p>
+    <div class="canape-grid">
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-1">
+        <img src="images/960/brotzeit-rostock-canapes-vielfalt.jpg"
+             srcset="images/480/brotzeit-rostock-canapes-vielfalt.jpg 480w,
+                     images/960/brotzeit-rostock-canapes-vielfalt.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapés bei Brotzeit Rostock — alle Sorten, alle Geschmacksrichtungen"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-2">
+        <img src="images/960/brotzeit-rostock-canape-serranoschinken.jpg"
+             srcset="images/480/brotzeit-rostock-canape-serranoschinken.jpg 480w,
+                     images/960/brotzeit-rostock-canape-serranoschinken.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Serranoschinken und mediterraner Joghurtcreme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal">
+        <img src="images/960/brotzeit-rostock-canape-gouda.jpg"
+             srcset="images/480/brotzeit-rostock-canape-gouda.jpg 480w,
+                     images/960/brotzeit-rostock-canape-gouda.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Gouda, Frischrahm-Schnittlauch und Feldsalat — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-1">
+        <img src="images/960/brotzeit-rostock-canape-putenbrust.jpg"
+             srcset="images/480/brotzeit-rostock-canape-putenbrust.jpg 480w,
+                     images/960/brotzeit-rostock-canape-putenbrust.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Putenbrust und Thai-Curry-Creme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-2">
+        <img src="images/960/brotzeit-rostock-canape-tomate-mozzarella.jpg"
+             srcset="images/480/brotzeit-rostock-canape-tomate-mozzarella.jpg 480w,
+                     images/960/brotzeit-rostock-canape-tomate-mozzarella.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Tomate, Mozzarella und Basilikumcreme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal">
+        <img src="images/960/brotzeit-rostock-canape-franzoesische-salami.jpg"
+             srcset="images/480/brotzeit-rostock-canape-franzoesische-salami.jpg 480w,
+                     images/960/brotzeit-rostock-canape-franzoesische-salami.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit französischer Salami und mediterraner Joghurtcreme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-1">
+        <img src="images/960/brotzeit-rostock-canape-leerdammer.jpg"
+             srcset="images/480/brotzeit-rostock-canape-leerdammer.jpg 480w,
+                     images/960/brotzeit-rostock-canape-leerdammer.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Leerdammer, Frischrahm-Schnittlauch und Feldsalat — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-2">
+        <img src="images/960/brotzeit-rostock-canape-pastrami.jpg"
+             srcset="images/480/brotzeit-rostock-canape-pastrami.jpg 480w,
+                     images/960/brotzeit-rostock-canape-pastrami.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Pastrami, Frischkäse natur und Rucola — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal">
+        <img src="images/960/brotzeit-rostock-canape-bonbel-butterkaese.jpg"
+             srcset="images/480/brotzeit-rostock-canape-bonbel-butterkaese.jpg 480w,
+                     images/960/brotzeit-rostock-canape-bonbel-butterkaese.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Bonbel-Butterkäse und mediterraner Joghurtcreme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-1">
+        <img src="images/960/brotzeit-rostock-canape-raeucherlachs.jpg"
+             srcset="images/480/brotzeit-rostock-canape-raeucherlachs.jpg 480w,
+                     images/960/brotzeit-rostock-canape-raeucherlachs.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Räucherlachs, Honig-Feige-Senf und Lollo Rosso — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal reveal-delay-2">
+        <img src="images/960/brotzeit-rostock-canape-kochschinken.jpg"
+             srcset="images/480/brotzeit-rostock-canape-kochschinken.jpg 480w,
+                     images/960/brotzeit-rostock-canape-kochschinken.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Kochschinken und Senf-Gurken-Creme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+      <a href="#anfrage" class="canape-tile reveal">
+        <img src="images/960/brotzeit-rostock-canape-tomate-feta.jpg"
+             srcset="images/480/brotzeit-rostock-canape-tomate-feta.jpg 480w,
+                     images/960/brotzeit-rostock-canape-tomate-feta.jpg 960w"
+             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+             alt="Canapé mit Tomate, Feta und pikanter Tomatencreme — Brotzeit Rostock"
+             loading="lazy">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEKTION 3: BESTELLFORMULAR ── [AREAL 50: Bestellformular] -->
+<section class="anfrage-section" id="anfrage" aria-labelledby="anfrage-heading">
+  <div class="section-wrap">
+    <div class="anfrage-inner">
+      <div class="anfrage-info">
+        <p class="section-eyebrow reveal">Canapés bestellen</p>
+        <h2 class="reveal" id="anfrage-heading">Ihre Auswahl <em>nach Wunsch.</em></h2>
+        <div class="anfrage-detail">
+          <div class="anfrage-row reveal">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Persönlich</strong>
+              <span>Am Vögenteich 24, 18055 Rostock</span>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-1">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>E-Mail</strong>
+              <a href="mailto:maxi@sparre.de">maxi@sparre.de</a>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-2">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Telefon</strong>
+              <a href="tel:+493818772950">0381 87729509</a>
+            </div>
+          </div>
+          <div class="anfrage-row reveal reveal-delay-3">
+            <span class="anfrage-icon">●</span>
+            <div class="anfrage-row-text">
+              <strong>Vorlaufzeit</strong>
+              <span>Bitte mindestens 3–5 Tage im Voraus anfragen.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form action="mailto:maxi@sparre.de" method="post" enctype="text/plain" aria-label="Canapé-Anfrage">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Name</label>
+              <input type="text" id="c-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="c-email">E-Mail</label>
+              <input type="email" id="c-email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-datum">Wunschtermin</label>
+              <input type="date" id="c-datum" name="datum">
+            </div>
+            <div class="form-group">
+              <label for="c-stueckzahl">Stückzahl</label>
+              <input type="number" id="c-stueckzahl" name="stueckzahl" min="1" placeholder="z.B. 30">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="c-nachricht">Ihre Wünsche</label>
+            <textarea id="c-nachricht" name="nachricht" placeholder="Welche Sorten interessieren dich? Vegetarisch, Allergien, besondere Wünsche …"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Anfrage senden</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── [AREAL 60: Footer — GLOBAL, identisch auf allen Seiten] -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+      <a href="canapes.html">Canapés</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

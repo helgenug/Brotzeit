@@ -598,41 +598,72 @@ body {
 .social-link:hover { color: var(--brown-light); border-color: var(--brown-light); }
 
 /* ── FOOTER ── */
-#footer {
+#main-footer {
   background: #1A1009;
-  padding: 48px;
+  padding: 56px 48px 36px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(253,250,245,0.07);
+  margin-bottom: 28px;
+}
+.footer-brand .nav-logo {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+}
+.footer-brand p {
+  font-size: 0.85rem;
+  color: rgba(253,250,245,0.4);
+  line-height: 1.8;
+  max-width: 260px;
+}
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(253,250,245,0.35);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.footer-col a, .footer-col p {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(253,250,245,0.5);
+  text-decoration: none;
+  line-height: 2;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--brown-light); }
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 12px;
 }
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: rgba(253,250,245,0.5);
-  text-decoration: none;
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(253,250,245,0.2);
+  letter-spacing: 0.05em;
 }
-.footer-logo span { color: var(--brown-light); }
-.footer-links {
+.footer-legal {
   display: flex;
   gap: 24px;
-  list-style: none;
-  flex-wrap: wrap;
 }
-.footer-links a {
+.footer-legal a {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(253,250,245,0.3);
+  color: rgba(253,250,245,0.25);
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-links a:hover { color: var(--brown-light); }
-.footer-copy {
-  font-size: 0.72rem;
-  color: rgba(253,250,245,0.2);
-}
+.footer-legal a:hover { color: var(--brown-light); }
 
 /* ── REVEAL ANIMATION ── */
 .reveal {
@@ -680,7 +711,9 @@ body {
   }
   .oeffnung-col:last-child { border-bottom: none; }
 
-  #footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  #main-footer { padding: 40px 24px 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 
 /* ── RESPONSIVE: SMARTPHONE (max 560px) ── */
@@ -693,18 +726,19 @@ body {
   .angebot-number { font-size: 2.8rem; }
   .torten-text { padding: 48px 20px; }
   .oeffnung-col { padding: 36px 20px; }
-  .footer-links { gap: 16px; }
+  .footer-top { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body data-page="home">
 
-<!-- ── NAV ── -->
+<!-- ── NAV ── [AREAL 10: Navigation — GLOBAL, identisch auf allen Seiten] -->
 <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
   <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
   <ul class="nav-links">
     <li><a href="speisekarte.html">Speisekarte</a></li>
     <li><a href="torten.html">Torten</a></li>
+    <li><a href="canapes.html">Canapés</a></li>
     <li><a href="ueber-uns.html">Über uns</a></li>
     <li><a href="karriere.html">Karriere</a></li>
     <li><a href="kontakt.html">Kontakt</a></li>
@@ -718,13 +752,14 @@ body {
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Navigation">
   <a href="speisekarte.html">Speisekarte</a>
   <a href="torten.html">Torten</a>
+  <a href="canapes.html">Canapés</a>
   <a href="ueber-uns.html">Über uns</a>
   <a href="karriere.html">Karriere</a>
   <a href="kontakt.html">Kontakt</a>
   <p class="nav-mobile-adresse">Am Vögenteich 24 · Rostock</p>
 </div>
 
-<!-- ── 1. HERO SLIDESHOW ── -->
+<!-- ── 1. HERO SLIDESHOW ── [AREAL 20: Header] -->
 <header class="hero" role="banner">
   <div class="slides">
     <div class="slide active">
@@ -762,7 +797,7 @@ body {
   </div>
 </header>
 
-<!-- ── LAUFBAND (Trenner Hero → Über uns) ── -->
+<!-- ── LAUFBAND (Trenner Hero → Über uns) ── [AREAL 30: Laufband] -->
 <div class="laufband" aria-hidden="true">
   <div class="laufband-track">
     <span class="laufband-item">Täglich frisch gebacken</span>
@@ -792,7 +827,7 @@ body {
   </div>
 </div>
 
-<!-- ── 2. ÜBER UNS TEASER ── -->
+<!-- ── 2. ÜBER UNS TEASER ── [AREAL 40: Handwerk, das schmeckt] -->
 <section class="about-strip" id="ueber-uns" aria-labelledby="about-heading">
   <div class="about-image">
     <img src="images/1600/brotzeit-team-rostock.jpg"
@@ -814,7 +849,7 @@ body {
   </div>
 </section>
 
-<!-- ── 3. ANGEBOT ── -->
+<!-- ── 3. ANGEBOT ── [AREAL 50: Was wir machen] -->
 <section class="angebot" id="angebot" aria-labelledby="angebot-heading">
   <div class="angebot-intro">
     <p class="section-eyebrow reveal">Was wir machen</p>
@@ -842,7 +877,7 @@ body {
   </div>
 </section>
 
-<!-- ── 4. TORTEN ── -->
+<!-- ── 4. TORTEN ── [AREAL 60: Torten] -->
 <section class="torten" id="torten" aria-labelledby="torten-heading">
   <div class="torten-text">
     <p class="section-eyebrow reveal">Individuelle Torten</p>
@@ -871,7 +906,7 @@ body {
   </div>
 </section>
 
-<!-- ── 5. ÖFFNUNGSZEITEN ── -->
+<!-- ── 5. ÖFFNUNGSZEITEN ── [AREAL 70: Öffnungszeiten] -->
 <section class="oeffnung" id="oeffnungszeiten" aria-labelledby="oeffnung-heading">
   <div class="oeffnung-col">
     <p class="section-eyebrow">Wann wir da sind</p>
@@ -906,19 +941,39 @@ body {
   </div>
 </section>
 
-<!-- ── 6. FOOTER ── -->
-<footer id="footer" role="contentinfo">
-  <a href="index.html" class="footer-logo">Brot<span>zeit</span> Rostock</a>
-  <ul class="footer-links">
-    <li><a href="speisekarte.html">Speisekarte</a></li>
-    <li><a href="torten.html">Torten</a></li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
-    <li><a href="karriere.html">Karriere</a></li>
-    <li><a href="kontakt.html">Kontakt</a></li>
-    <li><a href="impressum.html">Impressum</a></li>
-    <li><a href="datenschutz.html">Datenschutz</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 Brotzeit Rostock</p>
+<!-- ── 6. FOOTER ── [AREAL 80: Footer — GLOBAL, identisch auf allen Seiten] -->
+<footer id="main-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
+      <p>Bäckerei, Konditorei &amp; Café am Vögenteich 24, mitten in Rostock.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Angebot</h4>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="torten.html">Torten</a>
+      <a href="canapes.html">Canapés</a>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="karriere.html">Karriere</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-col">
+      <h4>Öffnungszeiten</h4>
+      <p>Mo–Fr 07:00–17:30</p>
+      <p>Sa 07:30–16:30</p>
+      <p>So geschlossen</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Brotzeit Rostock</span>
+    <nav class="footer-legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
 </footer>
 
 <script>
