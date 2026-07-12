@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Brotzeit Rostock – Favicon: stilisierte Getreideähre -->
+  <rect width="512" height="512" rx="96" fill="#241B12"/>
+  <g fill="#E8B054">
+    <!-- Halm -->
+    <rect x="243" y="196" width="26" height="248" rx="13"/>
+    <!-- Korn oben -->
+    <ellipse cx="256" cy="140" rx="46" ry="76"/>
+    <!-- Kornpaar Mitte -->
+    <ellipse cx="185" cy="238" rx="42" ry="70" transform="rotate(-38 185 238)"/>
+    <ellipse cx="327" cy="238" rx="42" ry="70" transform="rotate(38 327 238)"/>
+    <!-- Kornpaar unten -->
+    <ellipse cx="185" cy="342" rx="42" ry="70" transform="rotate(-38 185 342)"/>
+    <ellipse cx="327" cy="342" rx="42" ry="70" transform="rotate(38 327 342)"/>
+  </g>
+  <!-- Mittellinien in den Körnern (Hintergrundfarbe) -->
+  <g stroke="#241B12" stroke-width="14" stroke-linecap="round" fill="none">
+    <line x1="256" y1="90" x2="256" y2="190"/>
+    <line x1="212" y1="200" x2="158" y2="276"/>
+    <line x1="300" y1="200" x2="354" y2="276"/>
+    <line x1="212" y1="304" x2="158" y2="380"/>
+    <line x1="300" y1="304" x2="354" y2="380"/>
+  </g>
+</svg>
