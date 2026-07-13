@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# KI-Crawler (Generative Engine Optimization) — bewusst NICHT blockiert,
+# damit Brotzeit Rostock in ChatGPT, Google AI Overviews, Perplexity &
+# Claude als Quelle zitiert werden kann.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://brotzeit-rostock.de/sitemap.xml

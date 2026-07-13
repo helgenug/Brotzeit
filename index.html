@@ -8,10 +8,22 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#241B12">
-<title>Brotzeit Rostock | Bäckerei, Frühstück, Brot & individuelle Torten</title>
-<meta name="description" content="Brotzeit Rostock: Bäckerei, Café und Konditorei am Vögenteich 24. Frühstück, Brot, Brötchen, Bäcker-Sushi und individuelle Torten für Rostock.">
+<title>Brotzeit Rostock | Bäckerei, Frühstück & handgemachte Törtchen</title>
+<meta name="description" content="Brotzeit Rostock: Bäckerei, Café und Konditorei am Vögenteich 24. Individuelles Frühstück, handgemachte Törtchen, frisches Brot und Bäcker-Sushi.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brotzeit Rostock">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Brotzeit Rostock | Bäckerei, Frühstück & handgemachte Törtchen">
+<meta property="og:description" content="Brotzeit Rostock: Bäckerei, Café und Konditorei am Vögenteich 24. Individuelles Frühstück, handgemachte Törtchen, frisches Brot und Bäcker-Sushi.">
+<meta property="og:url" content="https://brotzeit-rostock.de/">
+<meta property="og:image" content="https://brotzeit-rostock.de/images/brotzeit-rostock-fruehstueck-gebaeck-petit-fours-konditorei.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brotzeit Rostock | Bäckerei, Frühstück & handgemachte Törtchen">
+<meta name="twitter:description" content="Brotzeit Rostock: Bäckerei, Café und Konditorei am Vögenteich 24. Individuelles Frühstück, handgemachte Törtchen, frisches Brot und Bäcker-Sushi.">
+<meta name="twitter:image" content="https://brotzeit-rostock.de/images/brotzeit-rostock-fruehstueck-gebaeck-petit-fours-konditorei.jpg">
 
 <script type="application/ld+json">
 {
@@ -43,6 +55,39 @@
   "sameAs": [
     "https://www.instagram.com/brotzeitrostock/",
     "https://www.facebook.com/brotzeitrostock/"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wo gibt es in Rostock individuelle Torten und handgemachte Törtchen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei der Brotzeit Rostock am Vögenteich 24 entstehen Hochzeitstorten, Geburtstagstorten, Motivtorten und handgemachte, individuelle Törtchen nach Wunsch — Motiv, Größe und Geschmack werden persönlich besprochen, aus der Konditorei der Bäckerei Sparre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welches Café in Rostock bietet ein gutes Frühstück?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Brotzeit Rostock bietet ein individuelles Frühstück am Vögenteich 24 — täglich ab 7 Uhr, mit belegten Broten und Frühstückstellern; die Karte wechselt wöchentlich. Dazu Kaffeespezialitäten, Bäcker-Sushi und Canapés, alles frisch aus der eigenen Backstube."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man bei der Brotzeit Rostock Torten für besondere Anlässe bestellen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Ob Hochzeit, Geburtstag, Jugendweihe, Taufe oder Jubiläum — die Brotzeit Rostock nimmt Tortenanfragen per E-Mail oder persönlich im Laden entgegen und bespricht Motiv, Größe und Termin individuell."
+      }
+    }
   ]
 }
 </script>
@@ -413,6 +458,8 @@ body {
   line-height: 1.85;
 }
 .about-text .section-lead { color: rgba(253,250,245,0.65); }
+.about-text .section-lead a { color: var(--brown-light); text-decoration: underline; }
+.about-text .section-lead a:hover { color: var(--white); }
 .about-mehr {
   margin-top: 28px;
 }
@@ -538,6 +585,53 @@ body {
   font-size: 1.05rem;
   line-height: 1.5;
   z-index: 2;
+}
+
+/* ── FAQ ── */
+.faq {
+  background: var(--sand);
+  padding: 88px 48px;
+}
+.faq-intro { margin-bottom: 48px; max-width: 620px; }
+.faq-intro .section-title { color: var(--warm-dark); }
+.faq-intro .section-title em { font-style: italic; color: var(--brown-mid); }
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 820px;
+}
+.faq-item {
+  background: var(--cream);
+  padding: 26px 32px;
+}
+.faq-item summary {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--warm-dark);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-top: 14px;
 }
 
 /* ── ÖFFNUNGSZEITEN ── */
@@ -708,6 +802,10 @@ body {
   .torten-visual { min-height: 280px; }
   .torten-badge { bottom: 20px; left: 20px; font-size: 0.95rem; padding: 12px 16px; }
 
+  .faq { padding: 64px 24px; }
+  .faq-item { padding: 20px 22px; }
+  .faq-item summary { font-size: 1.02rem; }
+
   .oeffnung { grid-template-columns: 1fr; }
   .oeffnung-col {
     padding: 40px 24px;
@@ -790,7 +888,7 @@ body {
   <div class="hero-content">
     <p class="hero-eyebrow">Bäckerei · Konditorei · Café · Rostock</p>
     <h1 class="hero-title">Ein Stück<br><em>Rostock.</em></h1>
-    <p class="hero-sub">Handwerkliches Backen, Kaffeespezialitäten und individuelle Torten — am Vögenteich 24, mitten in Rostock.</p>
+    <p class="hero-sub">Handwerkliches Backen, frisches Frühstück ab 7 Uhr, Kaffeespezialitäten und individuelle Torten — am Vögenteich 24, mitten in Rostock.</p>
     <div class="hero-cta">
       <a href="speisekarte.html" class="btn-primary">Zur Speisekarte</a>
       <a href="torten.html" class="btn-ghost">Torten anfragen</a>
@@ -804,6 +902,7 @@ body {
   </div>
 </header>
 
+<main>
 <!-- ── LAUFBAND (Trenner Hero → Über uns) ── [AREAL 30: Laufband] -->
 <div class="laufband" aria-hidden="true">
   <div class="laufband-track">
@@ -849,7 +948,7 @@ body {
   <div class="about-text">
     <p class="section-eyebrow">Über uns</p>
     <h2 class="section-title" id="about-heading">Handwerk,<br><em>das schmeckt.</em></h2>
-    <p class="section-lead">Die Brotzeit ist aus der Bäckerei Sparre gewachsen — Bäckerei, Konditorei und Café an einem Ort. Am Vögenteich 24, mitten in Rostock, gut erreichbar aus der Stadtmitte, Dierkow, Toitenwinkel und Warnemünde.</p>
+    <p class="section-lead">Die Brotzeit Rostock ist ein handwerkliches Café und eine Bäckerei am Vögenteich 24, hervorgegangen aus der traditionsreichen <a href="https://www.baeckerei-sparre.de/" target="_blank" rel="noopener">Bäckerei Sparre</a> — mit individuellem Frühstück, handgemachten Törtchen und täglich frischen Backwaren unter einem Dach. Gut erreichbar aus der Stadtmitte, Dierkow, Toitenwinkel und Warnemünde.</p>
     <div class="about-mehr">
       <a href="ueber-uns.html" class="btn-ghost">Mehr erfahren</a>
     </div>
@@ -872,7 +971,7 @@ body {
     <article class="angebot-card reveal reveal-2">
       <div class="angebot-number">02</div>
       <h3 class="angebot-title">Bäckerei & Konditorei</h3>
-      <p class="angebot-desc">Brot, Brötchen, Kuchen und Törtchen. Handwerk aus der Backstube der Bäckerei Sparre für Rostock.</p>
+      <p class="angebot-desc">Brot, Brötchen, Kuchen und handgemachte Törtchen. Handwerk aus der Backstube der Bäckerei Sparre für Rostock.</p>
       <a href="speisekarte.html" class="angebot-link">Mehr erfahren</a>
     </article>
     <article class="angebot-card reveal reveal-3">
@@ -913,6 +1012,28 @@ body {
   </div>
 </section>
 
+<!-- ── 4B. FAQ ── [AREAL 65: FAQ] -->
+<section class="faq" id="faq" aria-labelledby="faq-heading">
+  <div class="faq-intro">
+    <p class="section-eyebrow reveal">Häufig gefragt</p>
+    <h2 class="section-title reveal" id="faq-heading">Fragen zu Frühstück<br><em>& Törtchen.</em></h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item reveal">
+      <summary>Wo gibt es in Rostock individuelle Torten und handgemachte Törtchen?</summary>
+      <p>Bei der Brotzeit Rostock am Vögenteich 24 entstehen Hochzeitstorten, Geburtstagstorten, Motivtorten und handgemachte, individuelle Törtchen nach Wunsch — Motiv, Größe und Geschmack werden persönlich besprochen, aus der Konditorei der Bäckerei Sparre.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>Welches Café in Rostock bietet ein gutes Frühstück?</summary>
+      <p>Die Brotzeit Rostock bietet ein individuelles Frühstück am Vögenteich 24 — täglich ab 7 Uhr, mit belegten Broten und Frühstückstellern; die Karte wechselt wöchentlich. Dazu Kaffeespezialitäten, Bäcker-Sushi und Canapés, alles frisch aus der eigenen Backstube.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>Kann man bei der Brotzeit Rostock Torten für besondere Anlässe bestellen?</summary>
+      <p>Ja. Ob Hochzeit, Geburtstag, Jugendweihe, Taufe oder Jubiläum — die Brotzeit Rostock nimmt Tortenanfragen per E-Mail oder persönlich im Laden entgegen und bespricht Motiv, Größe und Termin individuell.</p>
+    </details>
+  </div>
+</section>
+
 <!-- ── 5. ÖFFNUNGSZEITEN ── [AREAL 70: Öffnungszeiten] -->
 <section class="oeffnung" id="oeffnungszeiten" aria-labelledby="oeffnung-heading">
   <div class="oeffnung-col">
@@ -947,6 +1068,7 @@ body {
     <a href="kontakt.html" class="btn-primary">Zur Kontaktseite</a>
   </div>
 </section>
+</main>
 
 <!-- ── 6. FOOTER ── [AREAL 80: Footer — GLOBAL, identisch auf allen Seiten] -->
 <footer id="main-footer" role="contentinfo">
