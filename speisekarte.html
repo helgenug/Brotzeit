@@ -599,6 +599,55 @@
 /* ── Bestellzettel: im Alltag unsichtbar, beim Drucken die ganze Seite ── */
 #bestellzettel { display: none; }
 
+/* ── Bestellungs-Ansicht: QR-Ziel an der Kasse, im Alltag unsichtbar ── */
+#bestellung-overlay { display: none; }
+body.bestellung-modus > *:not(#bestellung-overlay) { display: none !important; }
+body.bestellung-modus { background: var(--warm-dark); }
+body.bestellung-modus #bestellung-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+.bestellung-box { max-width: 420px; width: 100%; text-align: center; }
+.bestellung-logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.bestellung-logo span { color: var(--brown-light); }
+.bestellung-box h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--brown-light);
+  margin-bottom: 24px;
+}
+.bestellung-box pre {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  color: var(--white);
+  background: rgba(253,250,245,0.08);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.bestellung-zurueck {
+  color: var(--brown-light);
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
 @media print {
   body.druckmodus > *:not(#bestellzettel) { display: none !important; }
   body.druckmodus { background: #fff; }
@@ -660,6 +709,26 @@
 </style>
 </head>
 <body>
+
+<script>
+/* Läuft synchron, bevor der Rest der Seite gerendert wird: kommt die Seite
+   über den QR-Code an der Kasse auf (?bestellung=…), wird sofort auf die
+   Bestellungs-Ansicht umgeschaltet — kein kurzes Aufblitzen der normalen
+   Speisekarte davor. Siehe [AREAL 95: Bestellungs-Ansicht]. */
+if (new URLSearchParams(location.search).has('bestellung')) {
+  document.body.classList.add('bestellung-modus');
+}
+</script>
+
+<!-- ── BESTELLUNGS-ANSICHT (QR-Ziel an der Kasse) ── [AREAL 95: Bestellungs-Ansicht] -->
+<div id="bestellung-overlay">
+  <div class="bestellung-box">
+    <p class="bestellung-logo">Brot<span>zeit</span></p>
+    <h1>Bestellung</h1>
+    <pre id="bestellung-text"></pre>
+    <a href="speisekarte.html" class="bestellung-zurueck">Zur Speisekarte</a>
+  </div>
+</div>
 
 <!-- ── NAV ── [AREAL 10: Navigation — GLOBAL, identisch auf allen Seiten] -->
 <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
@@ -1132,6 +1201,12 @@ document.addEventListener('DOMContentLoaded', () => {
 /* Seitenspezifisch: interaktive Preisliste + Frühstückskonfigurator.
    Alle Preise kommen aus json/preise.js — hier steht nur Darstellung. */
 document.addEventListener('DOMContentLoaded', () => {
+  /* Bestellungs-Ansicht befüllen, falls über ?bestellung=… (QR-Code-Ziel) aufgerufen */
+  const bestellungParam = new URLSearchParams(location.search).get('bestellung');
+  if (bestellungParam) {
+    document.getElementById('bestellung-text').textContent = bestellungParam;
+  }
+
   const DATEN = window.BROTZEIT_PREISE;
   if (!DATEN) return;
 
@@ -1208,6 +1283,12 @@ document.addEventListener('DOMContentLoaded', () => {
     boardEl.innerHTML = html;
   }
   suchEl.addEventListener('input', renderPreise);
+  /* iOS Safari öffnet bei type="search"-Feldern ohne umschließendes <form>
+     beim Drücken von „Suchen" auf der Bildschirmtastatur sonst eine
+     Google-Websuche (Android ist davon nicht betroffen). Da hier ohnehin
+     live beim Tippen gefiltert wird, unterbindet dies nur den überflüssigen
+     Enter-Submit. */
+  suchEl.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(); });
   renderPreise();
 
   /* ── FRÜHSTÜCKSKONFIGURATOR ── */
@@ -1272,7 +1353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     qrBoxEl.hidden = true;
   }
 
-  /* QR-Inhalt: Klartext, den die Kasse beim Scannen direkt lesen kann */
+  /* Bestellungs-Text — wird sowohl im QR-Ziel als auch auf dem Bestellzettel angezeigt */
   function qrPayload(vorname) {
     const { zeilen, summe } = bestellText();
     return 'BROTZEIT BESTELLUNG\n' +
@@ -1285,10 +1366,18 @@ document.addEventListener('DOMContentLoaded', () => {
       'Gesamt: ' + fmt(summe) + ' EUR';
   }
 
+  /* QR-Ziel: eine echte https-URL statt reinem Klartext. iPhones bieten bei
+     Klartext-QR-Codes nur „Im Web suchen" an, statt den Inhalt zu zeigen
+     (Android zeigt Klartext direkt an) — mit einer echten URL erkennt auch
+     iOS den QR-Code als Link, öffnet Safari und die Bestellung wird dort
+     unten (Areal 95) direkt lesbar dargestellt. */
+  function qrTargetURL(vorname) {
+    return 'https://brotzeit-rostock.de/speisekarte.html?bestellung=' + encodeURIComponent(qrPayload(vorname));
+  }
+
   function qrDataURL(vorname, cellSize) {
     const qr = qrcode(0, 'M');
-    /* UTF-8-Bytes, damit Umlaute beim Scannen korrekt ankommen */
-    qr.addData(unescape(encodeURIComponent(qrPayload(vorname))), 'Byte');
+    qr.addData(qrTargetURL(vorname));
     qr.make();
     return qr.createDataURL(cellSize || 6, 0);
   }
