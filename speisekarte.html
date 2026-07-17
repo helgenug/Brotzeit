@@ -607,12 +607,16 @@ body.bestellung-modus #bestellung-overlay {
   display: flex;
   position: fixed;
   inset: 0;
-  align-items: center;
+  /* Eine Sammelbestellung mit bis zu 12 Personen kann den Viewport leicht
+     sprengen — deshalb von oben ausgerichtet + scrollbar statt zentriert
+     ohne Scroll (gleiche Lehre wie beim Overflow-Bug im mobilen Menü). */
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
+  overflow-y: auto;
+  padding: 48px 24px 40px;
   z-index: 9999;
 }
-.bestellung-box { max-width: 420px; width: 100%; text-align: center; }
+.bestellung-box { max-width: 480px; width: 100%; text-align: center; }
 .bestellung-logo {
   font-family: var(--font-display);
   font-size: 1.8rem;
@@ -627,8 +631,51 @@ body.bestellung-modus #bestellung-overlay {
   font-weight: 300;
   font-size: 1.5rem;
   color: var(--brown-light);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
+.bestellung-hinweis { color: var(--white); font-size: 0.92rem; margin-bottom: 16px; }
+.bestellung-warnung {
+  background: rgba(200,97,42,0.18);
+  border: 1px solid var(--accent);
+  color: var(--white);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.bestellung-leer { color: rgba(253,250,245,0.6); font-size: 0.9rem; text-align: left; }
+.bestellung-person {
+  background: rgba(253,250,245,0.08);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.bestellung-person-kopf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.bestellung-person-kopf span:first-child { flex: 1; }
+.bestellung-person-kopf small { color: rgba(253,250,245,0.5); font-weight: 400; margin-left: 4px; }
+.bestellung-person-kopf button {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  background: none;
+  border: 1px solid rgba(253,250,245,0.3);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.bestellung-person-kopf button:hover { border-color: var(--accent); color: var(--accent); }
+.bestellung-person-items { font-size: 0.85rem; color: rgba(253,250,245,0.75); line-height: 1.7; }
 .bestellung-box pre {
   font-family: var(--font-body);
   font-size: 1.05rem;
@@ -640,9 +687,11 @@ body.bestellung-modus #bestellung-overlay {
   background: rgba(253,250,245,0.08);
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 24px;
+  margin: 0;
 }
-.bestellung-aktionen { margin-bottom: 18px; }
+.bestellung-gesamt { color: var(--brown-light); font-weight: 500; font-size: 1.05rem; margin: 16px 0 20px; }
+.bestellung-aktionen { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.bestellung-aktionen .btn-ghost-light { text-align: center; cursor: pointer; background: transparent; }
 .bestellung-zurueck {
   color: var(--brown-light);
   text-decoration: underline;
@@ -654,9 +703,13 @@ body.bestellung-modus #bestellung-overlay {
      Main/Footer bereits ganzzeitig aus (siehe Screen-Regel oben), hier nur
      noch der Wechsel von dunklem Bildschirm- auf helles Papier-Layout. */
   body.bestellung-modus { background: #fff; }
-  .bestellung-logo, .bestellung-box h1, .bestellung-box pre { color: #2A1F14; }
+  .bestellung-logo, .bestellung-box h1, .bestellung-box pre,
+  .bestellung-person-kopf, .bestellung-person-items, .bestellung-gesamt { color: #2A1F14; }
   .bestellung-box pre { background: none; border: 1px solid #E8DCCB; }
-  .bestellung-aktionen, .bestellung-zurueck { display: none; }
+  .bestellung-person { background: none; border: 1px solid #E8DCCB; }
+  .bestellung-person-kopf small { color: #7A6A58; }
+  .bestellung-person-kopf button,
+  .bestellung-hinweis, .bestellung-warnung, .bestellung-aktionen, .bestellung-zurueck { display: none; }
 
   body.druckmodus > *:not(#bestellzettel) { display: none !important; }
   body.druckmodus { background: #fff; }
@@ -730,16 +783,20 @@ if (new URLSearchParams(location.search).has('bestellung')) {
 }
 </script>
 
-<!-- ── BESTELLUNGS-ANSICHT (QR-Ziel an der Kasse) ── [AREAL 95: Bestellungs-Ansicht] -->
+<!-- ── BESTELLUNGS-ANSICHT (QR-Ziel an der Kasse, sammelt mehrere Scans zu einer Tisch-Sammelbestellung) ── [AREAL 95: Bestellungs-Ansicht] -->
 <div id="bestellung-overlay">
   <div class="bestellung-box">
     <p class="bestellung-logo">Brot<span>zeit</span></p>
-    <h1>Bestellung</h1>
-    <pre id="bestellung-text"></pre>
+    <h1>Sammelbestellung</h1>
+    <p class="bestellung-hinweis" id="bestellung-hinweis"></p>
+    <p class="bestellung-warnung" id="bestellung-warnung" hidden></p>
+    <div id="bestellung-liste"></div>
+    <p class="bestellung-gesamt" id="bestellung-gesamt"></p>
     <div class="bestellung-aktionen">
-      <button type="button" class="btn-ghost-light" id="bestellung-drucken">Als PDF speichern</button>
+      <button type="button" class="btn-ghost-light" id="bestellung-drucken">Sammelbestellung als PDF</button>
+      <button type="button" class="btn-ghost-light" id="bestellung-neu">Tisch abschließen</button>
     </div>
-    <a href="speisekarte.html" class="bestellung-zurueck">Zur Speisekarte</a>
+    <a href="speisekarte.html" class="bestellung-zurueck">Zur Speisekarte (ohne zu leeren)</a>
   </div>
 </div>
 
@@ -1215,20 +1272,106 @@ document.addEventListener('DOMContentLoaded', () => {
 /* Seitenspezifisch: interaktive Preisliste + Frühstückskonfigurator.
    Alle Preise kommen aus json/preise.js — hier steht nur Darstellung. */
 document.addEventListener('DOMContentLoaded', () => {
-  /* Bestellungs-Ansicht befüllen, falls über ?bestellung=… (QR-Code-Ziel) aufgerufen */
+  const fmt = v => v.toFixed(2).replace('.', ',');
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+  /* ── BESTELLUNGS-ANSICHT (Kassen-Scan, Areal 95) ──
+     Läuft komplett unabhängig von window.BROTZEIT_PREISE (auch ohne geladene
+     Preisdaten funktionsfähig), deshalb hier vor dem DATEN-Check unten.
+     Jede gescannte Bestellung landet in einer Sammelbestellung fürs Tisch,
+     zwischengespeichert im localStorage DES SCANNENDEN GERÄTS (Handy der
+     Mitarbeiterin) — kein Backend nötig, funktioniert aber nur zuverlässig,
+     wenn ein Tisch komplett mit demselben Handy durchgescannt wird. */
+  const SAMMEL_KEY = 'brotzeit-tisch-sammelbestellung';
+  const ladeSammelbestellung = () => {
+    try {
+      const liste = JSON.parse(localStorage.getItem(SAMMEL_KEY));
+      return Array.isArray(liste) ? liste : [];
+    } catch (e) { return []; }
+  };
+  const speichereSammelbestellung = liste => localStorage.setItem(SAMMEL_KEY, JSON.stringify(liste));
+
+  function renderSammelliste(liste) {
+    const listeEl = document.getElementById('bestellung-liste');
+    const gesamtEl = document.getElementById('bestellung-gesamt');
+    const warnEl = document.getElementById('bestellung-warnung');
+    if (!liste.length) {
+      listeEl.innerHTML = '<p class="bestellung-leer">Noch keine Bestellungen erfasst — die nächste gescannte Bestellung startet eine neue Sammelbestellung für diesen Tisch.</p>';
+      gesamtEl.textContent = '';
+      warnEl.hidden = true;
+      return;
+    }
+    let summe = 0;
+    listeEl.innerHTML = liste.map(e => {
+      summe += e.summe;
+      const zeilen = e.items.map(i => i.anzahl + '× ' + esc(i.name) + ' — ' + fmt(i.anzahl * i.preis) + ' €').join('<br>');
+      return '<div class="bestellung-person">' +
+        '<div class="bestellung-person-kopf">' +
+          '<span>' + esc(e.name) + ' <small>Nr. ' + esc(e.nummer) + '</small></span>' +
+          '<span>' + fmt(e.summe) + ' €</span>' +
+          '<button type="button" data-entfernen="' + esc(e.nummer) + '" aria-label="Bestellung von ' + esc(e.name) + ' entfernen">×</button>' +
+        '</div>' +
+        '<div class="bestellung-person-items">' + zeilen + '</div>' +
+      '</div>';
+    }).join('');
+    gesamtEl.textContent = liste.length + (liste.length === 1 ? ' Bestellung' : ' Bestellungen') + ' am Tisch — Gesamt: ' + fmt(summe) + ' €';
+    const aelteste = Math.min(...liste.map(e => new Date(e.zeit).getTime()));
+    const veraltet = (Date.now() - aelteste) > 3 * 60 * 60 * 1000;
+    warnEl.hidden = !veraltet;
+    if (veraltet) {
+      warnEl.textContent = 'Diese Sammelbestellung enthält Einträge, die älter als 3 Stunden sind — vermutlich vom letzten Tisch übrig geblieben. Am besten zuerst „Tisch abschließen" tippen.';
+    }
+  }
+
   const bestellungParam = new URLSearchParams(location.search).get('bestellung');
   if (bestellungParam) {
-    document.getElementById('bestellung-text').textContent = bestellungParam;
+    const hinweisEl = document.getElementById('bestellung-hinweis');
+    let daten = null;
+    try {
+      const geparst = JSON.parse(bestellungParam);
+      if (geparst && Array.isArray(geparst.items) && geparst.nummer) daten = geparst;
+    } catch (e) { /* kein gültiges JSON — vermutlich ein älterer, reiner Klartext-QR-Code */ }
+
+    if (daten) {
+      const liste = ladeSammelbestellung();
+      if (liste.some(e => e.nummer === daten.nummer)) {
+        hinweisEl.textContent = 'Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') war bereits erfasst — nicht doppelt hinzugefügt.';
+      } else {
+        liste.push(daten);
+        speichereSammelbestellung(liste);
+        hinweisEl.textContent = '✓ Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') zur Sammelbestellung hinzugefügt.';
+      }
+      renderSammelliste(liste);
+    } else {
+      /* Älteres QR-Format oder kaputte Daten — nur Rohtext anzeigen, keine Sammel-Funktion */
+      hinweisEl.textContent = 'Älterer QR-Code — bitte eine neue Bestellung erzeugen, um sie einer Sammelbestellung hinzuzufügen.';
+      document.getElementById('bestellung-liste').innerHTML = '<pre></pre>';
+      document.querySelector('#bestellung-liste pre').textContent = bestellungParam;
+      document.getElementById('bestellung-gesamt').textContent = '';
+    }
+
+    document.getElementById('bestellung-liste').addEventListener('click', ev => {
+      const btn = ev.target.closest('button[data-entfernen]');
+      if (!btn) return;
+      const neueListe = ladeSammelbestellung().filter(e => e.nummer !== btn.dataset.entfernen);
+      speichereSammelbestellung(neueListe);
+      renderSammelliste(neueListe);
+    });
+
     /* body.bestellung-modus blendet bereits alles außer dem Overlay aus (auch
        beim Druck, siehe CSS) — window.print() genügt daher direkt. */
     document.getElementById('bestellung-drucken').addEventListener('click', () => window.print());
+
+    document.getElementById('bestellung-neu').addEventListener('click', () => {
+      if (confirm('Sammelbestellung für diesen Tisch wirklich abschließen und leeren? Vorher ausdrucken oder übernehmen nicht vergessen.')) {
+        localStorage.removeItem(SAMMEL_KEY);
+        location.href = 'speisekarte.html';
+      }
+    });
   }
 
   const DATEN = window.BROTZEIT_PREISE;
   if (!DATEN) return;
-
-  const fmt = v => v.toFixed(2).replace('.', ',');
-  const esc = s => s.replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
 
   /* ── PREISLISTE ── */
   const tabsEl = document.getElementById('preise-tabs');
@@ -1385,34 +1528,36 @@ document.addEventListener('DOMContentLoaded', () => {
     bestellIdentitaet = null;
   }
 
-  /* Bestellungs-Text — wird im QR-Ziel, auf dem Bestellzettel UND in der
-     Kassen-Ansicht (Areal 95) angezeigt, deshalb hier zentral an einer Stelle. */
-  function qrPayload(vorname) {
-    const { zeilen, summe } = bestellText();
+  /* Strukturierte Bestelldaten — Basis für QR-Ziel und Bestellzettel. Bewusst
+     strukturiert (statt vorformatierter Text wie früher), damit die
+     Kassen-Ansicht mehrere Scans zu einer Sammelbestellung zusammenrechnen
+     kann (Summen bilden, Duplikate erkennen), statt nur Text anzuzeigen. */
+  function bestellDaten(vorname) {
+    const items = [];
+    let summe = 0;
+    auswahl.forEach(e => {
+      if (e.anzahl > 0) {
+        items.push({ name: e.name, anzahl: e.anzahl, preis: e.preis });
+        summe += e.anzahl * e.preis;
+      }
+    });
     const { nummer, zeit } = holeBestellIdentitaet();
-    return 'BROTZEIT BESTELLUNG\n' +
-      'Nr. ' + nummer + '\n' +
-      'Name: ' + vorname + '\n' +
-      zeit.toLocaleDateString('de-DE') + ' ' +
-      zeit.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
-      '----------------------\n' +
-      zeilen.join('\n') + '\n' +
-      '----------------------\n' +
-      'Gesamt: ' + fmt(summe) + ' EUR';
+    return { nummer, name: vorname, zeit: zeit.toISOString(), items, summe };
   }
 
   /* QR-Ziel: eine echte https-URL statt reinem Klartext. iPhones bieten bei
      Klartext-QR-Codes nur „Im Web suchen" an, statt den Inhalt zu zeigen
      (Android zeigt Klartext direkt an) — mit einer echten URL erkennt auch
      iOS den QR-Code als Link, öffnet Safari und die Bestellung wird dort
-     unten (Areal 95) direkt lesbar dargestellt. */
+     unten (Areal 95) direkt lesbar dargestellt und automatisch zur
+     Sammelbestellung des Tisches hinzugefügt. */
   function qrTargetURL(vorname) {
     /* Bewusst NICHT auf die künftige Live-Domain hartcodiert (anders als
        Canonical-URLs/JSON-LD/Open-Graph) — der QR-Code wird schon jetzt auf
        dem jeweils aktuellen Server gescannt (Vorschau, Kundendemo, später
        Livegang). location.origin + location.pathname zeigt deshalb immer
        auf die Adresse, unter der die Seite gerade tatsächlich läuft. */
-    return location.origin + location.pathname + '?bestellung=' + encodeURIComponent(qrPayload(vorname));
+    return location.origin + location.pathname + '?bestellung=' + encodeURIComponent(JSON.stringify(bestellDaten(vorname)));
   }
 
   function qrDataURL(vorname, cellSize) {
