@@ -19,6 +19,7 @@ window.BROTZEIT_PREISE = {
       id: "heiss",
       label: "Heißgetränke",
       spalten: ["klein", "groß"],
+      konfigurator: true,
       gruppen: [
         {
           titel: "Kaffee",
@@ -62,6 +63,7 @@ window.BROTZEIT_PREISE = {
     {
       id: "tee",
       label: "Tee & Kalte Getränke",
+      konfigurator: true,
       gruppen: [
         {
           titel: "Erlesener Tee",
