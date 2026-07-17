@@ -788,7 +788,7 @@ if (new URLSearchParams(location.search).has('bestellung')) {
 <div id="bestellung-overlay">
   <div class="bestellung-box">
     <p class="bestellung-logo">Brot<span>zeit</span></p>
-    <h1>Sammelbestellung</h1>
+    <h1 id="bestellung-titel">Bestellung</h1>
     <p class="bestellung-hinweis" id="bestellung-hinweis"></p>
     <p class="bestellung-warnung" id="bestellung-warnung" hidden></p>
     <div id="bestellung-liste"></div>
@@ -1296,11 +1296,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const speichereSammelbestellung = liste => localStorage.setItem(SAMMEL_KEY, JSON.stringify(liste));
 
   function renderSammelliste(liste) {
+    /* „Sammelbestellung"-Sprache nur ab 2 erfassten Bestellungen — bei genau
+       einer Bestellung (der weitaus häufigere Fall: ein einzelner Scan ohne
+       Tisch-Zusammenhang) zeigt sich die Ansicht als normale Einzelbestellung,
+       sonst wirkt jeder Scan fälschlich wie eine Gruppen-/Tischbestellung. */
+    const mehrere = liste.length > 1;
+    const titelEl = document.getElementById('bestellung-titel');
     const listeEl = document.getElementById('bestellung-liste');
     const gesamtEl = document.getElementById('bestellung-gesamt');
     const warnEl = document.getElementById('bestellung-warnung');
+    titelEl.textContent = mehrere ? 'Sammelbestellung' : 'Bestellung';
+    document.getElementById('bestellung-drucken').textContent = mehrere ? 'Sammelbestellung als PDF' : 'Als PDF speichern';
+    document.getElementById('bestellung-neu').textContent = mehrere ? 'Tisch abschließen' : 'Bestellung abschließen';
+
     if (!liste.length) {
-      listeEl.innerHTML = '<p class="bestellung-leer">Noch keine Bestellungen erfasst — die nächste gescannte Bestellung startet eine neue Sammelbestellung für diesen Tisch.</p>';
+      listeEl.innerHTML = '<p class="bestellung-leer">Noch keine Bestellung erfasst.</p>';
       gesamtEl.textContent = '';
       warnEl.hidden = true;
       return;
@@ -1318,12 +1328,14 @@ document.addEventListener('DOMContentLoaded', () => {
         '<div class="bestellung-person-items">' + zeilen + '</div>' +
       '</div>';
     }).join('');
-    gesamtEl.textContent = liste.length + (liste.length === 1 ? ' Bestellung' : ' Bestellungen') + ' am Tisch — Gesamt: ' + fmt(summe) + ' €';
+    gesamtEl.textContent = mehrere
+      ? (liste.length + ' Bestellungen am Tisch — Gesamt: ' + fmt(summe) + ' €')
+      : ('Gesamt: ' + fmt(summe) + ' €');
     const aelteste = Math.min(...liste.map(e => new Date(e.zeit).getTime()));
     const veraltet = (Date.now() - aelteste) > 3 * 60 * 60 * 1000;
     warnEl.hidden = !veraltet;
     if (veraltet) {
-      warnEl.textContent = 'Diese Sammelbestellung enthält Einträge, die älter als 3 Stunden sind — vermutlich vom letzten Tisch übrig geblieben. Am besten zuerst „Tisch abschließen" tippen.';
+      warnEl.textContent = 'Diese Bestellung(en) enthalten Einträge, die älter als 3 Stunden sind — vermutlich vom letzten Tisch übrig geblieben. Am besten zuerst „' + (mehrere ? 'Tisch' : 'Bestellung') + ' abschließen" tippen.';
     }
   }
 
@@ -1338,12 +1350,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (daten) {
       const liste = ladeSammelbestellung();
-      if (liste.some(e => e.nummer === daten.nummer)) {
-        hinweisEl.textContent = 'Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') war bereits erfasst — nicht doppelt hinzugefügt.';
-      } else {
+      const warSchonDa = liste.some(e => e.nummer === daten.nummer);
+      if (!warSchonDa) {
         liste.push(daten);
         speichereSammelbestellung(liste);
+      }
+      if (warSchonDa) {
+        hinweisEl.textContent = 'Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') war bereits erfasst — nicht doppelt hinzugefügt.';
+      } else if (liste.length > 1) {
         hinweisEl.textContent = '✓ Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') zur Sammelbestellung hinzugefügt.';
+      } else {
+        hinweisEl.textContent = '✓ Bestellung Nr. ' + daten.nummer + ' (' + daten.name + ') erfasst.';
       }
       renderSammelliste(liste);
     } else {
@@ -1367,7 +1384,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('bestellung-drucken').addEventListener('click', () => window.print());
 
     document.getElementById('bestellung-neu').addEventListener('click', () => {
-      if (confirm('Sammelbestellung für diesen Tisch wirklich abschließen und leeren? Vorher ausdrucken oder übernehmen nicht vergessen.')) {
+      const text = ladeSammelbestellung().length > 1
+        ? 'Sammelbestellung für diesen Tisch wirklich abschließen und leeren? Vorher ausdrucken oder übernehmen nicht vergessen.'
+        : 'Bestellung wirklich abschließen und leeren? Vorher ausdrucken oder übernehmen nicht vergessen.';
+      if (confirm(text)) {
         localStorage.removeItem(SAMMEL_KEY);
         location.href = 'speisekarte.html';
       }
