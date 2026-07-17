@@ -1372,7 +1372,12 @@ document.addEventListener('DOMContentLoaded', () => {
      iOS den QR-Code als Link, öffnet Safari und die Bestellung wird dort
      unten (Areal 95) direkt lesbar dargestellt. */
   function qrTargetURL(vorname) {
-    return 'https://brotzeit-rostock.de/speisekarte.html?bestellung=' + encodeURIComponent(qrPayload(vorname));
+    /* Bewusst NICHT auf die künftige Live-Domain hartcodiert (anders als
+       Canonical-URLs/JSON-LD/Open-Graph) — der QR-Code wird schon jetzt auf
+       dem jeweils aktuellen Server gescannt (Vorschau, Kundendemo, später
+       Livegang). location.origin + location.pathname zeigt deshalb immer
+       auf die Adresse, unter der die Seite gerade tatsächlich läuft. */
+    return location.origin + location.pathname + '?bestellung=' + encodeURIComponent(qrPayload(vorname));
   }
 
   function qrDataURL(vorname, cellSize) {
