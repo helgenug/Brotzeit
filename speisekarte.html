@@ -642,6 +642,7 @@ body.bestellung-modus #bestellung-overlay {
   padding: 20px;
   margin-bottom: 24px;
 }
+.bestellung-aktionen { margin-bottom: 18px; }
 .bestellung-zurueck {
   color: var(--brown-light);
   text-decoration: underline;
@@ -649,6 +650,14 @@ body.bestellung-modus #bestellung-overlay {
 }
 
 @media print {
+  /* Bestellungs-Ansicht (Kassen-Scan) — body.bestellung-modus blendet Nav/
+     Main/Footer bereits ganzzeitig aus (siehe Screen-Regel oben), hier nur
+     noch der Wechsel von dunklem Bildschirm- auf helles Papier-Layout. */
+  body.bestellung-modus { background: #fff; }
+  .bestellung-logo, .bestellung-box h1, .bestellung-box pre { color: #2A1F14; }
+  .bestellung-box pre { background: none; border: 1px solid #E8DCCB; }
+  .bestellung-aktionen, .bestellung-zurueck { display: none; }
+
   body.druckmodus > *:not(#bestellzettel) { display: none !important; }
   body.druckmodus { background: #fff; }
   body.druckmodus #bestellzettel {
@@ -678,6 +687,7 @@ body.bestellung-modus #bestellung-overlay {
     font-weight: 500;
     margin-bottom: 2px;
   }
+  .zettel-nummer { font-size: 0.85rem; font-weight: 500; color: #B8935A; margin-bottom: 6px; }
   .zettel-name { font-size: 1rem; font-weight: 400; margin-bottom: 2px; }
   .zettel-datum { font-size: 0.8rem; color: #7A6A58; margin-bottom: 20px; }
   .zettel-qr { margin-top: 26px; text-align: center; }
@@ -726,6 +736,9 @@ if (new URLSearchParams(location.search).has('bestellung')) {
     <p class="bestellung-logo">Brot<span>zeit</span></p>
     <h1>Bestellung</h1>
     <pre id="bestellung-text"></pre>
+    <div class="bestellung-aktionen">
+      <button type="button" class="btn-ghost-light" id="bestellung-drucken">Als PDF speichern</button>
+    </div>
     <a href="speisekarte.html" class="bestellung-zurueck">Zur Speisekarte</a>
   </div>
 </div>
@@ -1108,6 +1121,7 @@ if (new URLSearchParams(location.search).has('bestellung')) {
     <p class="zettel-untertitel">Bäckerei · Konditorei · Café — Am Vögenteich 24, 18055 Rostock</p>
   </div>
   <p class="zettel-titel">Mein Frühstück</p>
+  <p class="zettel-nummer" id="zettel-nummer"></p>
   <p class="zettel-name" id="zettel-name"></p>
   <p class="zettel-datum" id="zettel-datum"></p>
   <table class="zettel-tabelle">
@@ -1205,6 +1219,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const bestellungParam = new URLSearchParams(location.search).get('bestellung');
   if (bestellungParam) {
     document.getElementById('bestellung-text').textContent = bestellungParam;
+    /* body.bestellung-modus blendet bereits alles außer dem Overlay aus (auch
+       beim Druck, siehe CSS) — window.print() genügt daher direkt. */
+    document.getElementById('bestellung-drucken').addEventListener('click', () => window.print());
   }
 
   const DATEN = window.BROTZEIT_PREISE;
@@ -1300,6 +1317,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const qrBoxEl = document.getElementById('konfig-qr-box');
   const auswahl = new Map(); /* key -> { name, preis, anzahl } */
 
+  /* Bestellnummer + Zeitstempel: einmal pro Bestellung erzeugt, gilt danach
+     für QR-Code, PDF-Bestellzettel und Kassen-Ansicht gleichermaßen — sonst
+     bekäme jeder Export (QR, dann PDF) eine eigene, abweichende Nummer/Uhrzeit. */
+  let bestellIdentitaet = null;
+  function holeBestellIdentitaet() {
+    if (!bestellIdentitaet) {
+      bestellIdentitaet = {
+        nummer: String(Math.floor(1000 + Math.random() * 9000)),
+        zeit: new Date()
+      };
+    }
+    return bestellIdentitaet;
+  }
+
   let offenGesetzt = false;
   konfigKats.forEach((kat, ki) => {
     kat.gruppen.forEach((gruppe, gi) => {
@@ -1349,17 +1380,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('') + '</div>'
       : '<p class="konfig-summary-leer">Noch nichts gewählt — klick dich links durch Brötchen, Eier, Aufschnitt und mehr.</p>';
     totalEl.textContent = fmt(summe) + ' €';
-    /* Auswahl geändert → alter QR-Code gilt nicht mehr */
+    /* Auswahl geändert → alter QR-Code samt Bestellnummer gilt nicht mehr */
     qrBoxEl.hidden = true;
+    bestellIdentitaet = null;
   }
 
-  /* Bestellungs-Text — wird sowohl im QR-Ziel als auch auf dem Bestellzettel angezeigt */
+  /* Bestellungs-Text — wird im QR-Ziel, auf dem Bestellzettel UND in der
+     Kassen-Ansicht (Areal 95) angezeigt, deshalb hier zentral an einer Stelle. */
   function qrPayload(vorname) {
     const { zeilen, summe } = bestellText();
+    const { nummer, zeit } = holeBestellIdentitaet();
     return 'BROTZEIT BESTELLUNG\n' +
+      'Nr. ' + nummer + '\n' +
       'Name: ' + vorname + '\n' +
-      new Date().toLocaleDateString('de-DE') + ' ' +
-      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
+      zeit.toLocaleDateString('de-DE') + ' ' +
+      zeit.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr\n' +
       '----------------------\n' +
       zeilen.join('\n') + '\n' +
       '----------------------\n' +
@@ -1408,8 +1443,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     document.getElementById('konfig-qr-img').src = qrDataURL(vorname);
+    const { nummer } = holeBestellIdentitaet();
     document.getElementById('konfig-qr-hint').textContent =
-      'Einfach an der Kasse scannen lassen — wir rufen „' + vorname + '", sobald alles fertig ist.';
+      'Bestellung Nr. ' + nummer + ' — einfach an der Kasse scannen lassen. Wir rufen „' + vorname + '", sobald alles fertig ist.';
     qrBoxEl.hidden = false;
   });
 
@@ -1446,9 +1482,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const vorname = vornameEl.value.trim();
+    const { nummer, zeit } = holeBestellIdentitaet();
+    document.getElementById('zettel-nummer').textContent = 'Bestellung Nr. ' + nummer;
     document.getElementById('zettel-name').textContent = vorname ? 'Für: ' + vorname : '';
     document.getElementById('zettel-datum').textContent =
-      'Zusammengestellt am ' + new Date().toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+      'Zusammengestellt am ' + zeit.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) +
+      ', ' + zeit.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
     document.getElementById('zettel-qr-img').src = qrDataURL(vorname || '—', 5);
     document.getElementById('zettel-qr-wrap').hidden = false;
     document.getElementById('zettel-positionen').innerHTML = eintraege.map(e =>
