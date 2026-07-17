@@ -746,6 +746,7 @@ body.bestellung-modus #bestellung-overlay {
   .zettel-qr { margin-top: 26px; text-align: center; }
   .zettel-qr img { width: 150px; height: 150px; }
   .zettel-qr p { font-size: 0.72rem; color: #7A6A58; margin-top: 6px; }
+  .zettel-qr-fehler { font-size: 0.78rem; color: #B0521F; margin-top: 20px; line-height: 1.7; }
   .zettel-tabelle { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   .zettel-tabelle th {
     text-align: left;
@@ -1194,6 +1195,9 @@ if (new URLSearchParams(location.search).has('bestellung')) {
     <img id="zettel-qr-img" alt="QR-Code der Bestellung — an der Kasse scannen lassen">
     <p>An der Kasse scannen lassen</p>
   </div>
+  <p class="zettel-qr-fehler" id="zettel-qr-fehler" hidden>
+    Kein QR-Code: Diese Bestellung ist zu umfangreich dafür. Bitte an der Kasse mündlich nennen oder die Positionen aufteilen.
+  </p>
   <p class="zettel-fuss">
     Alle Preise in Euro, inkl. MwSt. — kein verbindlicher Kaufvertrag, bezahlt wird an der Kasse.<br>
     Brotzeit Rostock · Am Vögenteich 24, 18055 Rostock · Tel. 0381 87729509
@@ -1561,7 +1565,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function qrDataURL(vorname, cellSize) {
-    const qr = qrcode(0, 'M');
+    /* Fehlerkorrektur 'L' statt 'M': ~25% mehr Kapazität für die Bestellung.
+       Unkritisch, da die Codes vom Handydisplay gescannt werden (nicht
+       ausgedruckt/verschmutzt) — die geringere Fehlertoleranz fällt dort
+       nicht ins Gewicht. Bei sehr umfangreichen Bestellungen wirft
+       qr.make() trotzdem "code length overflow" — von den Aufrufern
+       abgefangen, siehe dort. */
+    const qr = qrcode(0, 'L');
     qr.addData(qrTargetURL(vorname));
     qr.make();
     return qr.createDataURL(cellSize || 6, 0);
@@ -1587,9 +1597,23 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => { ev.target.textContent = 'QR-Code für die Kasse erzeugen'; }, 2000);
       return;
     }
-    document.getElementById('konfig-qr-img').src = qrDataURL(vorname);
+    const qrImg = document.getElementById('konfig-qr-img');
+    const qrHint = document.getElementById('konfig-qr-hint');
+    let dataURL;
+    try {
+      dataURL = qrDataURL(vorname);
+    } catch (e) {
+      /* QR-Kapazität überschritten (sehr umfangreiche Bestellung) — Alternative
+         aufzeigen statt eines wortlos untätigen Buttons. */
+      qrImg.hidden = true;
+      qrHint.textContent = 'Diese Bestellung ist zu umfangreich für einen QR-Code. Bitte in mehrere kleinere Bestellungen aufteilen (z. B. eine pro Person) und jede einzeln scannen lassen — die Kasse fasst mehrere Scans automatisch zu einer Sammelbestellung zusammen.';
+      qrBoxEl.hidden = false;
+      return;
+    }
+    qrImg.hidden = false;
+    qrImg.src = dataURL;
     const { nummer } = holeBestellIdentitaet();
-    document.getElementById('konfig-qr-hint').textContent =
+    qrHint.textContent =
       'Bestellung Nr. ' + nummer + ' — einfach an der Kasse scannen lassen. Wir rufen „' + vorname + '", sobald alles fertig ist.';
     qrBoxEl.hidden = false;
   });
@@ -1633,8 +1657,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('zettel-datum').textContent =
       'Zusammengestellt am ' + zeit.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) +
       ', ' + zeit.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
-    document.getElementById('zettel-qr-img').src = qrDataURL(vorname || '—', 5);
-    document.getElementById('zettel-qr-wrap').hidden = false;
+    try {
+      document.getElementById('zettel-qr-img').src = qrDataURL(vorname || '—', 5);
+      document.getElementById('zettel-qr-wrap').hidden = false;
+      document.getElementById('zettel-qr-fehler').hidden = true;
+    } catch (e) {
+      /* QR-Kapazität überschritten — Zettel trotzdem drucken, nur ohne QR-Code */
+      document.getElementById('zettel-qr-wrap').hidden = true;
+      document.getElementById('zettel-qr-fehler').hidden = false;
+    }
     document.getElementById('zettel-positionen').innerHTML = eintraege.map(e =>
       '<tr><td>' + e.anzahl + '×</td><td>' + esc(e.name) + '</td><td>' + fmt(e.preis) +
       ' €</td><td>' + fmt(e.anzahl * e.preis) + ' €</td></tr>').join('');
