@@ -1484,24 +1484,36 @@ document.addEventListener('DOMContentLoaded', () => {
       const det = document.createElement('details');
       det.className = 'konfig-gruppe';
       if (!offenGesetzt) { det.open = true; offenGesetzt = true; }
+      /* Artikel mit zwei Preisen (z. B. Heißgetränke klein/groß) werden zu
+         zwei eigenen Konfigurator-Positionen — der Konfigurator kennt sonst
+         nur „ein Preis pro Artikel" (z. B. Brötchen, Belag). */
+      const varianten = [];
+      gruppe.items.forEach((item, ii) => {
+        if (item.p.length > 1 && item.p[1] != null) {
+          varianten.push({ key: ki + '-' + gi + '-' + ii + '-klein', name: item.name + ' (klein)', info: item.info, preis: item.p[0] });
+          varianten.push({ key: ki + '-' + gi + '-' + ii + '-gross', name: item.name + ' (groß)', info: item.info, preis: item.p[1] });
+        } else {
+          varianten.push({ key: ki + '-' + gi + '-' + ii, name: item.name, info: item.info, preis: item.p[0] });
+        }
+      });
+
       det.innerHTML = '<summary><span>' + esc(gruppe.titel) + '</span>' +
         (gruppe.hinweis ? '<span class="konfig-gruppe-hinweis">' + esc(gruppe.hinweis) + '</span>' : '') +
         '</summary><div class="konfig-items">' +
-        gruppe.items.map((item, ii) => {
-          const key = ki + '-' + gi + '-' + ii;
-          return '<div class="konfig-item" data-key="' + key + '">' +
-            '<span class="konfig-item-name">' + esc(item.name) +
-            (item.info ? '<span class="preise-info">' + esc(item.info) + '</span>' : '') + '</span>' +
-            '<span class="konfig-item-preis">' + fmt(item.p[0]) + '</span>' +
+        varianten.map(v => {
+          return '<div class="konfig-item" data-key="' + v.key + '">' +
+            '<span class="konfig-item-name">' + esc(v.name) +
+            (v.info ? '<span class="preise-info">' + esc(v.info) + '</span>' : '') + '</span>' +
+            '<span class="konfig-item-preis">' + fmt(v.preis) + '</span>' +
             '<span class="konfig-stepper">' +
-            '<button type="button" data-minus aria-label="' + esc(item.name) + ' entfernen">−</button>' +
+            '<button type="button" data-minus aria-label="' + esc(v.name) + ' entfernen">−</button>' +
             '<span class="konfig-anzahl">0</span>' +
-            '<button type="button" data-plus aria-label="' + esc(item.name) + ' hinzufügen">+</button>' +
+            '<button type="button" data-plus aria-label="' + esc(v.name) + ' hinzufügen">+</button>' +
             '</span></div>';
         }).join('') + '</div>';
       gruppenEl.appendChild(det);
-      gruppe.items.forEach((item, ii) => {
-        auswahl.set(ki + '-' + gi + '-' + ii, { name: item.name, preis: item.p[0], anzahl: 0 });
+      varianten.forEach(v => {
+        auswahl.set(v.key, { name: v.name, preis: v.preis, anzahl: 0 });
       });
     });
   });
