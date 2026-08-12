@@ -24,13 +24,13 @@ Description: `Täglich frisches Frühstück, wechselnder Mittagstisch und handwe
 Canonical: `https://brotzeit-rostock.de/speisekarte.html`
 
 Page-Teaser H1: `Täglich frisch. <em>Täglich anders.</em>`
-Teaser-Lead: `Frühstück ab 7 Uhr, wechselnder Mittagstisch, Backwaren aus der Backstube. Die Karte wechselt wöchentlich.`
+Teaser-Lead: `Frühstück ab 7.30 Uhr, wechselnder Mittagstisch, Backwaren aus der Backstube. Die Karte wechselt wöchentlich.`
 Platzhalterbild: `https://images.unsplash.com/photo-1504718855392-c0f33b372e72?w=1600&q=80&fit=crop`
 
 Inhalt (3 Sektionen):
 
 **Sektion 1 — Drei Karten nebeneinander (Grid 3 Spalten):**
-- Karte 01: „Frühstück & Brunch" — Belegte Brote, Frühstücksteller, Rührei, Lachs — täglich ab 7 Uhr
+- Karte 01: „Frühstück & Brunch" — Belegte Brote, Frühstücksteller, Rührei, Lachs — täglich ab 7.30 Uhr
 - Karte 02: „Mittagstisch" — Wechselnde warme Gerichte, Mo–Fr — Platzhalterbild Unsplash
 - Karte 03: „Backwaren & Brot" — Brote, Brötchen, Kuchen aus der Backstube — täglich frisch
 
@@ -142,7 +142,7 @@ Spalte 1 — Adresse & Öffnungszeiten:
 Am Vögenteich 24, 18055 Rostock
 Tel: 0381 87729509 (als tel-Link)
 E-Mail: maxi@sparre.de (als mailto-Link)
-Öffnungszeiten-Tabelle (Mo–Fr 07:00–17:30, Sa 07:30–16:30, So geschlossen)
+Öffnungszeiten-Tabelle (Mo–Fr 07:30–17:30, Sa 08:00–16:30, So geschlossen)
 
 Spalte 2 — Google Maps Embed:
 ```html
