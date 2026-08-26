@@ -912,6 +912,41 @@ if (new URLSearchParams(location.search).has('bestellung')) {
   <span class="breadcrumb-current">Speisekarte</span>
 </nav>
 
+<!-- ── SEKTION 1C: FRÜHSTÜCKSKONFIGURATOR ── [AREAL 60: Frühstückskonfigurator] -->
+<section id="fruehstueck-konfigurator" style="background: var(--sand);" aria-labelledby="konfig-heading">
+  <div class="section-wrap">
+    <p class="section-eyebrow reveal">Frühstück nach deinem Geschmack</p>
+    <h2 class="section-title reveal" id="konfig-heading">Stell dir dein Frühstück <em>zusammen.</em></h2>
+    <p class="section-lead reveal">Brötchen aussuchen, Belag dazu — der Preis rechnet sich live mit. Zum Schluss Vornamen eingeben, QR-Code erzeugen und an der Kasse scannen lassen. Wir rufen dich, sobald dein Frühstück fertig ist.</p>
+    <div class="konfig-wrap">
+      <div id="konfig-gruppen"></div>
+      <aside class="konfig-summary" aria-label="Deine Auswahl">
+        <h3>Dein Frühstück</h3>
+        <div id="konfig-liste"></div>
+        <div class="konfig-total">
+          <span class="konfig-total-label">Gesamt</span>
+          <span class="konfig-total-wert" id="konfig-total">0,00 €</span>
+        </div>
+        <div class="konfig-name">
+          <label for="konfig-vorname">Dein Vorname — wir rufen dich auf</label>
+          <input type="text" id="konfig-vorname" placeholder="z. B. Maxi" maxlength="30" autocomplete="given-name">
+        </div>
+        <div class="konfig-actions">
+          <button class="btn-ghost-light" id="konfig-qr" type="button">QR-Code für die Kasse erzeugen</button>
+          <button class="btn-ghost-light" id="konfig-pdf" type="button">Als PDF speichern</button>
+          <button class="btn-ghost-light" id="konfig-copy" type="button">Liste kopieren</button>
+          <button class="btn-ghost-light" id="konfig-reset" type="button">Zurücksetzen</button>
+        </div>
+        <div class="konfig-qr-box" id="konfig-qr-box" hidden>
+          <img id="konfig-qr-img" alt="QR-Code deiner Frühstücksbestellung — an der Kasse scannen lassen">
+          <p class="konfig-qr-hint" id="konfig-qr-hint"></p>
+        </div>
+        <p class="konfig-summary-note">Kein Online-Shop, keine Vorkasse — einfach den Code an der Kasse scannen lassen und vor Ort bezahlen. Alle Preise inkl. MwSt.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ── SEKTION 1: DREI KARTEN ── [AREAL 30: Drei Karten] -->
 <section aria-labelledby="karten-heading">
   <div class="section-wrap">
@@ -991,41 +1026,6 @@ if (new URLSearchParams(location.search).has('bestellung')) {
     </div>
     <div class="preise-board" id="preise-board" aria-live="polite"></div>
     <p class="preise-stand" id="preise-stand"></p>
-  </div>
-</section>
-
-<!-- ── SEKTION 1C: FRÜHSTÜCKSKONFIGURATOR ── [AREAL 60: Frühstückskonfigurator] -->
-<section id="fruehstueck-konfigurator" style="background: var(--sand);" aria-labelledby="konfig-heading">
-  <div class="section-wrap">
-    <p class="section-eyebrow reveal">Frühstück nach deinem Geschmack</p>
-    <h2 class="section-title reveal" id="konfig-heading">Stell dir dein Frühstück <em>zusammen.</em></h2>
-    <p class="section-lead reveal">Brötchen aussuchen, Belag dazu — der Preis rechnet sich live mit. Zum Schluss Vornamen eingeben, QR-Code erzeugen und an der Kasse scannen lassen. Wir rufen dich, sobald dein Frühstück fertig ist.</p>
-    <div class="konfig-wrap">
-      <div id="konfig-gruppen"></div>
-      <aside class="konfig-summary" aria-label="Deine Auswahl">
-        <h3>Dein Frühstück</h3>
-        <div id="konfig-liste"></div>
-        <div class="konfig-total">
-          <span class="konfig-total-label">Gesamt</span>
-          <span class="konfig-total-wert" id="konfig-total">0,00 €</span>
-        </div>
-        <div class="konfig-name">
-          <label for="konfig-vorname">Dein Vorname — wir rufen dich auf</label>
-          <input type="text" id="konfig-vorname" placeholder="z. B. Maxi" maxlength="30" autocomplete="given-name">
-        </div>
-        <div class="konfig-actions">
-          <button class="btn-ghost-light" id="konfig-qr" type="button">QR-Code für die Kasse erzeugen</button>
-          <button class="btn-ghost-light" id="konfig-pdf" type="button">Als PDF speichern</button>
-          <button class="btn-ghost-light" id="konfig-copy" type="button">Liste kopieren</button>
-          <button class="btn-ghost-light" id="konfig-reset" type="button">Zurücksetzen</button>
-        </div>
-        <div class="konfig-qr-box" id="konfig-qr-box" hidden>
-          <img id="konfig-qr-img" alt="QR-Code deiner Frühstücksbestellung — an der Kasse scannen lassen">
-          <p class="konfig-qr-hint" id="konfig-qr-hint"></p>
-        </div>
-        <p class="konfig-summary-note">Kein Online-Shop, keine Vorkasse — einfach den Code an der Kasse scannen lassen und vor Ort bezahlen. Alle Preise inkl. MwSt.</p>
-      </aside>
-    </div>
   </div>
 </section>
 
