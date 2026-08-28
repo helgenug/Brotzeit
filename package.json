@@ -1,0 +1,9 @@
+{
+  "name": "brotzeit-rostock",
+  "private": true,
+  "description": "Statische Website (HTML/CSS/JS) mit einer Vercel-Function (api/formular.js) für Kontakt- und Bewerbungsformular, Versand per Nodemailer über das bestehende IONOS-Postfach. Kein Build-Schritt für die Website selbst.",
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "nodemailer": "^9.0.5"
+  }
+}

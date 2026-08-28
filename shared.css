@@ -20,6 +20,24 @@
   --max-w: 1280px;
 }
 
+/* Status und Spam-Schutz für die Vercel-Formulare */
+.formular-honigfalle {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.formular-status {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  font-size: .9rem;
+}
+.formular-status[data-status="erfolg"] { color: #d8f3dc; }
+.formular-status[data-status="fehler"] { color: #ffd6d6; }
+button[type="submit"]:disabled { cursor: wait; opacity: .7; }
+
 html { scroll-behavior: smooth; }
 
 body {

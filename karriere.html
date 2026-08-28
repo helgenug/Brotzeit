@@ -397,12 +397,10 @@
         </div>
       </div>
       <div class="reveal reveal-delay-2">
-        <!-- Formspree: Bitte durch die echte Formular-Endpoint-URL ersetzen
-             (formspree.io → New Form → Endpoint kopieren). Bis dahin sendet
-             dieses Formular nicht. -->
-        <form action="https://formspree.io/f/REPLACE_WITH_BEWERBUNG_FORM_ID" method="POST" enctype="multipart/form-data" aria-label="Bewerbungsformular">
-          <input type="hidden" name="_subject" value="Neue Bewerbung – Brotzeit Rostock">
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <form action="/api/formular" method="POST" enctype="multipart/form-data" aria-label="Bewerbungsformular" data-vercel-formular>
+          <input type="hidden" name="formular_typ" value="bewerbung">
+          <input type="hidden" name="formular_gestartet" value="">
+          <input type="text" name="website" class="formular-honigfalle" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div class="form-group">
               <label for="b-name">Name</label>
@@ -410,7 +408,7 @@
             </div>
             <div class="form-group">
               <label for="b-email">E-Mail</label>
-              <input type="email" id="b-email" name="_replyto" autocomplete="email" required>
+              <input type="email" id="b-email" name="email" autocomplete="email" required>
             </div>
           </div>
           <div class="form-row">
@@ -435,10 +433,11 @@
           </div>
           <div class="form-group">
             <label for="b-lebenslauf">Lebenslauf (optional)</label>
-            <input type="file" id="b-lebenslauf" name="lebenslauf" accept=".pdf,.doc,.docx,image/*">
+            <input type="file" id="b-lebenslauf" name="lebenslauf" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
           </div>
-          <p class="form-hint">PDF, Word oder Bild, max. 10 MB.</p>
+          <p class="form-hint">PDF, Word, JPG oder PNG, max. 3 MB.</p>
           <button type="submit" class="btn-primary">Bewerbung senden</button>
+          <p class="formular-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -483,6 +482,7 @@
 </footer>
 
 <script src="shared.js"></script>
+<script src="formular.js"></script>
 <script>
 /* Seitenspezifisch: "Jetzt bewerben" wählt die passende Stelle im Formular vor. */
 document.addEventListener('DOMContentLoaded', () => {

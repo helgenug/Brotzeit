@@ -272,19 +272,17 @@
       <!-- Spalte 3: Kontaktformular -->
       <div class="reveal reveal-delay-2">
         <h3 class="kontakt-adresse-title">Nachricht senden</h3>
-        <!-- Formspree: Bitte durch die echte Formular-Endpoint-URL ersetzen
-             (formspree.io → New Form → Endpoint kopieren). Bis dahin sendet
-             dieses Formular nicht. -->
-        <form action="https://formspree.io/f/REPLACE_WITH_KONTAKT_FORM_ID" method="POST" aria-label="Kontaktformular">
-          <input type="hidden" name="_subject" value="Neue Nachricht über die Website – Brotzeit Rostock">
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <form action="/api/formular" method="POST" enctype="multipart/form-data" aria-label="Kontaktformular" data-vercel-formular>
+          <input type="hidden" name="formular_typ" value="kontakt">
+          <input type="hidden" name="formular_gestartet" value="">
+          <input type="text" name="website" class="formular-honigfalle" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-group">
             <label for="k-name">Name</label>
             <input type="text" id="k-name" name="name" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="k-email">E-Mail</label>
-            <input type="email" id="k-email" name="_replyto" autocomplete="email" required>
+            <input type="email" id="k-email" name="email" autocomplete="email" required>
           </div>
           <div class="form-group">
             <label for="k-betreff">Betreff</label>
@@ -298,9 +296,10 @@
           </div>
           <div class="form-group">
             <label for="k-nachricht">Nachricht</label>
-            <textarea id="k-nachricht" name="nachricht" placeholder="Ihre Nachricht …"></textarea>
+            <textarea id="k-nachricht" name="nachricht" placeholder="Ihre Nachricht …" required></textarea>
           </div>
           <button type="submit" class="btn-primary">Nachricht senden</button>
+          <p class="formular-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -369,5 +368,6 @@
 </footer>
 
 <script src="shared.js"></script>
+<script src="formular.js"></script>
 </body>
 </html>
