@@ -87,8 +87,9 @@ function multipartLesen(req) {
 }
 
 function mailInhalt(art, daten, datei) {
-  const zeilen = art === 'bewerbung'
-    ? [
+  let zeilen;
+  if (art === 'bewerbung') {
+    zeilen = [
         'Neue Bewerbung über brotzeit-rostock.de',
         '',
         `Name: ${daten.name}`,
@@ -99,8 +100,34 @@ function mailInhalt(art, daten, datei) {
         '',
         'Nachricht:',
         daten.nachricht || 'keine Nachricht'
-      ]
-    : [
+      ];
+  } else if (art === 'torte') {
+    zeilen = [
+        'Neue Tortenanfrage über brotzeit-rostock.de',
+        '',
+        `Name: ${daten.name}`,
+        `E-Mail: ${daten.email}`,
+        `Anlass: ${daten.anlass || 'nicht angegeben'}`,
+        `Wunschdatum: ${daten.datum || 'nicht angegeben'}`,
+        `Personenzahl: ${daten.personen || 'nicht angegeben'}`,
+        '',
+        'Wünsche:',
+        daten.nachricht
+      ];
+  } else if (art === 'sushi') {
+    zeilen = [
+        'Neue Bäcker-Sushi-Anfrage über brotzeit-rostock.de',
+        '',
+        `Name: ${daten.name}`,
+        `E-Mail: ${daten.email}`,
+        `Wunschtermin: ${daten.datum || 'nicht angegeben'}`,
+        `Stückzahl: ${daten.stueckzahl || 'nicht angegeben'}`,
+        '',
+        'Wünsche:',
+        daten.nachricht
+      ];
+  } else {
+    zeilen = [
         'Neue Kontaktanfrage über brotzeit-rostock.de',
         '',
         `Name: ${daten.name}`,
@@ -110,6 +137,7 @@ function mailInhalt(art, daten, datei) {
         'Nachricht:',
         daten.nachricht
       ];
+  }
   return zeilen.join('\n');
 }
 
@@ -150,13 +178,17 @@ module.exports = async function handler(req, res) {
     telefon: text(f.telefon, 80),
     stelle: text(f.stelle, 180),
     betreff: text(f.betreff, 180),
+    anlass: text(f.anlass, 180),
+    datum: text(f.datum, 40),
+    personen: text(f.personen, 20),
+    stueckzahl: text(f.stueckzahl, 20),
     nachricht: text(f.nachricht, 5000)
   };
 
-  if (!daten.name || !gueltigeEmail(daten.email) || !['kontakt', 'bewerbung'].includes(art)) {
+  if (!daten.name || !gueltigeEmail(daten.email) || !['kontakt', 'bewerbung', 'torte', 'sushi'].includes(art)) {
     return antwort(res, 422, { ok: false, message: 'Bitte prüfen Sie Name und E-Mail-Adresse.' });
   }
-  if (art === 'kontakt' && !daten.nachricht) {
+  if (['kontakt', 'torte', 'sushi'].includes(art) && !daten.nachricht) {
     return antwort(res, 422, { ok: false, message: 'Bitte geben Sie eine Nachricht ein.' });
   }
   if (eingabe.datei && (!ERLAUBTE_DATEITYPEN.has(eingabe.datei.typ) || eingabe.datei.feldname !== 'lebenslauf')) {
@@ -165,7 +197,11 @@ module.exports = async function handler(req, res) {
 
   const betreff = art === 'bewerbung'
     ? `Neue Bewerbung: ${daten.stelle || 'Brotzeit Rostock'} – ${daten.name}`
-    : `Kontaktformular: ${daten.betreff || 'Allgemeine Anfrage'} – ${daten.name}`;
+    : art === 'torte'
+      ? `Tortenanfrage: ${daten.anlass || 'Allgemein'} – ${daten.name}`
+      : art === 'sushi'
+        ? `Bäcker-Sushi-Anfrage – ${daten.name}`
+        : `Kontaktformular: ${daten.betreff || 'Allgemeine Anfrage'} – ${daten.name}`;
   const nachricht = {
     from: `Brotzeit Website <${process.env.SMTP_USER}>`,
     to: EMPFAENGER,
@@ -196,7 +232,9 @@ module.exports = async function handler(req, res) {
       ok: true,
       message: art === 'bewerbung'
         ? 'Vielen Dank! Ihre Bewerbung wurde versendet.'
-        : 'Vielen Dank! Ihre Nachricht wurde versendet.'
+        : art === 'kontakt'
+          ? 'Vielen Dank! Ihre Nachricht wurde versendet.'
+          : 'Vielen Dank! Ihre Anfrage wurde versendet.'
     });
   } catch (error) {
     console.error('Versand fehlgeschlagen:', error);
