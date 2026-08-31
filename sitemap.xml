@@ -56,16 +56,13 @@
        Suchergebnissen erscheinen sollen (widersprüchliches Signal sonst).
        Weiterhin über interne Links (Footer) erreichbar. -->
 
-  <!-- sushi.html bewusst NICHT gelistet: Seite trägt aktuell
-       <meta name="robots" content="noindex, follow"> wegen Platzhalter-
-       Sortennamen (siehe claude.md, Abschnitt 9). Sobald echte Sortennamen
-       eingetragen und robots auf "index, follow" umgestellt sind, hier
-       ergänzen:
+  <!-- sushi.html seit 2026-08-31 gelistet: die echten Sortennamen stehen
+       fest (10er-Pack), robots wurde auf "index, follow" umgestellt. -->
   <url>
     <loc>https://brotzeit-rostock.de/sushi.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  -->
 
 </urlset>

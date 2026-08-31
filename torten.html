@@ -327,6 +327,8 @@
   text-decoration: none;
 }
 .anfrage-row-text a:hover { text-decoration: underline; }
+.anfrage-section .formular-status[data-status="erfolg"] { color: #d8f3dc; }
+.anfrage-section .formular-status[data-status="fehler"] { color: #ffd6d6; }
 
 @media (max-width: 900px) {
   .torten-intro { grid-template-columns: 1fr; }
@@ -691,7 +693,10 @@
         </div>
       </div>
       <div class="reveal">
-        <form action="mailto:info@brotzeit-rostock.de" method="post" enctype="text/plain" aria-label="Tortenanfrage">
+        <form action="/api/formular" method="POST" enctype="multipart/form-data" aria-label="Tortenanfrage" data-vercel-formular>
+          <input type="hidden" name="formular_typ" value="torte">
+          <input type="hidden" name="formular_gestartet" value="">
+          <input type="text" name="website" class="formular-honigfalle" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div class="form-group">
               <label for="t-name">Name</label>
@@ -728,9 +733,10 @@
           </div>
           <div class="form-group">
             <label for="t-nachricht">Ihre Wünsche</label>
-            <textarea id="t-nachricht" name="nachricht" placeholder="Geschmack, Motiv, besondere Wünsche …"></textarea>
+            <textarea id="t-nachricht" name="nachricht" placeholder="Geschmack, Motiv, besondere Wünsche …" required></textarea>
           </div>
           <button type="submit" class="btn-primary">Anfrage senden</button>
+          <p class="formular-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -775,6 +781,7 @@
 </footer>
 
 <script src="shared.js"></script>
+<script src="formular.js"></script>
 <script>
 /* Seitenspezifisch: Teaser-Slideshow (analog speisekarte.html). */
 document.addEventListener('DOMContentLoaded', () => {

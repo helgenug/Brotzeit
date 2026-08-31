@@ -10,10 +10,7 @@
 <meta name="theme-color" content="#241B12">
 <title>Bäcker-Sushi Rostock | Herzhafte Röllchen aus der Backstube – Brotzeit</title>
 <meta name="description" content="Bäcker-Sushi von Brotzeit Rostock: herzhafte Röllchen aus Brot mit feinem Belag, angerichtet wie Sushi — die besondere Alternative zur klassischen Platte.">
-<!-- Sortennamen sind noch Platzhalter (siehe Galerie) — bewusst noindex,
-     bis die echten Namen vom Kunden feststehen. Dann auf "index, follow"
-     umstellen, siehe claude.md „Offen / beim Kunden klären". -->
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brotzeit-rostock.de/sushi.html">
 
 <meta property="og:type" content="website">
@@ -38,6 +35,24 @@
         { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://brotzeit-rostock.de/" },
         { "@type": "ListItem", "position": 2, "name": "Bäcker-Sushi", "item": "https://brotzeit-rostock.de/sushi.html" }
       ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Bäcker-Sushi — 10 verschiedene Röllchen",
+      "description": "Bäcker-Sushi von Brotzeit Rostock gibt es ausschließlich im 10er-Pack mit zehn verschiedenen Röllchen.",
+      "numberOfItems": 10,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Tomatencreme", "description": "Salat, Tomate + Feta" },
+        { "@type": "ListItem", "position": 2, "name": "Mediterrane Creme", "description": "Salat, Salami + Brie, Rucola" },
+        { "@type": "ListItem", "position": 3, "name": "Mediterrane Creme", "description": "Salat, Hähnchen + Paprika" },
+        { "@type": "ListItem", "position": 4, "name": "Mediterrane Creme", "description": "Salat, Rührei + Tomate" },
+        { "@type": "ListItem", "position": 5, "name": "Honig-Senf-Creme", "description": "Salat, Brie + Mandarine" },
+        { "@type": "ListItem", "position": 6, "name": "Curry-Creme", "description": "Salat, Pute + Ananas" },
+        { "@type": "ListItem", "position": 7, "name": "Frischkäse", "description": "Salat, Serranoschinken + Paprika" },
+        { "@type": "ListItem", "position": 8, "name": "Basilikumcreme", "description": "Salat, Tomate Mozzarella und Rucola" },
+        { "@type": "ListItem", "position": 9, "name": "Senf-Gurke-Creme", "description": "Salat, Kochschinken + Gurke" },
+        { "@type": "ListItem", "position": 10, "name": "Apfel-Meerrettich-Creme", "description": "Salat, Rührei + Lachs" }
+      ]
     }
   ]
 }
@@ -51,46 +66,102 @@
 <style>
 /* ── BÄCKER-SUSHI-SPECIFIC ── */
 
-/* Sektion 2: Galerie 3-spaltig, Bild + Overlay-Titel (echte Namen folgen) */
-.sushi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 40px;
-}
-.sushi-tile {
-  position: relative;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  display: block;
+/* Sektion 2: 10er-Pack-Hinweis + Einzelbild links, Sortenliste rechts.
+   Ersetzt seit 2026-08-31 die frühere 11-teilige Galerie mit
+   Platzhalternamen — es gibt jetzt genau ein symbolhaftes Foto. */
+.sushi-pack {
   background: var(--white);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin-top: 32px;
+  max-width: 760px;
+}
+.sushi-pack strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.sushi-pack span {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.sushi-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 44px;
+}
+.sushi-bild {
+  /* Auf Desktop mitlaufend, damit das Bild neben der langen Sortenliste
+     nicht nach oben wegrutscht — harmonisch daneben statt oben geparkt. */
+  position: sticky;
+  top: 110px;
+}
+.sushi-bild img {
+  width: 100%;
+  height: auto;
+  display: block;
   border: 1px solid var(--sand);
 }
-.sushi-tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+.sushi-bild figcaption {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-style: italic;
 }
-.sushi-tile:hover img { transform: scale(1.05); }
-.sushi-tile-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(42,31,20,0.75) 0%, rgba(42,31,20,0) 45%);
-}
-.sushi-tile-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px 18px;
-}
-.sushi-tile-title {
+
+.sushi-sorten-titel {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.35rem;
   font-weight: 400;
-  color: var(--white);
+  color: var(--text);
+  margin-bottom: 20px;
 }
+.sushi-liste {
+  list-style: none;
+  counter-reset: sushi;
+  border-top: 1px solid rgba(42,31,20,0.12);
+}
+.sushi-liste li {
+  counter-increment: sushi;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(42,31,20,0.12);
+}
+.sushi-liste li::before {
+  content: counter(sushi, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--brown-light);
+}
+.sushi-zeile {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+.sushi-liste strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.sushi-cta {
+  display: inline-block;
+  margin-top: 26px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.sushi-cta:hover { color: var(--text); border-color: var(--text); }
 
 /* Sektion 3: Bestellformular (analog canapes.html Anfrage) */
 .anfrage-section {
@@ -146,13 +217,18 @@
   text-decoration: none;
 }
 .anfrage-row-text a:hover { text-decoration: underline; }
+.anfrage-section .formular-status[data-status="erfolg"] { color: #d8f3dc; }
+.anfrage-section .formular-status[data-status="fehler"] { color: #ffd6d6; }
 
 @media (max-width: 900px) {
-  .sushi-grid { grid-template-columns: repeat(2, 1fr); }
+  .sushi-split { grid-template-columns: 1fr; gap: 36px; }
+  /* Einspaltig würde ein klebendes Bild den Text überdecken */
+  .sushi-bild { position: static; }
   .anfrage-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 560px) {
-  .sushi-grid { grid-template-columns: 1fr; }
+  .sushi-pack { padding: 16px 18px; }
+  .sushi-liste li { grid-template-columns: 28px 1fr; gap: 10px; }
 }
 </style>
 </head>
@@ -223,124 +299,47 @@
   </div>
 </section>
 
-<!-- ── SEKTION 2: GALERIE ── [AREAL 40: Galerie (11 Röllchen, Sortennamen folgen)] -->
-<section style="background: var(--sand);" aria-labelledby="sushi-galerie-heading">
+<!-- ── SEKTION 2: SORTEN ── [AREAL 40: 10er-Pack-Hinweis, Einzelbild + Sortenliste] -->
+<section style="background: var(--sand);" aria-labelledby="sushi-sorten-heading">
   <div class="section-wrap">
     <p class="section-eyebrow reveal">Unsere Sorten</p>
-    <h2 class="section-title reveal" id="sushi-galerie-heading">Bäcker-Sushi <em>im Überblick.</em></h2>
-    <p class="section-lead reveal">Ein Klick führt direkt zur Anfrage — die genauen Sortennamen ergänzen wir in Kürze.</p>
-    <div class="sushi-grid">
-      <!-- TODO: echte Sortennamen eintragen, sobald vom Kunden bestätigt (aktuell Platzhalter "Röllchen 01" – 11). -->
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-1">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-01.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-01.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-01.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 01 (Sortenname folgt) — Brotzeit Rostock"
+    <h2 class="section-title reveal" id="sushi-sorten-heading">Zehn Sorten, <em>ein Pack.</em></h2>
+
+    <p class="sushi-pack reveal">
+      <strong>Bäcker-Sushi gibt es ausschließlich im 10er-Pack.</strong>
+      <span>Zehn verschiedene Röllchen, jede Sorte einmal — fertig angerichtet zum Abholen.</span>
+    </p>
+
+    <div class="sushi-split">
+      <figure class="sushi-bild reveal">
+        <img src="images/960/brotzeit-rostock-baecker-sushi-10er-pack.jpg"
+             srcset="images/480/brotzeit-rostock-baecker-sushi-10er-pack.jpg 480w,
+                     images/960/brotzeit-rostock-baecker-sushi-10er-pack.jpg 960w,
+                     images/1600/brotzeit-rostock-baecker-sushi-10er-pack.jpg 1600w,
+                     images/2800/brotzeit-rostock-baecker-sushi-10er-pack.jpg 2800w"
+             sizes="(max-width: 900px) 100vw, 45vw"
+             width="960" height="673"
+             alt="Bäcker-Sushi 10er-Pack von Brotzeit Rostock — zehn herzhafte Röllchen aus Fladenbrot mit Salat, Gemüse und wechselndem Belag in einer Schale"
              loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 01</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-2">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-02.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-02.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-02.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 02 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 02</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-03.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-03.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-03.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 03 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 03</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-1">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-04.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-04.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-04.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 04 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 04</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-2">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-05.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-05.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-05.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 05 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 05</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-06.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-06.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-06.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 06 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 06</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-1">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-07.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-07.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-07.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 07 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 07</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-2">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-08.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-08.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-08.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 08 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 08</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-09.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-09.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-09.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 09 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 09</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-1">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-10.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-10.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-10.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 10 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 10</h3></div>
-      </a>
-      <a href="#anfrage" class="sushi-tile reveal reveal-delay-2">
-        <img src="images/960/brotzeit-rostock-baecker-sushi-11.jpg"
-             srcset="images/480/brotzeit-rostock-baecker-sushi-11.jpg 480w,
-                     images/960/brotzeit-rostock-baecker-sushi-11.jpg 960w"
-             sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-             alt="Bäcker-Sushi Röllchen 11 (Sortenname folgt) — Brotzeit Rostock"
-             loading="lazy">
-        <div class="sushi-tile-overlay"></div>
-        <div class="sushi-tile-content"><h3 class="sushi-tile-title">Röllchen 11</h3></div>
-      </a>
+        <figcaption>Ein 10er-Pack, wie er bei uns über die Theke geht.</figcaption>
+      </figure>
+
+      <div class="reveal reveal-delay-1">
+        <h3 class="sushi-sorten-titel">10 verschiedene Röllchen</h3>
+        <ol class="sushi-liste">
+          <li><span class="sushi-zeile"><strong>Tomatencreme</strong> · Salat, Tomate + Feta</span></li>
+          <li><span class="sushi-zeile"><strong>Mediterrane Creme</strong> · Salat, Salami + Brie, Rucola</span></li>
+          <li><span class="sushi-zeile"><strong>Mediterrane Creme</strong> · Salat, Hähnchen + Paprika</span></li>
+          <li><span class="sushi-zeile"><strong>Mediterrane Creme</strong> · Salat, Rührei + Tomate</span></li>
+          <li><span class="sushi-zeile"><strong>Honig-Senf-Creme</strong> · Salat, Brie + Mandarine</span></li>
+          <li><span class="sushi-zeile"><strong>Curry-Creme</strong> · Salat, Pute + Ananas</span></li>
+          <li><span class="sushi-zeile"><strong>Frischkäse</strong> · Salat, Serranoschinken + Paprika</span></li>
+          <li><span class="sushi-zeile"><strong>Basilikumcreme</strong> · Salat, Tomate Mozzarella und Rucola</span></li>
+          <li><span class="sushi-zeile"><strong>Senf-Gurke-Creme</strong> · Salat, Kochschinken + Gurke</span></li>
+          <li><span class="sushi-zeile"><strong>Apfel-Meerrettich-Creme</strong> · Salat, Rührei + Lachs</span></li>
+        </ol>
+        <a href="#anfrage" class="sushi-cta">Jetzt anfragen →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -384,7 +383,10 @@
         </div>
       </div>
       <div class="reveal">
-        <form action="mailto:info@brotzeit-rostock.de" method="post" enctype="text/plain" aria-label="Bäcker-Sushi-Anfrage">
+        <form action="/api/formular" method="POST" enctype="multipart/form-data" aria-label="Bäcker-Sushi-Anfrage" data-vercel-formular>
+          <input type="hidden" name="formular_typ" value="sushi">
+          <input type="hidden" name="formular_gestartet" value="">
+          <input type="text" name="website" class="formular-honigfalle" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div class="form-group">
               <label for="s-name">Name</label>
@@ -407,9 +409,10 @@
           </div>
           <div class="form-group">
             <label for="s-nachricht">Ihre Wünsche</label>
-            <textarea id="s-nachricht" name="nachricht" placeholder="Welche Füllungen interessieren dich? Vegetarisch, Allergien, besondere Wünsche …"></textarea>
+            <textarea id="s-nachricht" name="nachricht" placeholder="Welche Füllungen interessieren dich? Vegetarisch, Allergien, besondere Wünsche …" required></textarea>
           </div>
           <button type="submit" class="btn-primary">Anfrage senden</button>
+          <p class="formular-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -454,5 +457,6 @@
 </footer>
 
 <script src="shared.js"></script>
+<script src="formular.js"></script>
 </body>
 </html>

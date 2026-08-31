@@ -626,7 +626,7 @@ body.bestellung-modus #bestellung-overlay {
   margin-bottom: 8px;
 }
 .bestellung-logo span { color: var(--brown-light); }
-.bestellung-box h1 {
+.bestellung-titel {
   font-family: var(--font-display);
   font-weight: 300;
   font-size: 1.5rem;
@@ -703,7 +703,7 @@ body.bestellung-modus #bestellung-overlay {
      Main/Footer bereits ganzzeitig aus (siehe Screen-Regel oben), hier nur
      noch der Wechsel von dunklem Bildschirm- auf helles Papier-Layout. */
   body.bestellung-modus { background: #fff; }
-  .bestellung-logo, .bestellung-box h1, .bestellung-box pre,
+  .bestellung-logo, .bestellung-titel, .bestellung-box pre,
   .bestellung-person-kopf, .bestellung-person-items, .bestellung-gesamt { color: #2A1F14; }
   .bestellung-box pre { background: none; border: 1px solid #E8DCCB; }
   .bestellung-person { background: none; border: 1px solid #E8DCCB; }
@@ -788,7 +788,7 @@ if (new URLSearchParams(location.search).has('bestellung')) {
 <div id="bestellung-overlay">
   <div class="bestellung-box">
     <p class="bestellung-logo">Brot<span>zeit</span></p>
-    <h1 id="bestellung-titel">Bestellung</h1>
+    <p class="bestellung-titel" id="bestellung-titel">Bestellung</p>
     <p class="bestellung-hinweis" id="bestellung-hinweis"></p>
     <p class="bestellung-warnung" id="bestellung-warnung" hidden></p>
     <div id="bestellung-liste"></div>

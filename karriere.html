@@ -186,6 +186,10 @@
   gap: 64px;
 }
 .bewerbung-info .section-eyebrow { color: var(--brown-light); }
+/* Dunkler Hintergrund: helle Statusfarben statt der dunklen Standardwerte
+   aus shared.css, sonst wäre die Meldung hier nicht lesbar. */
+.bewerbung-section .formular-status[data-status="erfolg"] { color: #D8F3DC; }
+.bewerbung-section .formular-status[data-status="fehler"] { color: #FFD6D6; }
 .bewerbung-info h2 {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);

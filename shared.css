@@ -34,8 +34,12 @@
   margin: 14px 0 0;
   font-size: .9rem;
 }
-.formular-status[data-status="erfolg"] { color: #d8f3dc; }
-.formular-status[data-status="fehler"] { color: #ffd6d6; }
+/* Standard = heller Seitenhintergrund (z. B. Kontaktformular auf --cream).
+   Formulare auf dunklem Grund hellen die Farben seitenspezifisch wieder auf
+   (siehe .bewerbung-section in karriere.html) — sonst wäre die Meldung dort
+   unlesbar, und genau umgekehrt war sie es vorher auf kontakt.html. */
+.formular-status[data-status="erfolg"] { color: #1B5E3F; font-weight: 500; }
+.formular-status[data-status="fehler"] { color: #A4161A; font-weight: 500; }
 button[type="submit"]:disabled { cursor: wait; opacity: .7; }
 
 html { scroll-behavior: smooth; }
