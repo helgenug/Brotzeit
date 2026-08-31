@@ -208,7 +208,11 @@ body {
   z-index: 99;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 88px 0 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s;
@@ -216,25 +220,27 @@ body {
 .nav-mobile.open { opacity: 1; pointer-events: all; }
 .nav-mobile a {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-size: clamp(1.7rem, 6vw, 2.4rem);
   font-weight: 300;
   color: rgba(253,250,245,0.7);
   text-decoration: none;
-  padding: 14px 0;
+  padding: 10px 0;
   letter-spacing: 0.02em;
   border-bottom: 1px solid rgba(253,250,245,0.07);
   width: 80%;
   text-align: center;
   transition: color 0.2s;
+  flex: 0 0 auto;
 }
 .nav-mobile a:last-of-type { border-bottom: none; }
 .nav-mobile a:hover { color: var(--brown-light); }
 .nav-mobile-adresse {
-  margin-top: 36px;
+  margin: 24px 0 16px;
   font-size: 0.72rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(253,250,245,0.25);
+  flex: 0 0 auto;
 }
 
 /* ── HERO SLIDESHOW ── */
@@ -580,6 +586,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 90% center;
 }
 .torten-badge {
   position: absolute;
@@ -808,6 +815,7 @@ body {
   .torten { grid-template-columns: 1fr; }
   .torten-text { padding: 56px 24px; }
   .torten-visual { min-height: 280px; }
+  .torten-visual img { object-position: 65% center; }
   .torten-badge { bottom: 20px; left: 20px; font-size: 0.95rem; padding: 12px 16px; }
 
   .faq { padding: 64px 24px; }
