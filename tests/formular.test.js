@@ -56,14 +56,24 @@ async function senden(felder, datei) {
   assert.equal(ergebnis.status, 200);
   assert.equal(mails[1].attachments[0].filename, 'lebenslauf.pdf');
 
+  ergebnis = await senden({ ...basis, formular_typ: 'torte', name: 'Mia', email: 'mia@example.com', anlass: 'Hochzeit', datum: '2026-09-20', personen: '40', nachricht: 'Mit Beeren' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[2].subject, /Tortenanfrage: Hochzeit/);
+  assert.match(mails[2].text, /Personenzahl: 40/);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'sushi', name: 'Tom', email: 'tom@example.com', datum: '2026-09-15', stueckzahl: '30', nachricht: 'Bitte vegetarisch' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[3].subject, /Bäcker-Sushi-Anfrage/);
+  assert.match(mails[3].text, /Stückzahl: 30/);
+
   ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: '', email: 'falsch', nachricht: '' });
   assert.equal(ergebnis.status, 422);
 
   ergebnis = await senden({ ...basis, website: 'spam', formular_typ: 'kontakt' });
   assert.equal(ergebnis.status, 200);
-  assert.equal(mails.length, 2);
+  assert.equal(mails.length, 4);
 
-  console.log('4 Formular-Tests bestanden.');
+  console.log('6 Formular-Tests bestanden.');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
