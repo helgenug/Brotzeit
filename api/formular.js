@@ -126,6 +126,18 @@ function mailInhalt(art, daten, datei) {
         'Wünsche:',
         daten.nachricht
       ];
+  } else if (art === 'canapes') {
+    zeilen = [
+        'Neue Canapé-Anfrage über brotzeit-rostock.de',
+        '',
+        `Name: ${daten.name}`,
+        `E-Mail: ${daten.email}`,
+        `Wunschtermin: ${daten.datum || 'nicht angegeben'}`,
+        `Stückzahl: ${daten.stueckzahl || 'nicht angegeben'}`,
+        '',
+        'Wünsche:',
+        daten.nachricht
+      ];
   } else {
     zeilen = [
         'Neue Kontaktanfrage über brotzeit-rostock.de',
@@ -185,10 +197,10 @@ module.exports = async function handler(req, res) {
     nachricht: text(f.nachricht, 5000)
   };
 
-  if (!daten.name || !gueltigeEmail(daten.email) || !['kontakt', 'bewerbung', 'torte', 'sushi'].includes(art)) {
+  if (!daten.name || !gueltigeEmail(daten.email) || !['kontakt', 'bewerbung', 'torte', 'sushi', 'canapes'].includes(art)) {
     return antwort(res, 422, { ok: false, message: 'Bitte prüfen Sie Name und E-Mail-Adresse.' });
   }
-  if (['kontakt', 'torte', 'sushi'].includes(art) && !daten.nachricht) {
+  if (['kontakt', 'torte', 'sushi', 'canapes'].includes(art) && !daten.nachricht) {
     return antwort(res, 422, { ok: false, message: 'Bitte geben Sie eine Nachricht ein.' });
   }
   if (eingabe.datei && (!ERLAUBTE_DATEITYPEN.has(eingabe.datei.typ) || eingabe.datei.feldname !== 'lebenslauf')) {
@@ -201,7 +213,9 @@ module.exports = async function handler(req, res) {
       ? `Tortenanfrage: ${daten.anlass || 'Allgemein'} – ${daten.name}`
       : art === 'sushi'
         ? `Bäcker-Sushi-Anfrage – ${daten.name}`
-        : `Kontaktformular: ${daten.betreff || 'Allgemeine Anfrage'} – ${daten.name}`;
+        : art === 'canapes'
+          ? `Canapé-Anfrage – ${daten.name}`
+          : `Kontaktformular: ${daten.betreff || 'Allgemeine Anfrage'} – ${daten.name}`;
   const nachricht = {
     from: `Brotzeit Website <${process.env.SMTP_USER}>`,
     to: EMPFAENGER,
