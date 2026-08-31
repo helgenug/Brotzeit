@@ -28,4 +28,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://brotzeit-rostock.de/sitemap.xml
+Sitemap: https://www.brotzeit-rostock.de/sitemap.xml

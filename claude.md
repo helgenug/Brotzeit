@@ -205,7 +205,7 @@ Leere. Hier stehen die Regeln jetzt gesammelt.
   mit Testcharakter) NIE auf die künftige Live-Domain hartcodieren —
   `location.origin` bzw. relative Pfade verwenden. Nur inerte Metadaten
   (Canonical, JSON-LD, Open Graph, Sitemap), die bis zum Livegang niemand
-  aktiv aufruft, dürfen fest auf `brotzeit-rostock.de` zeigen.
+  aktiv aufruft, dürfen fest auf `www.brotzeit-rostock.de` zeigen.
 - **Tag-Wechsel im Markup** (z. B. `<h1>` → `<p>` gegen doppelte H1):
   vorher prüfen, ob das CSS über den Tag selektiert (`.bestellung-box h1`).
   Wenn ja, gleichzeitig auf einen Klassen-Selektor umstellen — sonst ändert
@@ -282,7 +282,7 @@ geprüft. Mindestumfang:
 
 Title: `Frühstück & Speisekarte in Rostock | Brotzeit`
 Description: `Täglich frisches Frühstück, wechselnder Mittagstisch und handwerkliche Backwaren. Brotzeit Rostock, Am Vögenteich 24.`
-Canonical: `https://brotzeit-rostock.de/speisekarte.html`
+Canonical: `https://www.brotzeit-rostock.de/speisekarte.html`
 
 Page-Teaser H1: `Frühstück & Backwaren <em>in Rostock.</em>`
 Teaser-Lead: `Frühstück ab 7.30 Uhr, wechselnder Mittagstisch, Backwaren aus der Backstube. Die Karte wechselt wöchentlich.`
@@ -341,6 +341,10 @@ KEIN mailto mehr!), „Als PDF speichern" (Bestellzettel inkl. QR über
 Druckdialog), „Liste kopieren" (Clipboard), „Zurücksetzen".
 QR wird bei jeder Änderung der Auswahl ungültig (ausgeblendet).
 Kein Warenkorb, keine Zahlung — bezahlt wird an der Kasse.
+Direkt unter dem Gesamtpreis erklärt seit 2026-08-31 ein kurzer Block
+„Wie geht’s weiter?“ die drei nächsten Schritte: Namen eingeben, QR-Code
+erzeugen und am Tresen vorzeigen; das Frühstück wird anschließend frisch
+zubereitet.
 
 ---
 
@@ -348,7 +352,7 @@ Kein Warenkorb, keine Zahlung — bezahlt wird an der Kasse.
 
 Title: `Individuelle Torten – Brotzeit Rostock | Hochzeitstorten, Motivtorten, Cupcakes`
 Description: `Individuelle Torten nach Maß: Hochzeitstorten, Geburtstagstorten, Motivtorten und Cupcakes. Handwerkliche Konditorei Rostock. Jetzt anfragen.`
-Canonical: `https://brotzeit-rostock.de/torten.html`
+Canonical: `https://www.brotzeit-rostock.de/torten.html`
 
 Page-Teaser H1: `Jede Torte ein <em>Einzelstück.</em>`
 Teaser-Lead: `Hochzeitstorten, Geburtstagstorten, Motivtorten — jede Torte entsteht nach Wunsch. Wir besprechen alles persönlich.`
@@ -392,7 +396,7 @@ Wunschdatum und Personenzahl werden in die E-Mail übernommen.
 
 Title: `Über uns – Brotzeit Rostock | Bäckerei Sparre seit Jahrzehnten`
 Description: `Die Brotzeit ist aus der Bäckerei Sparre gewachsen. Handwerkliches Backen, Konditorei und Café am Vögenteich 24 in Rostock.`
-Canonical: `https://brotzeit-rostock.de/ueber-uns.html`
+Canonical: `https://www.brotzeit-rostock.de/ueber-uns.html`
 
 Page-Teaser H1: `Handwerk, <em>das schmeckt.</em>`
 Teaser-Lead: `Die Brotzeit ist aus der Bäckerei Sparre gewachsen — Bäckerei, Konditorei und Café. Am Vögenteich 24, Rostock.`
@@ -420,7 +424,7 @@ CTA-Button: „Auf Instagram folgen" → `https://www.instagram.com/brotzeitrost
 
 Title: `Brotzeit Rostock: Kontakt, Öffnungszeiten & Anfahrt`
 Description: `Brotzeit Rostock kontaktieren: Am Vögenteich 24, 18055 Rostock. Telefon, E-Mail, Öffnungszeiten und Google Maps.`
-Canonical: `https://brotzeit-rostock.de/kontakt.html`
+Canonical: `https://www.brotzeit-rostock.de/kontakt.html`
 
 Page-Teaser H1: `Brotzeit <em>in Rostock finden.</em>`
 Teaser-Lead: `Am Vögenteich 24, mitten in Rostock. Persönlich, per E-Mail oder telefonisch.`
@@ -468,7 +472,7 @@ CTA: „Route planen" → `https://maps.google.com/?q=Am+Vögenteich+24+Rostock`
 
 Title: `Karriere – Brotzeit Rostock | Jetzt bewerben`
 Description: `Werde Teil des Teams bei Brotzeit Rostock. Offene Stellen in Bäckerei, Konditorei und Service. Bewerbung per E-Mail.`
-Canonical: `https://brotzeit-rostock.de/karriere.html`
+Canonical: `https://www.brotzeit-rostock.de/karriere.html`
 
 Page-Teaser H1: `Werde Teil <em>unseres Teams.</em>`
 Teaser-Lead: `Handwerk, Konditorei, Service — wir freuen uns über Verstärkung.`
@@ -495,7 +499,7 @@ CTA: „Initiativbewerbung senden" → `mailto:info@brotzeit-rostock.de?subject=
 ### 6. `impressum.html`
 
 Title: `Impressum – Brotzeit Rostock`
-Canonical: `https://brotzeit-rostock.de/impressum.html`
+Canonical: `https://www.brotzeit-rostock.de/impressum.html`
 
 Minimales Layout: Page-Teaser nur 30vh, kein Bild (dark background var(--warm-dark)), 
 dann ein breiter Text-Container mit dem Impressumstext.
@@ -514,7 +518,7 @@ haftende juristische Person nennen, nicht die Filiale.
 ### 7. `datenschutz.html`
 
 Title: `Datenschutz – Brotzeit Rostock`
-Canonical: `https://brotzeit-rostock.de/datenschutz.html`
+Canonical: `https://www.brotzeit-rostock.de/datenschutz.html`
 
 Gleiches Minimal-Layout wie Impressum.
 
@@ -540,7 +544,7 @@ Hauptnavigation (`.nav-links`, `.nav-mobile`) und im Footer
 
 Title: `Canapés Rostock | Feine Häppchen für jeden Anlass – Brotzeit`
 Description: `Canapés von Brotzeit Rostock: elf raffinierte Sorten auf frischem Brot, verfeinert mit Cremes und Obstdeko. Perfekt für Feiern und Events. Jetzt anfragen.`
-Canonical: `https://brotzeit-rostock.de/canapes.html`
+Canonical: `https://www.brotzeit-rostock.de/canapes.html`
 
 Page-Teaser H1: `Canapés für <em>jeden Anlass.</em>`
 Teaser-Lead: `Elf raffinierte Sorten auf frischem Brot — verfeinert mit Cremes, Kräutern und Obstdeko. Perfekt für Feiern, Meetings und besondere Anlässe in Rostock.`
@@ -601,7 +605,7 @@ allen zehn Sorten.
 
 Title: `Bäcker-Sushi in Rostock bestellen | Brotzeit`
 Description: `Bäcker-Sushi von Brotzeit Rostock: herzhafte Röllchen aus Brot mit feinem Belag, geschnitten und angerichtet wie Sushi. Die besondere Alternative zur klassischen Platte. Jetzt anfragen.`
-Canonical: `https://brotzeit-rostock.de/sushi.html`
+Canonical: `https://www.brotzeit-rostock.de/sushi.html`
 
 Page-Teaser H1: `Bäcker-Sushi — <em>die herzhafte Rolle.</em>`
 Teaser-Lead: `Herzhafte Röllchen aus Brot mit feinem Belag — geschnitten und angerichtet wie Sushi. Die besondere Alternative zur klassischen Platte, perfekt für Feiern, Meetings und Events in Rostock.`
@@ -609,7 +613,12 @@ Teaserbild: `brotzeit-rostock-baecker-sushi-07.jpg` (eines der 11 echten Produkt
 
 Inhalt (3 Sektionen), strukturell identisch zu canapes.html:
 
-**Sektion 1 — Einleitung (reiner Text, kein Bild).**
+**Sektion 1 — Einleitung (reiner Text, kein Bild):**
+Überschrift: `Bäcker-Sushi — <em>herzhaft gerollt.</em>`
+Text seit 2026-08-31: `Frischer Wrap, herzhaft gefüllt und aufgerollt wie
+Sushi — dann in mundgerechte Röllchen geschnitten. Mit Salat, Gemüse und
+verschiedenen Belegen. Ideal für Buffets, Feiern und Firmenevents oder die
+Mittagspause mit Freunden und Kollegen. Immer 10 Stück in einer Box.`
 
 **Sektion 2 — 10er-Pack-Hinweis, Einzelbild + Sortenliste (sandfarbener
 Hintergrund), seit 2026-08-31:**
@@ -662,7 +671,7 @@ die E-Mail übernommen. Die Nachricht ist ein Pflichtfeld. IDs mit Präfix
 - Canonical-URLs enden auf `.html`
 - JSON-LD Schema auf jeder Seite (BreadcrumbList + passender @type pro Seite).
   Die Brotzeit wird seitenübergreifend über die gemeinsame Bakery-ID
-  `https://brotzeit-rostock.de/#brotzeit` referenziert; Adresse, Kontakt,
+  `https://www.brotzeit-rostock.de/#brotzeit` referenziert; Adresse, Kontakt,
   Öffnungszeiten und Geokoordinaten werden nicht widersprüchlich dupliziert.
 - Bilder: responsive `srcset`-Varianten (480/960/1600/2800), explizite
   `width`-/`height`-Attribute und aussagekräftige `alt`-Texte. Das erste
@@ -861,6 +870,80 @@ nachfragen — die Redirect-Logik aus der Tabelle oben lässt sich leicht
 
 Diese Sektion wird bei JEDER Änderung an der Website fortgeschrieben
 (neuester Eintrag oben). Priorität hat immer die Website selbst.
+
+### 2026-08-31 (allerneuester Stand) — SEO-Hauptdomain auf www vereinheitlicht
+
+**Ausgangslage:** Vercel verwendet `www.brotzeit-rostock.de` als
+Production-Domain und leitet die Variante ohne `www` dauerhaft per 308 dorthin
+weiter. Die SEO-Metadaten und die Sitemap nannten bisher noch die Variante ohne
+`www` und sendeten Suchmaschinen dadurch widersprüchliche Canonical-Signale.
+
+**Umgesetzt:**
+1. In allen 10 öffentlichen HTML-Seiten wurden Canonical, Open Graph, Twitter-
+   Bildadressen und sämtliche JSON-LD-URLs einheitlich auf
+   `https://www.brotzeit-rostock.de/...` umgestellt.
+2. Alle 8 Einträge in `sitemap.xml` sowie der Sitemap-Verweis in `robots.txt`
+   verwenden nun ebenfalls die `www`-Hauptdomain.
+3. Insgesamt wurden 115 absolute Webadressen in den veröffentlichten Dateien
+   aktualisiert. Relative Navigation, QR-Ziele und `/api/formular` blieben
+   unverändert; die E-Mail-Adresse `info@brotzeit-rostock.de` wurde bewusst
+   nicht verändert.
+4. Die aktuellen Domain-/Canonical-Vorgaben oberhalb dieses Arbeitsprotokolls
+   wurden angepasst. Ältere Protokolleinträge bleiben als historische
+   Beschreibung des damaligen Stands unverändert.
+
+**Für GitHub hochladen:** `index.html`, `speisekarte.html`, `torten.html`,
+`canapes.html`, `sushi.html`, `ueber-uns.html`, `kontakt.html`,
+`karriere.html`, `impressum.html`, `datenschutz.html`, `sitemap.xml`,
+`robots.txt` und `claude.md`.
+
+### 2026-08-31 (am spätesten) — Sushi-Einleitung und Konfigurator-Erklärung präzisiert
+
+**Wunsch (Kunde):** Die Einleitung auf `sushi.html` soll Bäcker-Sushi als
+gefüllten Wrap beschreiben und den 10er-Pack nennen. Im Frühstückskonfigurator
+auf `speisekarte.html` soll direkt unter dem Preis verständlich erklärt werden,
+wie es mit Name, QR-Code und Bestellung am Tresen weitergeht.
+
+**Umgesetzt:**
+1. Der vorhandene Einleitungsabsatz unter „Bäcker-Sushi — herzhaft gerollt."
+   wurde durch den gelieferten Text ersetzt; „Wrap ," wurde typografisch
+   korrekt als „Wrap," gesetzt.
+2. Direkt unter der Gesamtsumme im Frühstückskonfigurator steht jetzt ein
+   deutlich abgesetzter Hinweis „Wie geht’s weiter?" mit den Schritten Name
+   eingeben, QR-Code erzeugen, am Tresen vorzeigen und frisch zubereiten lassen.
+3. Geändert wurden ausschließlich `sushi.html`, `speisekarte.html` und diese
+   `claude.md`.
+
+### 2026-08-31 (am spätesten) — Tortenbild und mobiles Hauptmenü korrigiert
+
+**Wunsch (Kunde):** Das Tortenbild rechts auf der Startseite wird in der
+Desktopansicht am wichtigen rechten Motivrand abgeschnitten. Außerdem scheint
+auf Smartphones auf allen Unterseiten außer der Speisekarte der erste
+Hamburger-Menüpunkt „Speisekarte" zu fehlen.
+
+**Ursache:** Das querformatige Tortenfoto füllte mit `object-fit: cover` einen
+hohen, schmalen Desktopbereich und wurde mittig stark beschnitten. Der
+Menüpunkt „Speisekarte" war zwar bereits im HTML aller Seiten vorhanden, das
+vertikal zentrierte Overlay ragte auf niedrigen Smartphone-Displays jedoch
+oben unter die feste Navigation und verdeckte dadurch den ersten Eintrag.
+
+**Umgesetzt:**
+1. Das Startseiten-Tortenfoto behält `object-fit: cover`, fokussiert auf
+   Desktop aber mit `object-position: 90% center` den Kuchen und seine
+   Beschriftung. Für die einspaltige Mobilansicht gilt der ausgewogenere Wert
+   `65% center`.
+2. Das mobile Overlay beginnt nun unterhalb der festen Navigation, verwendet
+   kompaktere Abstände und kann auf besonders niedrigen Displays intern
+   gescrollt werden. So bleiben „Speisekarte" und alle sechs weiteren
+   Menüpunkte erreichbar. Die Startseite besitzt eigenes Navigations-CSS und
+   wurde mit derselben Regel separat angeglichen.
+3. Geändert wurden ausschließlich `index.html`, `shared.css` und diese
+   `claude.md`; die HTML-Menüs der Unterseiten waren bereits vollständig und
+   mussten nicht geändert werden.
+4. Im lokalen Browser geprüft: Tortenbereich bei 1366, 1440 und 1920 Pixeln;
+   alle zehn Hauptmenüs bei 390 × 844 Pixeln. Zusätzlich funktioniert das
+   interne Scrollen auf einem sehr kleinen Display mit 320 × 568 Pixeln,
+   wobei „Speisekarte" von Anfang an sichtbar bleibt.
 
 ### 2026-08-31 (am spätesten) — Canapé-Formular an Vercel-/IONOS-Versand angeschlossen
 
