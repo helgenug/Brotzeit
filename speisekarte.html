@@ -535,6 +535,23 @@
   font-weight: 400;
   color: var(--white);
 }
+.konfig-weiter {
+  margin: -6px 0 20px;
+  padding: 14px 0 16px;
+  border-top: 1px solid rgba(253,250,245,0.08);
+  border-bottom: 1px solid rgba(253,250,245,0.08);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(253,250,245,0.72);
+}
+.konfig-weiter strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--brown-light);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 .konfig-name { margin-bottom: 16px; }
 .konfig-name label {
   display: block;
@@ -929,6 +946,7 @@ if (new URLSearchParams(location.search).has('bestellung')) {
           <span class="konfig-total-label">Gesamt</span>
           <span class="konfig-total-wert" id="konfig-total">0,00 €</span>
         </div>
+        <p class="konfig-weiter"><strong>Wie geht’s weiter?</strong>Wenn die Bestellung stimmt, geben Sie Ihren Namen ein und klicken auf „QR-Code für die Kasse erzeugen“. Zeigen Sie den QR-Code am Tresen vor. Wir bereiten Ihr Frühstück frisch zu.</p>
         <div class="konfig-name">
           <label for="konfig-vorname">Dein Vorname — wir rufen dich auf</label>
           <input type="text" id="konfig-vorname" placeholder="z. B. Maxi" maxlength="30" autocomplete="given-name">
