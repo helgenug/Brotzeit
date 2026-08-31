@@ -66,14 +66,21 @@ async function senden(felder, datei) {
   assert.match(mails[3].subject, /Bäcker-Sushi-Anfrage/);
   assert.match(mails[3].text, /Stückzahl: 30/);
 
+  ergebnis = await senden({ ...basis, formular_typ: 'canapes', name: 'Lea', email: 'lea@example.com', datum: '2026-09-18', stueckzahl: '45', nachricht: 'Vegetarisch und ohne Nüsse' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[4].subject, /Canapé-Anfrage/);
+  assert.match(mails[4].text, /Wunschtermin: 2026-09-18/);
+  assert.match(mails[4].text, /Stückzahl: 45/);
+  assert.match(mails[4].text, /Vegetarisch und ohne Nüsse/);
+
   ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: '', email: 'falsch', nachricht: '' });
   assert.equal(ergebnis.status, 422);
 
   ergebnis = await senden({ ...basis, website: 'spam', formular_typ: 'kontakt' });
   assert.equal(ergebnis.status, 200);
-  assert.equal(mails.length, 4);
+  assert.equal(mails.length, 5);
 
-  console.log('6 Formular-Tests bestanden.');
+  console.log('7 Formular-Tests bestanden.');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
