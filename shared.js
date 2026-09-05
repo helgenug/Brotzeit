@@ -73,4 +73,58 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', zeigeSichtbare, { passive: true });
   }
 
+  /* ── COOKIE-CONSENT + GOOGLE ANALYTICS ──
+     Google Analytics lädt NUR nach aktiver Zustimmung (Art. 6 Abs. 1 lit. a
+     DSGVO) — kein Vorab-Laden, kein "berechtigtes Interesse" als Grundlage.
+     Entscheidung wird in localStorage gemerkt; über den "Cookie-
+     Einstellungen"-Link im Footer lässt sie sich jederzeit ändern. */
+  const GA_MESSUNG_ID = 'G-YXNDRDD78N';
+  const COOKIE_CONSENT_KEY = 'brotzeit-cookie-consent'; // 'accepted' | 'declined'
+
+  const ladeGoogleAnalytics = () => {
+    if (window.__gaGeladen) return;
+    window.__gaGeladen = true;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MESSUNG_ID}`;
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_MESSUNG_ID);
+  };
+
+  const cookieBanner = document.getElementById('cookie-banner');
+  const zeigeCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = false; };
+  const versteckeCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = true; };
+
+  const bestehendeEntscheidung = localStorage.getItem(COOKIE_CONSENT_KEY);
+  if (bestehendeEntscheidung === 'accepted') {
+    ladeGoogleAnalytics();
+  } else if (bestehendeEntscheidung !== 'declined') {
+    zeigeCookieBanner();
+  }
+
+  const cookieAccept = document.getElementById('cookie-accept');
+  const cookieDecline = document.getElementById('cookie-decline');
+  if (cookieAccept) {
+    cookieAccept.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
+      ladeGoogleAnalytics();
+      versteckeCookieBanner();
+    });
+  }
+  if (cookieDecline) {
+    cookieDecline.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
+      versteckeCookieBanner();
+    });
+  }
+  document.querySelectorAll('.cookie-settings-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      zeigeCookieBanner();
+    });
+  });
+
 });

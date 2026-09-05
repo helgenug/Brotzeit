@@ -131,6 +131,17 @@
 </head>
 <body>
 
+<!-- ── COOKIE-BANNER ── [AREAL 5: Cookie-Banner — GLOBAL, identisch auf allen Seiten] -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" hidden>
+  <div class="cookie-banner-inner">
+    <p class="cookie-banner-text">Wir würden gerne Google Analytics nutzen, um zu verstehen, wie unsere Website besucht wird. Das setzt Cookies, die wir nur mit deiner Zustimmung aktivieren — mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-banner-actions">
+      <button type="button" id="cookie-decline" class="btn-ghost-light">Ablehnen</button>
+      <button type="button" id="cookie-accept" class="btn-primary">Akzeptieren</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── NAV ── [AREAL 10: Navigation — GLOBAL, identisch auf allen Seiten] -->
 <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
   <a href="index.html" class="nav-logo">Brot<span>zeit</span></a>
@@ -433,7 +444,10 @@
       Google Analytics verwendet so genannte "Cookies". Das sind Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
     </p>
     <p>
-      Die Speicherung von Google-Analytics-Cookies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um sowohl sein Webangebot als auch seine Werbung zu optimieren.
+      Die Speicherung von Google-Analytics-Cookies erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Google Analytics wird auf unserer Website erst aktiviert, nachdem Sie im Cookie-Banner aktiv auf „Akzeptieren" geklickt haben — ohne Ihre Zustimmung werden keine Analytics-Cookies gesetzt und keine Daten an Google übertragen.
+    </p>
+    <p>
+      Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie über den Link „Cookie-Einstellungen" im Footer unserer Website Ihre Auswahl ändern und „Ablehnen" wählen.
     </p>
     <p>
       <strong>Browser Plugin</strong><br>
@@ -441,7 +455,7 @@
     </p>
     <p>
       <strong>Widerspruch gegen Datenerfassung</strong><br>
-      Sie können die Erfassung Ihrer Daten durch Google Analytics verhindern, indem Sie das Opt-Out-Browser-Plugin installieren oder die Cookie-Einstellungen Ihres Browsers entsprechend anpassen. Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: <a href="https://support.google.com/analytics/answer/6004245?hl=de" target="_blank" rel="noopener noreferrer">support.google.com/analytics</a>.
+      Am einfachsten widerrufen Sie über den Link „Cookie-Einstellungen" im Footer unserer Website (siehe oben). Alternativ können Sie die Erfassung Ihrer Daten durch Google Analytics auch verhindern, indem Sie das Opt-Out-Browser-Plugin installieren oder die Cookie-Einstellungen Ihres Browsers entsprechend anpassen. Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: <a href="https://support.google.com/analytics/answer/6004245?hl=de" target="_blank" rel="noopener noreferrer">support.google.com/analytics</a>.
     </p>
 
     <h2>7. Newsletter</h2>
@@ -571,6 +585,7 @@
     <nav class="footer-legal" aria-label="Rechtliches">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
+      <button type="button" class="cookie-settings-link">Cookie-Einstellungen</button>
     </nav>
   </div>
 </footer>
