@@ -61,10 +61,10 @@ async function senden(felder, datei) {
   assert.match(mails[2].subject, /Tortenanfrage: Hochzeit/);
   assert.match(mails[2].text, /Personenzahl: 40/);
 
-  ergebnis = await senden({ ...basis, formular_typ: 'sushi', name: 'Tom', email: 'tom@example.com', datum: '2026-09-15', stueckzahl: '30', nachricht: 'Bitte vegetarisch' });
+  ergebnis = await senden({ ...basis, formular_typ: 'sushi', name: 'Tom', email: 'tom@example.com', datum: '2026-09-15', stueckzahl: '40', nachricht: 'Bitte vegetarisch' });
   assert.equal(ergebnis.status, 200);
   assert.match(mails[3].subject, /Bäcker-Sushi-Anfrage/);
-  assert.match(mails[3].text, /Stückzahl: 30/);
+  assert.match(mails[3].text, /Stückzahl: 40/);
 
   ergebnis = await senden({ ...basis, formular_typ: 'canapes', name: 'Lea', email: 'lea@example.com', datum: '2026-09-18', stueckzahl: '45', nachricht: 'Vegetarisch und ohne Nüsse' });
   assert.equal(ergebnis.status, 200);
@@ -73,14 +73,35 @@ async function senden(felder, datei) {
   assert.match(mails[4].text, /Stückzahl: 45/);
   assert.match(mails[4].text, /Vegetarisch und ohne Nüsse/);
 
+  // Cupcakes & Petitfours teilen sich das Torten-Formular (Anlass "Cupcakes") —
+  // dort gilt die 40-Stück-Regel statt der 15-Personen-Regel, und die E-Mail
+  // beschriftet das Feld entsprechend als "Stückzahl" statt "Personenzahl".
+  ergebnis = await senden({ ...basis, formular_typ: 'torte', name: 'Nina', email: 'nina@example.com', anlass: 'Cupcakes', datum: '2026-09-22', personen: '50', nachricht: 'Bitte bunt gemischt' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[5].text, /Stückzahl: 50/);
+
+  // Mindestmengen: zu geringe Werte werden serverseitig abgelehnt (422),
+  // unabhängig von der clientseitigen Prüfung in shared.js.
+  ergebnis = await senden({ ...basis, formular_typ: 'torte', name: 'Ben', email: 'ben@example.com', anlass: 'Geburtstag', datum: '2026-09-25', personen: '10', nachricht: 'Zu wenig Personen' });
+  assert.equal(ergebnis.status, 422);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'torte', name: 'Ben', email: 'ben@example.com', anlass: 'Cupcakes', datum: '2026-09-25', personen: '20', nachricht: 'Zu wenig Stück' });
+  assert.equal(ergebnis.status, 422);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'sushi', name: 'Timo', email: 'timo@example.com', datum: '2026-09-19', stueckzahl: '20', nachricht: 'Zu wenig Stück' });
+  assert.equal(ergebnis.status, 422);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'canapes', name: 'Sara', email: 'sara@example.com', datum: '2026-09-19', stueckzahl: '20', nachricht: 'Zu wenig Stück' });
+  assert.equal(ergebnis.status, 422);
+
   ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: '', email: 'falsch', nachricht: '' });
   assert.equal(ergebnis.status, 422);
 
   ergebnis = await senden({ ...basis, website: 'spam', formular_typ: 'kontakt' });
   assert.equal(ergebnis.status, 200);
-  assert.equal(mails.length, 5);
+  assert.equal(mails.length, 6);
 
-  console.log('7 Formular-Tests bestanden.');
+  console.log('12 Formular-Tests bestanden.');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;

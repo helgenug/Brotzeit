@@ -699,6 +699,14 @@
 <!-- ── SEKTION 4: ANFRAGE ── [AREAL 60: Anfrage-Formular] -->
 <section class="anfrage-section" id="anfrage" aria-labelledby="anfrage-heading">
   <div class="section-wrap">
+    <p class="bestellmengen-hinweis reveal">
+      <strong>Hinweis zu Bestellmengen · Torten</strong>
+      <span>Online-Anfragen für Torten sind ab 15 Personen möglich. Torten für kleinere Personenzahlen bestellen Sie bitte direkt in unserer Filiale oder fragen telefonisch unter <a href="tel:+4938187729509">0381 87729509</a> bei uns an.</span>
+    </p>
+    <p class="bestellmengen-hinweis reveal">
+      <strong>Hinweis zu Bestellmengen · Cupcakes &amp; Petit Fours</strong>
+      <span>Online-Anfragen sind ab einer Bestellmenge von 40 Stück möglich. Kleinere Mengen können Sie gern direkt in unserer Filiale oder telefonisch unter <a href="tel:+4938187729509">0381 87729509</a> anfragen.</span>
+    </p>
     <div class="anfrage-inner">
       <div class="anfrage-info">
         <p class="section-eyebrow reveal">Torte bestellen</p>
@@ -770,7 +778,9 @@
             </div>
             <div class="form-group">
               <label for="t-personen">Personenzahl</label>
-              <input type="number" id="t-personen" name="personen" min="1" placeholder="z.B. 20">
+              <input type="number" id="t-personen" name="personen" min="15" placeholder="z.B. 20" required
+                     data-mengen-text="Online-Anfragen für Torten sind ab 15 Personen möglich. Für kleinere Personenzahlen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.">
+              <p class="mengen-warnung" aria-live="polite"></p>
             </div>
           </div>
           <div class="form-group">
@@ -859,6 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', () => {
       const anlass = card.dataset.anlass;
       if (anlassSelect && anlass) anlassSelect.value = anlass;
+      aktualisiereMengenfeld();
     });
   });
 
@@ -868,6 +879,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (anlassSelect && anlassParam && [...anlassSelect.options].some(o => o.value === anlassParam)) {
     anlassSelect.value = anlassParam;
   }
+
+  /* Personenzahl-/Stückzahl-Feld: Cupcakes & Petitfours werden stückweise bestellt
+     (Mindestmenge 40), alle anderen Anlässe sind Torten nach Personenzahl (Mindestmenge
+     15) — ein Feld wird deshalb je nach Dropdown-Auswahl live umbeschriftet. Das
+     abschließende "input"-Event stößt die Mindestmengen-Prüfung aus shared.js erneut an. */
+  const personenFeld = document.getElementById('t-personen');
+  const personenLabel = document.querySelector('label[for="t-personen"]');
+  function aktualisiereMengenfeld() {
+    if (!anlassSelect || !personenFeld || !personenLabel) return;
+    const istCupcakes = anlassSelect.value === 'Cupcakes';
+    personenLabel.textContent = istCupcakes ? 'Stückzahl' : 'Personenzahl';
+    personenFeld.min = istCupcakes ? '40' : '15';
+    personenFeld.placeholder = istCupcakes ? 'z.B. 50' : 'z.B. 20';
+    personenFeld.dataset.mengenText = istCupcakes
+      ? 'Online-Anfragen sind ab 40 Stück möglich. Kleinere Mengen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.'
+      : 'Online-Anfragen für Torten sind ab 15 Personen möglich. Für kleinere Personenzahlen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.';
+    personenFeld.dispatchEvent(new Event('input'));
+  }
+  if (anlassSelect) anlassSelect.addEventListener('change', aktualisiereMengenfeld);
+  aktualisiereMengenfeld();
 });
 </script>
 </body>

@@ -42,6 +42,38 @@
 .formular-status[data-status="fehler"] { color: #A4161A; font-weight: 500; }
 button[type="submit"]:disabled { cursor: wait; opacity: .7; }
 
+/* Hinweisbox Mindestbestellmengen (canapes.html, sushi.html, torten.html) —
+   bewusst als helle Box mit Akzent-Rand, damit sie unabhängig vom Sektions-
+   hintergrund (hell oder dunkel) lesbar bleibt, analog zu .sushi-pack. */
+.bestellmengen-hinweis {
+  background: var(--white);
+  border-left: 3px solid var(--accent);
+  padding: 18px 22px;
+  margin: 0 0 24px;
+  max-width: 760px;
+}
+.bestellmengen-hinweis strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.bestellmengen-hinweis span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.bestellmengen-hinweis a { color: var(--accent); font-weight: 500; }
+
+/* Live-Warnung unter Stückzahl-/Personenzahl-Feldern, sobald der eingegebene
+   Wert unter dem "min"-Attribut liegt (siehe shared.js). Die drei Seiten mit
+   diesem Feld haben alle einen dunklen Anfrage-Bereich, daher helle Textfarbe
+   analog zu .anfrage-section .formular-status[data-status="fehler"]. */
+.mengen-warnung { display: none; font-size: 0.82rem; color: #ffd6d6; margin-top: 6px; }
+.mengen-warnung.sichtbar { display: block; }
+
 html { scroll-behavior: smooth; }
 
 body {

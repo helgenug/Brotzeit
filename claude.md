@@ -58,6 +58,7 @@ siehe Arbeitsprotokoll.)
 **`index.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung, siehe „Cookie-Banner & Google Analytics" unten) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Header (Hero-Slideshow, inkl. Text) |
 | 30 | Laufband |
@@ -71,6 +72,7 @@ siehe Arbeitsprotokoll.)
 **`speisekarte.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (Slideshow) |
 | 60 | Frühstückskonfigurator — **seit 2026-08-26 an erster Stelle direkt nach dem Breadcrumb**, vor Areal 30. Die Nummer blieb bewusst 60 (nicht umnummeriert), nur die Position im Dokument wurde getauscht. |
@@ -87,6 +89,7 @@ siehe Arbeitsprotokoll.)
 **`torten.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (Slideshow) |
 | 30 | Intro & Prozess |
@@ -99,6 +102,7 @@ siehe Arbeitsprotokoll.)
 **`ueber-uns.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (Slideshow) |
 | 30 | Text & Bild |
@@ -109,6 +113,7 @@ siehe Arbeitsprotokoll.)
 **`kontakt.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
 | 30 | Adresse, Karte & Formular |
@@ -118,6 +123,7 @@ siehe Arbeitsprotokoll.)
 **`karriere.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
 | 30 | Stellenangebote |
@@ -127,6 +133,7 @@ siehe Arbeitsprotokoll.)
 **`impressum.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (minimal) |
 | 30 | Impressum-Text |
@@ -135,6 +142,7 @@ siehe Arbeitsprotokoll.)
 **`datenschutz.html`**
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (minimal) |
 | 30 | Datenschutz-Text |
@@ -143,6 +151,7 @@ siehe Arbeitsprotokoll.)
 **`canapes.html`** (seit 2026-07-12)
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
 | 30 | Einleitung (Text) |
@@ -153,6 +162,7 @@ siehe Arbeitsprotokoll.)
 **`sushi.html`** (seit 2026-07-12, seit 2026-08-31 `index, follow`)
 | Areal | Inhalt |
 |---|---|
+| 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
 | 30 | Einleitung (Text) |
@@ -390,6 +400,22 @@ die Anfrage über das bestehende IONOS-Postfach an
 `info@brotzeit-rostock.de`. Die Nachricht ist ein Pflichtfeld; Anlass,
 Wunschdatum und Personenzahl werden in die E-Mail übernommen.
 
+**Mindestbestellmengen (seit 2026-09-23):** Direkt über der Anfrage stehen
+zwei Hinweisboxen (`.bestellmengen-hinweis`, gemeinsame Klasse in
+`shared.css`) — Torten ab 15 Personen, Cupcakes & Petit Fours ab 40 Stück.
+Cupcakes/Petitfours teilen sich mit Torten dasselbe Formular (Auswahl über
+das Anlass-Dropdown), es gibt dafür bewusst KEIN eigenes Stückzahl-Feld:
+Das Feld „Personenzahl" (`#t-personen`) wird per Seiten-Script live zu
+„Stückzahl" umbeschriftet, sobald „Cupcakes & Petitfours" gewählt ist —
+inkl. Minimum (`min`), Platzhalter und Warntext
+(`data-mengen-text`). Das Feld ist jetzt Pflicht (`required`); ohne
+Pflichtfeld ließe sich die Sperre durch leeres Absenden umgehen. Die
+eigentliche Prüf-Logik (Live-Warnung unter dem Feld + `setCustomValidity()`
+fürs native Browser-Popup) liegt zentral in `shared.js`
+(`input[data-mengen-text]`) und gilt dadurch automatisch auch für
+canapes.html/sushi.html. `api/formular.js` prüft dieselbe Mindestmenge
+zusätzlich serverseitig (siehe „Technische Anforderungen").
+
 ---
 
 ### 3. `ueber-uns.html`
@@ -584,6 +610,15 @@ das Vercel-Backend angeschlossen: `POST /api/formular`,
 Wunschtermin, Stückzahl und Wünsche werden in die E-Mail übernommen. Die
 Nachricht ist ein Pflichtfeld.
 
+**Mindestbestellmengen (seit 2026-09-23):** Direkt über der Anfrage steht
+eine Hinweisbox (`.bestellmengen-hinweis`) — Online-Anfragen für Canapés,
+Cupcakes, Petit Fours & Bäcker-Sushi sind ab 40 Stück möglich, kleinere
+Mengen bitte in der Filiale oder telefonisch. Das Stückzahl-Feld ist jetzt
+Pflicht mit `min="40"`; Live-Warnung unter dem Feld und das native
+Browser-Popup bei zu geringem Wert laufen über die gemeinsame Logik in
+`shared.js` (siehe torten.html). `api/formular.js` weist zu geringe Mengen
+zusätzlich serverseitig ab.
+
 ---
 
 ### 9. `sushi.html`
@@ -661,6 +696,11 @@ Postfach an `info@brotzeit-rostock.de`; Wunschtermin und Stückzahl werden in
 die E-Mail übernommen. Die Nachricht ist ein Pflichtfeld. IDs mit Präfix
 `s-` (statt `c-` bei canapes.html) zur Unterscheidung.
 
+**Mindestbestellmengen (seit 2026-09-23):** Wie canapes.html — Hinweisbox
+über der Anfrage (Canapés/Cupcakes/Petitfours/Bäcker-Sushi ab 40 Stück),
+Stückzahl-Feld Pflicht mit `min="40"`, Live-Warnung + Browser-Popup über
+`shared.js`, serverseitige Prüfung in `api/formular.js`.
+
 ---
 
 ## Technische Anforderungen
@@ -681,6 +721,22 @@ die E-Mail übernommen. Die Nachricht ist ein Pflichtfeld. IDs mit Präfix
 - Alle `tel:`-Links: `+493818772950`
 - Google Maps Embed auf kontakt.html: echter Embed-Code seit 2026-08-26
   aktiv (siehe Arbeitsprotokoll)
+- **Cookie-Banner & Google Analytics** (seit 2026-08-31, GLOBAL, Areal 5 auf
+  allen 10 Seiten): Eigener, schlanker Cookie-Banner (`#cookie-banner`,
+  „Akzeptieren"/„Ablehnen" gleich groß/gleich prominent — Pflicht laut
+  deutscher Rechtsprechung). `gtag.js` (Measurement-ID `G-YXNDRDD78N`) wird
+  **erst nach Klick auf „Akzeptieren"** dynamisch nachgeladen — Rechtsgrundlage
+  ist die Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), NICHT „berechtigtes
+  Interesse". Entscheidung wird in `localStorage`
+  (Key `brotzeit-cookie-consent`, Werte `accepted`/`declined`) gespeichert und
+  gilt seitenübergreifend. Über den Link „Cookie-Einstellungen" im Footer
+  (`.cookie-settings-link`, neben Impressum/Datenschutz) lässt sich der
+  Banner jederzeit erneut öffnen, um die Wahl zu ändern. Logik liegt in
+  `shared.js` für die 9 Unterseiten; `index.html` hat eine inhaltlich
+  identische, aber separate Kopie in seinem eigenen `<script>`-Block, da es
+  `shared.js` nicht lädt. In `speisekarte.html`s Bestellungs-Ansicht
+  (`body.bestellung-modus`) wird der Banner automatisch mitversteckt wie
+  alle anderen Elemente außer dem Bestell-Overlay.
 - Vercel-Formulare (`kontakt.html`, `karriere.html`, `torten.html`,
   `sushi.html` und `canapes.html`; Kontakt/Bewerbung seit 2026-08-26,
   Torte/Sushi/Canapés seit 2026-08-31): Alle senden per `POST /api/formular` direkt über das bestehende IONOS-
@@ -690,6 +746,25 @@ die E-Mail übernommen. Die Nachricht ist ein Pflichtfeld. IDs mit Präfix
   nie im HTML oder Repository stehen.
   Bewerbungsanhänge: PDF, DOC, DOCX, JPG oder PNG, maximal 3 MB. Die Grenze
   liegt bewusst unter Vercels nicht erhöhbarem Request-Limit von 4,5 MB.
+- **Mindestbestellmengen bei Online-Anfragen** (seit 2026-09-23,
+  `canapes.html`, `sushi.html`, `torten.html`): Canapés, Cupcakes, Petit
+  Fours & Bäcker-Sushi ab 40 Stück, Torten ab 15 Personen. Umgesetzt als
+  gemeinsame Hinweisbox (`.bestellmengen-hinweis` in `shared.css`) direkt
+  über der jeweiligen Anfrage, als Pflichtfeld mit `min`-Attribut
+  (Stückzahl bzw. Personenzahl) und als generische Prüf-Logik in
+  `shared.js` (`input[data-mengen-text]`): zeigt eine Live-Warnung unter
+  dem Feld und setzt per `setCustomValidity()` denselben Text im nativen
+  Browser-Validierungs-Popup, sobald der Wert unter dem Minimum liegt —
+  blockiert den Versand dadurch zuverlässig (`formular.reportValidity()`
+  in `formular.js` prüft das ohnehin vor jedem Absenden). Cupcakes &
+  Petitfours teilen sich das Torten-Formular; dessen Feld
+  „Personenzahl"/„Stückzahl" (`#t-personen`) schaltet sich per Script in
+  `torten.html` je nach gewähltem Anlass live um (Label, `min`, Platzhalter,
+  `data-mengen-text`). Zusätzlich prüft `api/formular.js` dieselbe
+  Mindestmenge serverseitig, bevor die E-Mail versendet wird — das ist die
+  eigentliche Absicherung, falls jemand `/api/formular` direkt ohne
+  Browser-Validierung anspricht. `kontakt.html` bleibt unverändert (kein
+  passendes Mengenfeld vorhanden).
 - Favicon (seit 2026-07-12, GLOBAL — auf allen 9 Seiten identisch, direkt
   nach der viewport-Meta-Zeile): 
   ```html
@@ -870,6 +945,204 @@ nachfragen — die Redirect-Logik aus der Tabelle oben lässt sich leicht
 
 Diese Sektion wird bei JEDER Änderung an der Website fortgeschrieben
 (neuester Eintrag oben). Priorität hat immer die Website selbst.
+
+### 2026-09-23 — Mindestbestellmengen für Canapés/Cupcakes/Petitfours/Bäcker-Sushi (40 Stück) und Torten (15 Personen)
+
+**Wunsch (Kunde):** Online-Anfragen für Canapés, Cupcakes, Petit Fours und
+Bäcker-Sushi sollen erst ab 40 Stück möglich sein, für Torten erst ab 15
+Personen. Kleinere Mengen sollen auf Filiale/Telefon verwiesen werden —
+dazu ein gut lesbarer Hinweistext auf den Anfrageseiten (zwei vom Kunden
+vorformulierte Texte). Zusätzlich die Rückfrage, ob ein Hinweis „aufploppt“,
+wenn jemand eine zu kleine Menge einträgt, oder ob kleinere Mengen sich
+technisch sperren lassen.
+
+**Wichtiger Strukturbefund vor der Umsetzung:** `torten.html` hat EIN
+gemeinsames Anfrage-Formular für Torten UND Cupcakes/Petitfours (Auswahl
+über das Anlass-Dropdown), aber nur ein Feld „Personenzahl" — kein eigenes
+Stückzahl-Feld für Cupcakes. Vier Rückfragen an den Kunden vor Baubeginn,
+alle mit der empfohlenen Option beantwortet:
+1. Cupcakes/Petitfours auf torten.html: Feld dynamisch zwischen
+   „Personenzahl“ (Torten) und „Stückzahl“ (Cupcakes) umschalten, statt nur
+   Hinweistext ohne technische Prüfung oder ein separates neues Feld.
+2. Mengenfeld wird Pflichtfeld (sonst lässt sich die Sperre durch leeres
+   Absenden umgehen).
+3. `kontakt.html` bleibt unverändert (kein Mengenfeld vorhanden, Canapés/
+   Sushi sind dort keine Betreff-Option).
+4. Zusätzlich serverseitige Prüfung in `api/formular.js`, da die reine
+   Browser-Validierung technisch umgehbar wäre.
+
+**Umgesetzte Schritte:**
+1. Neue gemeinsame Klasse `.bestellmengen-hinweis` in `shared.css`
+   (helle Box mit Akzent-Rand-links, analog zu `.sushi-pack`, bewusst hell
+   statt seiten-/hintergrundabhängig, da die Anfrage-Bereiche aller drei
+   Seiten dunklen Hintergrund haben) statt dreifacher Duplizierung als
+   seitenspezifisches Inline-Style.
+2. Hinweisboxen mit dem Kundentext eingefügt: `canapes.html` und
+   `sushi.html` je eine Box (Canapés/Cupcakes/Petitfours/Bäcker-Sushi,
+   40 Stück), `torten.html` zwei Boxen (Torten 15 Personen + Cupcakes &
+   Petitfours 40 Stück), alle direkt über dem jeweiligen Anfrageformular,
+   vor `.anfrage-inner`.
+3. `canapes.html`/`sushi.html`: Stückzahl-Feld auf `required`, `min="40"`,
+   Platzhalter „z.B. 50“ umgestellt, plus `data-mengen-text` mit dem
+   Warntext und ein leerer `<p class="mengen-warnung">` direkt darunter.
+4. `torten.html`: Feld `#t-personen` ebenfalls `required`, Standard
+   `min="15"`. Neue Funktion `aktualisiereMengenfeld()` im vorhandenen
+   Seiten-Script schaltet Label-Text, `min`, Platzhalter und
+   `data-mengen-text` live um, sobald im Anlass-Dropdown „Cupcakes &
+   Petitfours“ gewählt ist (Stückzahl/40) bzw. ein anderer Anlass
+   (Personenzahl/15) — inklusive aller drei bestehenden Auswahlwege
+   (Dropdown-„change“, Klick auf eine Kategorie-Kachel, `?anlass=…`-
+   URL-Parameter beim direkten Laden). Ein abschließendes `input`-Event
+   stößt die Prüfung in shared.js mit den neuen Werten erneut an.
+5. Generische Prüf-Logik in `shared.js` ergänzt: Jedes
+   `input[data-mengen-text]` bekommt bei „input“/„blur“ einen Abgleich
+   gegen sein `min`-Attribut — bei Unterschreitung erscheint der Text aus
+   `data-mengen-text` in der `.mengen-warnung` darunter UND wird per
+   `feld.setCustomValidity(...)` gesetzt, sodass das native
+   Browser-Validierungs-Popup beim Sendeversuch denselben Text zeigt
+   (`formular.js` ruft vor jedem Absenden ohnehin `reportValidity()` auf —
+   die Sperre war damit ohne zusätzlichen Submit-Handler vorhanden).
+6. `api/formular.js`: neue Funktion `mengenFehler()` prüft serverseitig
+   dieselben Minima (`canapes`/`sushi`: `stueckzahl` ≥ 40; `torte`: bei
+   Anlass „Cupcakes“ `personen` ≥ 40, sonst ≥ 15) und lehnt zu geringe
+   Mengen mit 422 ab — das ist die eigentliche Absicherung, falls jemand
+   den Endpoint direkt ohne Browser anspricht. Die Tortenanfrage-E-Mail
+   beschriftet das Feld jetzt ebenfalls korrekt als „Stückzahl“ statt
+   „Personenzahl“, wenn Anlass „Cupcakes“ ist.
+7. `tests/formular.test.js` erweitert: bestehender Sushi-Testfall von
+   30 auf 40 Stück korrigiert (wäre sonst am neuen Minimum gescheitert),
+   fünf neue Fälle ergänzt (Cupcakes-Erfolg mit korrektem „Stückzahl“-Label
+   in der Mail, sowie je eine 422-Ablehnung für Torte/Cupcakes/Sushi/
+   Canapés unterhalb des jeweiligen Minimums). Alle 12 Tests bestehen
+   (`node tests/formular.test.js`).
+8. Getestet in der Vorschau (`python -m http.server 8745`, neu angelegtes
+   `.claude/launch.json`): Auf allen drei Seiten Hinweisboxen mit
+   korrektem Text vorhanden, Feld bei Unterschreitung ungültig
+   (`checkValidity() === false`) mit sichtbarer Live-Warnung, bei
+   Erreichen des Minimums wieder gültig. Auf `torten.html` alle drei
+   Auswahlwege (Dropdown-Wechsel, Kategorie-Kachel-Klick, `?anlass=
+   Cupcakes`-Direktaufruf) schalten das Feld korrekt zwischen
+   Personenzahl/15 und Stückzahl/40 um. Ein simulierter Sendeversuch mit
+   zu geringer Menge löst nachweislich KEINEN `fetch()`-Aufruf aus (per
+   Monkey-Patch auf `window.fetch` bestätigt) — die Sperre wirkt also
+   tatsächlich, nicht nur die Warnung. Desktop, Tablet (768px) und Mobile
+   (375px) auf allen drei Seiten ohne horizontales Scrollen. Konsole auf
+   allen drei Seiten fehlerfrei.
+   **Hinweis zur Vorschau:** Ein Tab kollabierte zwischenzeitlich auf
+   Viewport-Breite 0 (`clientWidth`/`innerWidth: 0`), was zunächst ein
+   falsches „horizontales Scrollen: ja“ vortäuschte — bekannte
+   Panel-Eigenheit dieser Umgebung (siehe Eintrag vom 2026-08-31 zur
+   Sushi-Galerie). Ein neuer Tab mit erneutem `navigate` behob das
+   zuverlässig; die eigentlichen Messwerte (kein Overflow) waren danach
+   reproduzierbar korrekt.
+9. `.claude/launch.json` neu angelegt (war im Ordner `Finale August26`
+   noch nicht vorhanden) — `python -m http.server 8745`, analog zu
+   früheren Sessions.
+
+**Nicht angefasst:** `kontakt.html` (siehe Rückfrage 3 oben), Preise,
+Favicon, Cookie-Banner, Redirects.
+
+### 2026-09-01 — Cookie-Banner + Google Analytics (gtag.js) eingebaut, mit Einwilligung statt Vorab-Laden
+
+**Wunsch (Kunde):** Die Website soll mit Google Analytics getaggt werden
+(neue E-Mail-Adresse dafür angelegt, Google hat bereits eine Messung mit ID
+`G-YXNDRDD78N` erstellt). Kunde lieferte das fertige `gtag.js`-Snippet.
+
+**Wichtige Einordnung vor der Umsetzung:** Das Snippet unverändert einzufügen
+hätte Google Analytics beim Seitenaufruf sofort geladen — nach DSGVO/TTDSG in
+Deutschland nicht zulässig, da Analytics-Cookies nicht „notwendig" sind und
+eine vorherige, aktive Einwilligung (Opt-in) brauchen, kein bloßer Hinweis.
+Nach Rückfrage vom Kunden bestätigt: Cookie-Banner mit echtem Opt-in bauen,
+`gtag` erst nach Zustimmung laden, Datenschutzerklärung entsprechend
+anpassen.
+
+**Umgesetzte Schritte:**
+1. Neuer Cookie-Banner (`#cookie-banner`, Areal 5, GLOBAL) auf allen 10
+   Seiten direkt nach `<body>` eingefügt: Hinweistext + Link zur
+   Datenschutzerklärung, zwei **gleich große** Buttons „Ablehnen"
+   (`.btn-ghost-light` bzw. `.btn-ghost` auf index.html) und „Akzeptieren"
+   (`.btn-primary`) — bewusst gleich prominent, da deutsche Gerichte
+   ungleich gewichtete Buttons („Akzeptieren" groß & bunt, „Ablehnen" klein
+   & grau) als unzulässiges Nudging werten.
+2. `shared.js`: Cookie-Consent-Logik ergänzt — `gtag.js` wird per
+   `document.createElement('script')` erst nach Klick auf „Akzeptieren"
+   nachgeladen, nie vorher. Entscheidung landet in `localStorage`
+   (`brotzeit-cookie-consent`: `accepted`/`declined`) und gilt für alle
+   Unterseiten gemeinsam. `index.html` bekam dieselbe Logik als Kopie in
+   seinem eigenen `<script>`-Block (lädt kein `shared.js`).
+3. Footer aller 10 Seiten: neuer Button „Cookie-Einstellungen"
+   (`.cookie-settings-link`) neben Impressum/Datenschutz — öffnet den
+   Banner erneut, damit die Wahl jederzeit änderbar ist (Pflicht bei
+   Einwilligungs-basiertem Tracking).
+4. `datenschutz.html`: Den bereits vorhandenen Google-Analytics-Abschnitt
+   (Rest-Text aus dem ursprünglichen Generator-Dokument, siehe Abschnitt 7
+   oben) korrigiert — Rechtsgrundlage von Art. 6 Abs. 1 lit. f DSGVO
+   („berechtigtes Interesse", nicht mehr zulässig für Analytics) auf Art. 6
+   Abs. 1 lit. a DSGVO (Einwilligung) geändert, Hinweis auf den
+   Cookie-Banner und den Widerruf über „Cookie-Einstellungen" ergänzt. Der
+   Rest des Abschnitts (Anbieter, Cookie-Erklärung, Opt-out-Plugin) blieb
+   inhaltlich stehen, nur als Alternative zum eigenen Banner eingeordnet.
+5. **Dabei einen echten, vorbestehenden CSS-Bug gefunden und behoben:**
+   `.btn-ghost`, `.btn-ghost-light` (shared.css) und `.btn-ghost`,
+   `.btn-ghost-dark` (index.html) setzten nie `background: none` — auf
+   `<a>`-Links unsichtbar, weil Links ohnehin transparent sind, aber auf
+   echten `<button>`-Elementen (wie dem neuen „Ablehnen"-Button, aber auch
+   den längst bestehenden `#bestellung-drucken`/`#bestellung-neu`-Buttons
+   in der Bestellungs-Ansicht) zeigte der Browser-Standardhintergrund
+   durch — Text kaum lesbar. `background: none` + `cursor: pointer`
+   ergänzt, betrifft alle vier Klassen in beiden Dateien.
+6. Getestet in der Vorschau: Banner erscheint bei erstem Besuch (kein
+   `localStorage`-Eintrag), `gtag`/`googletagmanager.com`-Skript ist zu
+   diesem Zeitpunkt nachweislich NICHT im DOM. Klick auf „Akzeptieren" lädt
+   das Skript, setzt `dataLayer`/`gtag`, versteckt den Banner, schreibt
+   `accepted` in `localStorage` — auf `index.html` UND einer Unterseite
+   (`torten.html`) einzeln geprüft. Klick auf „Ablehnen" schreibt
+   `declined`, lädt nichts; nach Reload bleibt der Banner bei `declined`
+   dauerhaft versteckt und `gtag` lädt nicht. „Cookie-Einstellungen" im
+   Footer öffnet den Banner zuverlässig erneut. In `speisekarte.html`s
+   Bestellungs-Ansicht (`?bestellung=…`) bleibt der Banner korrekt
+   mitversteckt (gehört zu `body.bestellung-modus > *:not(#bestellung-overlay)`).
+   Der `.btn-ghost`-Fix per Vorher/Nachher-Screenshot auf Mobile (375px)
+   bestätigt: „Ablehnen" ist jetzt klar lesbar. Kein horizontales Scrollen.
+   Konsole auf allen 10 Seiten fehlerfrei.
+
+**Wichtig für den Kunden:** Google Analytics zeigt erst Daten, sobald echte
+Besucher „Akzeptieren" klicken — das ist beabsichtigt und rechtlich korrekt,
+bedeutet aber, dass die Zahlen in Analytics niedriger ausfallen als der
+tatsächliche Besucherstrom (alle, die ablehnen oder gar nicht entscheiden,
+werden nie gezählt).
+
+### 2026-08-31 (noch später) — Öffnungszeit Samstag auf 08:00–14:00 geändert
+
+**Wunsch (Kunde):** Samstags künftig nur noch bis 14:00 Uhr statt bisher
+16:30 Uhr geöffnet. Mo–Fr 07:30–17:30 bleibt unverändert.
+
+**Umgesetzte Schritte:**
+1. Alle 15 Fundstellen mit „16:30" in den 10 HTML-Dateien auf „14:00"
+   geändert: Footer (GLOBAL, 1× je Seite = 10), JSON-LD
+   `OpeningHoursSpecification` auf `index.html` und `kontakt.html` (2),
+   sichtbare Öffnungszeiten-Tabellen auf `index.html`, `kontakt.html` und
+   `speisekarte.html` (3).
+2. Laufband auf `index.html` bewusst NICHT angefasst — dort steht nur
+   „Frühstück ab 7.30 Uhr" (allgemein, keine Samstag-spezifische
+   Schließzeit), bleibt weiterhin korrekt.
+3. Getestet in der Vorschau: kein „16:30" mehr im gesamten Projekt (per
+   Volltextsuche bestätigt), JSON-LD auf `index.html` und `kontakt.html`
+   parst fehlerfrei mit `closes: "14:00"`, sichtbare Tabelle auf
+   `speisekarte.html` zeigt „Samstag 08:00 – 14:00 Uhr". Konsole auf allen
+   drei geprüften Seiten fehlerfrei.
+
+### 2026-08-31 (später) — Drei Preise in json/preise.js aktualisiert
+
+**Wunsch (Kunde):** Frühstücksbrötchen 0,48 € → 0,60 €, Hörnchen 1,45 € →
+1,49 €, Laugenstange 1,58 € → 1,59 € (Kategorie „Brötchen & Brot").
+
+**Umgesetzte Schritte:**
+1. Nur `json/preise.js` geändert (zentrale Preisquelle) — kein HTML
+   angefasst, wie vorgeschrieben.
+2. Getestet in der Vorschau: `window.BROTZEIT_PREISE` liefert die neuen
+   Werte, Preisliste UND Frühstückskonfigurator zeigen „0,60 €" / „1,49 €" /
+   „1,59 €" korrekt formatiert. Konsole fehlerfrei.
 
 ### 2026-08-31 (allerneuester Stand) — SEO-Hauptdomain auf www vereinheitlicht
 

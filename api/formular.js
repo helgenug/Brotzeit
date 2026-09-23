@@ -27,6 +27,31 @@ function gueltigeEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
 }
 
+// Mindestbestellmengen für Online-Anfragen: Canapés/Bäcker-Sushi und
+// Cupcakes & Petitfours (Anlass "Cupcakes" im Torten-Formular) ab 40 Stück,
+// Torten sonst ab 15 Personen. Duplikat der Client-Prüfung in shared.js —
+// die hier ist der eigentliche Schutz, falls jemand /api/formular direkt
+// ohne Browser-Validierung anspricht.
+function mengenFehler(art, daten) {
+  const telefonHinweis = 'bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.';
+  if (art === 'canapes' || art === 'sushi') {
+    const menge = parseInt(daten.stueckzahl, 10);
+    if (!Number.isFinite(menge) || menge < 40) {
+      return `Online-Anfragen sind ab 40 Stück möglich. Kleinere Mengen ${telefonHinweis}`;
+    }
+  } else if (art === 'torte') {
+    const istCupcakes = daten.anlass === 'Cupcakes';
+    const minimum = istCupcakes ? 40 : 15;
+    const menge = parseInt(daten.personen, 10);
+    if (!Number.isFinite(menge) || menge < minimum) {
+      return istCupcakes
+        ? `Online-Anfragen für Cupcakes & Petitfours sind ab 40 Stück möglich. Kleinere Mengen ${telefonHinweis}`
+        : `Online-Anfragen für Torten sind ab 15 Personen möglich. Für kleinere Personenzahlen ${telefonHinweis}`;
+    }
+  }
+  return null;
+}
+
 function dateinameSaubern(value) {
   const basis = String(value || 'lebenslauf').split(/[\\/]/).pop();
   return basis.replace(/[^a-zA-Z0-9äöüÄÖÜß._ -]/g, '_').slice(0, 120) || 'lebenslauf';
@@ -102,6 +127,7 @@ function mailInhalt(art, daten, datei) {
         daten.nachricht || 'keine Nachricht'
       ];
   } else if (art === 'torte') {
+    const mengenLabel = daten.anlass === 'Cupcakes' ? 'Stückzahl' : 'Personenzahl';
     zeilen = [
         'Neue Tortenanfrage über brotzeit-rostock.de',
         '',
@@ -109,7 +135,7 @@ function mailInhalt(art, daten, datei) {
         `E-Mail: ${daten.email}`,
         `Anlass: ${daten.anlass || 'nicht angegeben'}`,
         `Wunschdatum: ${daten.datum || 'nicht angegeben'}`,
-        `Personenzahl: ${daten.personen || 'nicht angegeben'}`,
+        `${mengenLabel}: ${daten.personen || 'nicht angegeben'}`,
         '',
         'Wünsche:',
         daten.nachricht
@@ -202,6 +228,10 @@ module.exports = async function handler(req, res) {
   }
   if (['kontakt', 'torte', 'sushi', 'canapes'].includes(art) && !daten.nachricht) {
     return antwort(res, 422, { ok: false, message: 'Bitte geben Sie eine Nachricht ein.' });
+  }
+  const mengenfehler = mengenFehler(art, daten);
+  if (mengenfehler) {
+    return antwort(res, 422, { ok: false, message: mengenfehler });
   }
   if (eingabe.datei && (!ERLAUBTE_DATEITYPEN.has(eingabe.datei.typ) || eingabe.datei.feldname !== 'lebenslauf')) {
     return antwort(res, 415, { ok: false, message: 'Erlaubt sind PDF, Word, JPG und PNG.' });

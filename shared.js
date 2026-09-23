@@ -127,4 +127,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ── MINDESTMENGEN-PRÜFUNG (canapes.html, sushi.html, torten.html) ──
+     Felder mit [data-mengen-text] bekommen eine Live-Warnung unterhalb des
+     Felds und dieselbe Meldung im nativen Browser-Popup (setCustomValidity),
+     sobald der eingegebene Wert unter dem "min"-Attribut liegt. torten.html
+     schaltet das Feld (Personenzahl ↔ Stückzahl) je nach gewähltem Anlass
+     dynamisch um und löst danach selbst ein "input"-Event aus, damit diese
+     Prüfung automatisch mit den neuen Werten (min, data-mengen-text) läuft. */
+  document.querySelectorAll('input[data-mengen-text]').forEach(feld => {
+    const gruppe = feld.closest('.form-group');
+    const warnung = gruppe ? gruppe.querySelector('.mengen-warnung') : null;
+    const pruefen = () => {
+      const minimum = Number(feld.min);
+      const wert = feld.value === '' ? NaN : Number(feld.value);
+      const zuWenig = feld.value !== '' && Number.isFinite(wert) && wert < minimum;
+      if (warnung) {
+        warnung.textContent = zuWenig ? feld.dataset.mengenText : '';
+        warnung.classList.toggle('sichtbar', zuWenig);
+      }
+      feld.setCustomValidity(zuWenig ? feld.dataset.mengenText : '');
+    };
+    feld.addEventListener('input', pruefen);
+    feld.addEventListener('blur', pruefen);
+    pruefen();
+  });
+
 });
