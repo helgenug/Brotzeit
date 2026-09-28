@@ -118,6 +118,11 @@
 }
 .kontakt-info-value a:hover { text-decoration: underline; }
 
+/* Sektion 1 sitzt auf hellem Hintergrund — die Standardfarbe von
+   .mengen-warnung (shared.css) ist für die dunklen Anfrage-Bereiche von
+   torten/canapes/sushi gedacht und wäre hier auf --cream unsichtbar. */
+.mengen-warnung { color: #A4161A; }
+
 .oz-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
 .oz-table tr { border-bottom: 1px solid var(--sand); }
 .oz-table tr:last-child { border-bottom: none; }
@@ -311,10 +316,17 @@
             <select id="k-betreff" name="betreff">
               <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
               <option value="Torte bestellen">Torte bestellen</option>
+              <option value="Cupcakes &amp; Petit Fours bestellen">Cupcakes &amp; Petit Fours bestellen</option>
+              <option value="Canapés bestellen">Canapés bestellen</option>
+              <option value="Bäcker-Sushi bestellen">Bäcker-Sushi bestellen</option>
               <option value="Tisch reservieren">Tisch reservieren</option>
-              <option value="Karriere">Karriere</option>
               <option value="Sonstiges">Sonstiges</option>
             </select>
+          </div>
+          <div class="form-group" id="k-menge-gruppe" hidden>
+            <label for="k-menge">Personenzahl</label>
+            <input type="number" id="k-menge" name="menge" min="1" data-mengen-text="">
+            <p class="mengen-warnung" aria-live="polite"></p>
           </div>
           <div class="form-group">
             <label for="k-nachricht">Nachricht</label>
@@ -392,5 +404,59 @@
 
 <script src="shared.js"></script>
 <script src="formular.js"></script>
+<script>
+/* Seitenspezifisch: Mengenfeld erscheint nur bei Betreffs, die eine
+   Mindestbestellmenge haben, und schaltet sich zwischen "Personenzahl"
+   (Torte) und "Stückzahl" (Cupcakes/Canapés/Bäcker-Sushi) um — analog zu
+   torten.html. Bei den übrigen Betreffs bleibt es versteckt und
+   deaktiviert (wird dann nicht mitgesendet). */
+document.addEventListener('DOMContentLoaded', () => {
+  const betreffSelect = document.getElementById('k-betreff');
+  const mengeGruppe = document.getElementById('k-menge-gruppe');
+  const mengeLabel = document.querySelector('label[for="k-menge"]');
+  const mengeFeld = document.getElementById('k-menge');
+  const MENGEN_REGELN = {
+    'Torte bestellen': {
+      label: 'Personenzahl', min: 15, platzhalter: 'z.B. 20',
+      text: 'Online-Anfragen für Torten sind ab 15 Personen möglich. Für kleinere Personenzahlen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.'
+    },
+    'Cupcakes & Petit Fours bestellen': {
+      label: 'Stückzahl', min: 40, platzhalter: 'z.B. 50',
+      text: 'Online-Anfragen sind ab 40 Stück möglich. Kleinere Mengen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.'
+    },
+    'Canapés bestellen': {
+      label: 'Stückzahl', min: 40, platzhalter: 'z.B. 50',
+      text: 'Online-Anfragen sind ab 40 Stück möglich. Kleinere Mengen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.'
+    },
+    'Bäcker-Sushi bestellen': {
+      label: 'Stückzahl', min: 40, platzhalter: 'z.B. 50',
+      text: 'Online-Anfragen sind ab 40 Stück möglich. Kleinere Mengen bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.'
+    }
+  };
+
+  function aktualisiereMengenfeld() {
+    if (!betreffSelect || !mengeGruppe || !mengeLabel || !mengeFeld) return;
+    const regel = MENGEN_REGELN[betreffSelect.value];
+    if (regel) {
+      mengeGruppe.hidden = false;
+      mengeFeld.disabled = false;
+      mengeFeld.required = true;
+      mengeLabel.textContent = regel.label;
+      mengeFeld.min = String(regel.min);
+      mengeFeld.placeholder = regel.platzhalter;
+      mengeFeld.dataset.mengenText = regel.text;
+    } else {
+      mengeGruppe.hidden = true;
+      mengeFeld.required = false;
+      mengeFeld.value = '';
+      mengeFeld.disabled = true;
+    }
+    mengeFeld.dispatchEvent(new Event('input'));
+  }
+
+  if (betreffSelect) betreffSelect.addEventListener('change', aktualisiereMengenfeld);
+  aktualisiereMengenfeld();
+});
+</script>
 </body>
 </html>

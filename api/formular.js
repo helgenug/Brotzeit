@@ -32,6 +32,16 @@ function gueltigeEmail(value) {
 // Torten sonst ab 15 Personen. Duplikat der Client-Prüfung in shared.js —
 // die hier ist der eigentliche Schutz, falls jemand /api/formular direkt
 // ohne Browser-Validierung anspricht.
+// Betreff-Werte des Kontaktformulars, die eine Mindestbestellmenge haben
+// (siehe gleichnamige MENGEN_REGELN in kontakt.html) — "Personen" bei
+// Torte, sonst "Stück".
+const KONTAKT_MENGEN_BETREFFE = {
+  'Torte bestellen': { minimum: 15, einheit: 'Personen' },
+  'Cupcakes & Petit Fours bestellen': { minimum: 40, einheit: 'Stück' },
+  'Canapés bestellen': { minimum: 40, einheit: 'Stück' },
+  'Bäcker-Sushi bestellen': { minimum: 40, einheit: 'Stück' }
+};
+
 function mengenFehler(art, daten) {
   const telefonHinweis = 'bitte direkt in der Filiale oder telefonisch unter 0381 87729509 anfragen.';
   if (art === 'canapes' || art === 'sushi') {
@@ -47,6 +57,14 @@ function mengenFehler(art, daten) {
       return istCupcakes
         ? `Online-Anfragen für Cupcakes & Petitfours sind ab 40 Stück möglich. Kleinere Mengen ${telefonHinweis}`
         : `Online-Anfragen für Torten sind ab 15 Personen möglich. Für kleinere Personenzahlen ${telefonHinweis}`;
+    }
+  } else if (art === 'kontakt') {
+    const regel = KONTAKT_MENGEN_BETREFFE[daten.betreff];
+    if (regel) {
+      const menge = parseInt(daten.menge, 10);
+      if (!Number.isFinite(menge) || menge < regel.minimum) {
+        return `Online-Anfragen für „${daten.betreff}“ sind ab ${regel.minimum} ${regel.einheit} möglich. Kleinere Mengen ${telefonHinweis}`;
+      }
     }
   }
   return null;
@@ -165,12 +183,17 @@ function mailInhalt(art, daten, datei) {
         daten.nachricht
       ];
   } else {
+    const mengenRegel = KONTAKT_MENGEN_BETREFFE[daten.betreff];
+    const mengenZeile = mengenRegel
+      ? [`${mengenRegel.einheit === 'Personen' ? 'Personenzahl' : 'Stückzahl'}: ${daten.menge || 'nicht angegeben'}`]
+      : [];
     zeilen = [
         'Neue Kontaktanfrage über brotzeit-rostock.de',
         '',
         `Name: ${daten.name}`,
         `E-Mail: ${daten.email}`,
         `Betreff: ${daten.betreff}`,
+        ...mengenZeile,
         '',
         'Nachricht:',
         daten.nachricht
@@ -220,6 +243,7 @@ module.exports = async function handler(req, res) {
     datum: text(f.datum, 40),
     personen: text(f.personen, 20),
     stueckzahl: text(f.stueckzahl, 20),
+    menge: text(f.menge, 20),
     nachricht: text(f.nachricht, 5000)
   };
 

@@ -94,14 +94,37 @@ async function senden(felder, datei) {
   ergebnis = await senden({ ...basis, formular_typ: 'canapes', name: 'Sara', email: 'sara@example.com', datum: '2026-09-19', stueckzahl: '20', nachricht: 'Zu wenig Stück' });
   assert.equal(ergebnis.status, 422);
 
+  // kontakt.html: seit 2026-09-28 hat das Betreff-Dropdown ebenfalls
+  // Torte/Cupcakes/Canapés/Bäcker-Sushi mit denselben Mindestmengen wie die
+  // eigenen Anfrageseiten, geprüft über das neue Feld "menge".
+  ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: 'Jule', email: 'jule@example.com', betreff: 'Torte bestellen', menge: '20', nachricht: 'Geburtstagstorte' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[6].text, /Personenzahl: 20/);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: 'Finn', email: 'finn@example.com', betreff: 'Cupcakes & Petit Fours bestellen', menge: '50', nachricht: 'Für eine Feier' });
+  assert.equal(ergebnis.status, 200);
+  assert.match(mails[7].text, /Stückzahl: 50/);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: 'Kim', email: 'kim@example.com', betreff: 'Canapés bestellen', menge: '10', nachricht: 'Zu wenig Stück' });
+  assert.equal(ergebnis.status, 422);
+
+  ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: 'Kim', email: 'kim@example.com', betreff: 'Torte bestellen', menge: '5', nachricht: 'Zu wenig Personen' });
+  assert.equal(ergebnis.status, 422);
+
+  // Betreffs ohne Mindestmenge (Allgemeine Anfrage, Tisch reservieren,
+  // Sonstiges) bleiben unabhängig vom Mengenfeld unbeschränkt.
+  ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: 'Otto', email: 'otto@example.com', betreff: 'Allgemeine Anfrage', nachricht: 'Habt ihr glutenfreies Brot?' });
+  assert.equal(ergebnis.status, 200);
+  assert.doesNotMatch(mails[8].text, /Personenzahl:|Stückzahl:/);
+
   ergebnis = await senden({ ...basis, formular_typ: 'kontakt', name: '', email: 'falsch', nachricht: '' });
   assert.equal(ergebnis.status, 422);
 
   ergebnis = await senden({ ...basis, website: 'spam', formular_typ: 'kontakt' });
   assert.equal(ergebnis.status, 200);
-  assert.equal(mails.length, 6);
+  assert.equal(mails.length, 9);
 
-  console.log('12 Formular-Tests bestanden.');
+  console.log('17 Formular-Tests bestanden.');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;

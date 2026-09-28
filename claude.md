@@ -116,7 +116,7 @@ siehe Arbeitsprotokoll.)
 | 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
-| 30 | Adresse, Karte & Formular |
+| 30 | Adresse, Karte & Formular — Betreff seit 2026-09-28 mit Torte/Cupcakes & Petit Fours/Canapés/Bäcker-Sushi inkl. Mengenfeld (Mindestmengen wie auf den eigenen Anfrageseiten), „Karriere" als Betreff entfernt |
 | 40 | Anfahrt |
 | 50 (GLOBAL) | Footer |
 
@@ -126,8 +126,7 @@ siehe Arbeitsprotokoll.)
 | 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
-| 30 | Stellenangebote |
-| 40 | Bewerbungsformular |
+| 30 | Hinweis „Aktuell sind alle Stellen besetzt" — seit 2026-09-28, ersetzt Stellenangebote + Bewerbungsformular (Areal 40 entfällt ersatzlos) |
 | 50 (GLOBAL) | Footer |
 
 **`impressum.html`**
@@ -482,10 +481,22 @@ Rostock", siehe Arbeitsprotokoll). Aktueller Code:
 (Ursprünglicher Platzhalter-Code, zur Referenz, nicht mehr aktiv:
 `src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2335.123!2d12.1327!3d54.0897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDA1JzIyLjkiTiAxMsKwMDcnNTcuNyJF!5e0!3m2!1sde!2sde!4v1234567890"`.)
 
-Spalte 3 — Rudimentäres Kontaktformular:
-Felder: Name, E-Mail, Betreff (Dropdown: Allgemeine Anfrage / Torte bestellen / Tisch reservieren / Karriere / Sonstiges), Nachricht (Textarea), Senden-Button
-Formular-Action: `mailto:info@brotzeit-rostock.de` (method="post" enctype="text/plain")
-Kein Backend, kein externer Dienst.
+Spalte 3 — Kontaktformular:
+Felder: Name, E-Mail, Betreff (Dropdown), Nachricht (Textarea), Senden-Button.
+Seit 2026-08-26 an das Vercel-Backend angeschlossen (`POST /api/formular`,
+Formular-Typ `kontakt`, `formular.js`, Honeypot + Zeitprüfung — nicht mehr
+`mailto:`, siehe Arbeitsprotokoll).
+
+**Seit 2026-09-28** trägt das Betreff-Dropdown „Allgemeine Anfrage / Torte
+bestellen / Cupcakes & Petit Fours bestellen / Canapés bestellen /
+Bäcker-Sushi bestellen / Tisch reservieren / Sonstiges" („Karriere" wurde
+entfernt). Bei den vier Bestell-Betreffs erscheint darunter live ein
+Mengenfeld (`#k-menge`), das sich zwischen „Personenzahl" (Torte, min. 15)
+und „Stückzahl" (Cupcakes/Canapés/Bäcker-Sushi, min. 40) umschaltet —
+dieselben Mindestmengen wie auf `torten.html`/`canapes.html`/`sushi.html`,
+serverseitig ebenfalls in `api/formular.js` geprüft. Bei den übrigen
+Betreffs bleibt das Feld versteckt und deaktiviert. Siehe „Technische
+Anforderungen" → „Mindestbestellmengen bei Online-Anfragen".
 
 **Sektion 2 — Anfahrt (dark background):**
 Text: Mit Bus oder Auto — Parkplätze am Vögenteich verfügbar. 
@@ -496,29 +507,30 @@ CTA: „Route planen" → `https://maps.google.com/?q=Am+Vögenteich+24+Rostock`
 
 ### 5. `karriere.html`
 
-Title: `Karriere – Brotzeit Rostock | Jetzt bewerben`
-Description: `Werde Teil des Teams bei Brotzeit Rostock. Offene Stellen in Bäckerei, Konditorei und Service. Bewerbung per E-Mail.`
+**Seit 2026-09-28 komplett umgebaut** — siehe Arbeitsprotokoll. Der
+folgende Stand ersetzt die frühere Beschreibung (Stellenangebote +
+Online-Bewerbungsformular mit Datei-Upload); die alte Fassung der Seite
+liegt unverändert als `karriere1.html` (`noindex, nofollow`, nicht
+verlinkt) zur Referenz/Wiederherstellung.
+
+Title: `Karriere – Brotzeit Rostock`
+Description: `Bei Brotzeit Rostock sind aktuell alle Stellen besetzt. Für Initiativbewerbungen freuen wir uns auf ein persönliches Kennenlernen in unserer Filiale am Vögenteich 24.`
 Canonical: `https://www.brotzeit-rostock.de/karriere.html`
 
-Page-Teaser H1: `Werde Teil <em>unseres Teams.</em>`
-Teaser-Lead: `Handwerk, Konditorei, Service — wir freuen uns über Verstärkung.`
+Page-Teaser H1: `Werde Teil <em>unseres Teams.</em>` (unverändert)
+Teaser-Lead: `Aktuell sind alle Stellen besetzt — für eine Initiativbewerbung freuen wir uns auf ein persönliches Kennenlernen in unserer Filiale.`
 Platzhalterbild: `https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80&fit=crop`
 
-Inhalt (2 Sektionen):
+Inhalt (1 Sektion, ersetzt die früheren Sektionen „Stellen" + „Bewerbungsformular"):
 
-**Sektion 1 — Text + 3 Kacheln (Stellen):**
-Intro-Text: Wir sind ein kleines Team mit viel Herzblut für gutes Handwerk. Ob Bäcker, Konditor oder im Service — wenn du gerne backst, anpackst und Freude am Umgang mit Menschen hast, bist du bei uns richtig.
-
-3 Kacheln:
-- Bäcker / Konditor (m/w/d)
-- Fachverkäufer im Lebensmittelhandwerk (m/w/d)  
-- Aushilfe / Minijob (m/w/d)
-
-Jede Kachel: Stellenbezeichnung, 2 Sätze Beschreibung, Button „Jetzt bewerben" → `mailto:info@brotzeit-rostock.de?subject=Bewerbung Brotzeit Rostock`
-
-**Sektion 2 — dark background:**
-Text: Kein passendes Angebot dabei? Schick uns eine Initiativbewerbung. 
-CTA: „Initiativbewerbung senden" → `mailto:info@brotzeit-rostock.de?subject=Initiativbewerbung Brotzeit Rostock`
+**Sektion 1 — Hinweis „Aktuell sind alle Stellen besetzt" (heller Hintergrund, kein Formular):**
+„Vielen Dank für dein Interesse an der Brotzeit. Zurzeit haben wir keine
+offenen Stellen zu besetzen. Schau gerne später wieder vorbei – sobald wir
+Verstärkung suchen, findest du unsere aktuellen Stellenangebote hier.
+Solltest du eine Initiativbewerbung abgeben wollen, freuen wir uns auf ein
+persönliches Kennenlernen in unserer Filiale.", darunter Adresse + Telefon
+als CTA für den Vor-Ort-Besuch. Kein Formular, kein Datei-Upload mehr,
+kein JobPosting-Schema (siehe Arbeitsprotokoll 2026-09-28).
 
 ---
 
@@ -746,11 +758,12 @@ Stückzahl-Feld Pflicht mit `min="40"`, Live-Warnung + Browser-Popup über
   nie im HTML oder Repository stehen.
   Bewerbungsanhänge: PDF, DOC, DOCX, JPG oder PNG, maximal 3 MB. Die Grenze
   liegt bewusst unter Vercels nicht erhöhbarem Request-Limit von 4,5 MB.
-- **Mindestbestellmengen bei Online-Anfragen** (seit 2026-09-23,
-  `canapes.html`, `sushi.html`, `torten.html`): Canapés, Cupcakes, Petit
-  Fours & Bäcker-Sushi ab 40 Stück, Torten ab 15 Personen. Umgesetzt als
-  gemeinsame Hinweisbox (`.bestellmengen-hinweis` in `shared.css`) direkt
-  über der jeweiligen Anfrage, als Pflichtfeld mit `min`-Attribut
+- **Mindestbestellmengen bei Online-Anfragen** (seit 2026-09-23 auf
+  `canapes.html`, `sushi.html`, `torten.html`; seit 2026-09-28 auch auf
+  `kontakt.html`): Canapés, Cupcakes, Petit Fours & Bäcker-Sushi ab 40
+  Stück, Torten ab 15 Personen. Umgesetzt als gemeinsame Hinweisbox
+  (`.bestellmengen-hinweis` in `shared.css`, auf canapes/sushi/torten)
+  direkt über der jeweiligen Anfrage, als Pflichtfeld mit `min`-Attribut
   (Stückzahl bzw. Personenzahl) und als generische Prüf-Logik in
   `shared.js` (`input[data-mengen-text]`): zeigt eine Live-Warnung unter
   dem Feld und setzt per `setCustomValidity()` denselben Text im nativen
@@ -760,11 +773,22 @@ Stückzahl-Feld Pflicht mit `min="40"`, Live-Warnung + Browser-Popup über
   Petitfours teilen sich das Torten-Formular; dessen Feld
   „Personenzahl"/„Stückzahl" (`#t-personen`) schaltet sich per Script in
   `torten.html` je nach gewähltem Anlass live um (Label, `min`, Platzhalter,
-  `data-mengen-text`). Zusätzlich prüft `api/formular.js` dieselbe
-  Mindestmenge serverseitig, bevor die E-Mail versendet wird — das ist die
+  `data-mengen-text`).
+  **`kontakt.html`** hat seit 2026-09-28 dasselbe Prinzip für sein
+  Betreff-Dropdown: ein zunächst verstecktes/deaktiviertes Feld
+  `#k-menge` wird bei Auswahl von „Torte bestellen" (Personenzahl, min. 15)
+  oder „Cupcakes & Petit Fours/Canapés/Bäcker-Sushi bestellen" (Stückzahl,
+  min. 40) live eingeblendet, Pflicht gesetzt und über dieselbe
+  `shared.js`-Logik geprüft; bei den übrigen Betreffs (Allgemeine Anfrage,
+  Tisch reservieren, Sonstiges) bleibt es versteckt/`disabled` und wird
+  nicht mitgesendet. Da Sektion 1 von `kontakt.html` — anders als die
+  dunklen Anfrage-Bereiche der anderen drei Seiten — auf hellem Hintergrund
+  sitzt, überschreibt `kontakt.html` die Warnfarbe seitenspezifisch auf
+  dunkles Rot (`#A4161A`), sonst wäre sie unsichtbar.
+  Zusätzlich prüft `api/formular.js` dieselbe Mindestmenge serverseitig auf
+  allen vier Seiten, bevor die E-Mail versendet wird — das ist die
   eigentliche Absicherung, falls jemand `/api/formular` direkt ohne
-  Browser-Validierung anspricht. `kontakt.html` bleibt unverändert (kein
-  passendes Mengenfeld vorhanden).
+  Browser-Validierung anspricht.
 - Favicon (seit 2026-07-12, GLOBAL — auf allen 9 Seiten identisch, direkt
   nach der viewport-Meta-Zeile): 
   ```html
@@ -889,6 +913,16 @@ Datei/einen neuen Ordner einführt, hier ergänzen.
   beiden Word-Quelldokumente für Impressum/Datenschutz, Inhalt ist
   längst in impressum.html/datenschutz.html übernommen), `claude.md`
   selbst — alles interne Arbeitsdateien ohne Website-Bezug.
+- `.claude/` (seit 2026-09-23, jetzt auch in `.gitignore`) — enthält nur
+  `launch.json` für Claudes lokalen Vorschau-Server (`python -m http.server`).
+  Reines Entwickler-Werkzeug, kein Website-Bestandteil, taucht deshalb beim
+  Hochladen/Pushen gar nicht erst auf.
+- `kontakt1.html`, `karriere1.html` (seit 2026-09-28) — 1:1-Backups der
+  jeweils vorherigen Fassung von `kontakt.html`/`karriere.html`, angelegt
+  vor größeren inhaltlichen Änderungen, damit sich der alte Stand bei
+  Bedarf wiederherstellen lässt. Beide `noindex, nofollow` und von keiner
+  Seite verlinkt. Müssen nicht mit hochgeladen werden, können aber
+  gefahrlos mit hochgeladen werden, falls einfacher (rein inert).
 
 **Vor dem ersten echten Livegang zusätzlich prüfen:**
 - In Vercel `SMTP_USER` und `SMTP_PASSWORD` für Production, Preview und
@@ -945,6 +979,101 @@ nachfragen — die Redirect-Logik aus der Tabelle oben lässt sich leicht
 
 Diese Sektion wird bei JEDER Änderung an der Website fortgeschrieben
 (neuester Eintrag oben). Priorität hat immer die Website selbst.
+
+### 2026-09-28 — kontakt.html: Betreff um Cupcakes/Canapés/Bäcker-Sushi + Mindestmengen erweitert; karriere.html: Stellen entfernt, „alle Stellen besetzt"
+
+**Wunsch (Kunde):** Zwei Änderungen. (1) Auf `kontakt.html` beim
+Betreff-Dropdown zusätzlich zu Torte auch die anderen Artikel
+(Cupcakes/Petitfours, Canapés, Bäcker-Sushi) auflisten, mit denselben
+hinterlegten Mindestmengen wie auf den eigenen Anfrageseiten — „Karriere"
+fliegt dafür aus dem Dropdown. (2) Auf `karriere.html` alle Stellenangebote
+entfernen und durch einen Hinweistext ersetzen, dass aktuell alle Stellen
+besetzt sind. Vor beidem sollte jeweils die alte Fassung als
+`kontakt1.html`/`karriere1.html` gesichert werden.
+
+**Vorab geklärt (die Kundennachricht enthielt einen inneren Widerspruch):**
+Ein ursprünglich mitgeschickter Absatz („E-Mail-Adresse nicht mehr
+anklickbar machen, darunter Hinweis: Anfragen bitte ausschließlich über die
+Rubrikseiten stellen") widersprach der eigentlichen Anforderung, das
+Kontaktformular gerade um genau diese Anfragen zu erweitern — beides
+gleichzeitig ergibt keinen Sinn. Nach Rückfrage bestätigt: Formular wird
+erweitert (Option A), der Rubrikseiten-Hinweis/die entklickbare E-Mail
+entfallen ersatzlos. Außerdem bestätigt: die genannte Adresse
+„info@sparre.de" existiert auf der Seite gar nicht (dort steht
+`info@brotzeit-rostock.de`) — vermutlich eine Verwechslung mit der
+separaten GmbH-Adresse `mail@sparre.de` im Impressum. Zusätzlich geklärt:
+Das Bewerbungsformular auf `karriere.html` (Datei-Upload, seit 2026-07-11)
+sollte komplett entfernt werden statt nur die 3 Stellen-Kacheln zu tauschen
+— passend zum Kundentext, der ein persönliches Kennenlernen in der Filiale
+statt einer Online-Bewerbung nahelegt. Backup auch für `karriere.html`
+gewünscht.
+
+**Umgesetzte Schritte:**
+1. `kontakt1.html` und `karriere1.html` als 1:1-Kopien der jeweils
+   vorherigen Fassung angelegt, `<meta name="robots">` auf
+   `noindex, nofollow` gesetzt (analog zu `bestellung.html`), damit sie
+   nicht als Duplicate Content indexiert werden. Beide von keiner
+   Navigation/Sitemap aus verlinkt.
+2. `kontakt.html`: Betreff-Dropdown ist jetzt „Allgemeine Anfrage / Torte
+   bestellen / Cupcakes & Petit Fours bestellen / Canapés bestellen /
+   Bäcker-Sushi bestellen / Tisch reservieren / Sonstiges" (Karriere
+   entfernt). Neues Feld `#k-menge` (Personenzahl/Stückzahl, Mindestmenge
+   15 bzw. 40) erscheint per Seiten-Script nur bei den vier Bestell-
+   Betreffs — anfangs `hidden` + `disabled`, damit es bei den übrigen
+   Betreffs weder validiert noch mitgesendet wird (dasselbe Prinzip wie
+   die Personenzahl/Stückzahl-Umschaltung auf `torten.html` vom
+   2026-09-23, hier aber zusätzlich mit Ein-/Ausblenden statt nur
+   Umbeschriften, da drei der sieben Betreffs gar keine Menge brauchen).
+   Nutzt dieselbe generische Prüf-Logik aus `shared.js`
+   (`input[data-mengen-text]`, Live-Warnung + `setCustomValidity()`).
+   **Dabei beachtet:** Sektion 1 von `kontakt.html` sitzt — anders als die
+   Anfrage-Bereiche von torten/canapes/sushi — auf hellem Hintergrund;
+   die für dunkle Hintergründe gedachte helle Warnfarbe aus `shared.css`
+   wäre hier unsichtbar gewesen (derselbe Fehlertyp wie die verschwundene
+   Kontaktformular-Erfolgsmeldung vom 2026-08-31). Seitenspezifische
+   Überschreibung auf `#A4161A` ergänzt.
+3. `api/formular.js`: neues Feld `menge` wird mitgelesen; `mengenFehler()`
+   um einen `kontakt`-Zweig erweitert (`KONTAKT_MENGEN_BETREFFE`-Tabelle:
+   Torte → 15 Personen, die drei anderen Bestell-Betreffs → 40 Stück,
+   übrige Betreffs → keine Prüfung); `mailInhalt()` schreibt bei
+   Bestell-Betreffs zusätzlich eine Zeile „Personenzahl: …" bzw.
+   „Stückzahl: …" in die E-Mail.
+4. `karriere.html`: Stellenangebote-Kacheln UND Bewerbungsformular (samt
+   Datei-Upload und dem `job-apply-btn`-Script) vollständig entfernt,
+   ersetzt durch eine Sektion „Aktuell sind alle Stellen besetzt" mit dem
+   vom Kunden gelieferten Text sowie Adresse/Telefon für den
+   Vor-Ort-Besuch. Da kein Formular mehr auf der Seite ist, wurde auch
+   `formular.js` aus dem Seiten-Script-Einbindung entfernt (wird nicht mehr
+   gebraucht). JobPosting-Schema (3 Einträge) aus dem JSON-LD entfernt —
+   sonst hätte Google weiter 3 offene Stellen ausgespielt, die es nicht
+   mehr gibt; BreadcrumbList bleibt. Title/Description/Open Graph/
+   Twitter-Card von „Jetzt bewerben" auf eine ehrliche Beschreibung
+   („aktuell keine offenen Stellen") umgestellt. Teaser-Lead angepasst,
+   damit er nicht der neuen Meldung widerspricht („wir freuen uns über
+   Verstärkung" direkt über „alle Stellen besetzt" wäre widersprüchlich
+   gewesen) — H1 selbst blieb unverändert. Nicht angetastete CSS-Klassen
+   (`.stellen-*`, `.bewerbung-*`, Datei-Input-Styling) mit entfernt statt
+   nur verwaist stehen gelassen.
+5. `tests/formular.test.js` um fünf neue Fälle für das kontakt.html-
+   Mengenfeld erweitert (Torte gültig, Cupcakes gültig, Canapés zu wenig,
+   Torte zu wenig, Allgemeine Anfrage ohne Menge unbeschränkt). Alle 17
+   Tests bestehen (`node tests/formular.test.js`).
+6. Getestet in der Vorschau (`python -m http.server 8745`):
+   `kontakt.html` — Betreff-Optionen korrekt, Mengenfeld schaltet sich bei
+   allen vier Bestell-Betreffs korrekt um (Label/Minimum/Platzhalter),
+   bleibt bei den übrigen versteckt/deaktiviert; Live-Warnung erscheint
+   und ist mit dunkelrotem Text lesbar; ein simulierter Sendeversuch mit
+   Torte + 5 Personen löst nachweislich KEINEN `fetch()`-Aufruf aus, ein
+   Sendeversuch mit „Allgemeine Anfrage" (ohne Menge) dagegen schon.
+   `karriere.html` — genau ein `<h1>`, kein `.stellen-grid`/`#bewerbung`
+   mehr im DOM, JSON-LD enthält kein `JobPosting` mehr und parst
+   fehlerfrei. Beide Seiten auf Desktop, Tablet (768px) und Mobile (375px)
+   ohne horizontales Scrollen, Konsole auf beiden Seiten fehlerfrei.
+   `kontakt1.html`/`karriere1.html` gegengeprüft: zeigen unverändert den
+   alten Stand (altes Betreff-Dropdown ohne Mengenfeld bzw. Stellen-Grid +
+   Bewerbungsformular) und liefern `noindex, nofollow`.
+   **Nicht testbar:** echter Versand über Vercel/IONOS (lokale Vorschau,
+   kein Live-SMTP) — serverseitige Logik ist aber per Unit-Test verifiziert.
 
 ### 2026-09-23 — Mindestbestellmengen für Canapés/Cupcakes/Petitfours/Bäcker-Sushi (40 Stück) und Torten (15 Personen)
 
