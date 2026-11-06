@@ -611,7 +611,8 @@ Formular keinen Sinn, das freie Textfeld „Ihre Wünsche" deckt das ab.
 
 **Sektion 3 — Bestellformular (dark background, wie torten.html Anfrage):**
 2-spaltig: Links Kontakt-Info (persönlich, E-Mail, Telefon, Vorlaufzeit
-3–5 Tage — kürzer als bei Torten, da kein individuelles Anfertigen nötig),
+mindestens eine Woche — seit 2026-11-06, vorher 3–5 Tage; geändert, weil
+Canapés stark nachgefragt sind, siehe Hinweisbox unten),
 rechts Formular: Name, E-Mail, Wunschtermin, Stückzahl, Nachricht
 („Welche Sorten interessieren dich? Vegetarisch, Allergien, besondere
 Wünsche …"), Senden-Button. Seit 2026-08-31 wie die übrigen Formulare an
@@ -630,6 +631,15 @@ Pflicht mit `min="40"`; Live-Warnung unter dem Feld und das native
 Browser-Popup bei zu geringem Wert laufen über die gemeinsame Logik in
 `shared.js` (siehe torten.html). `api/formular.js` weist zu geringe Mengen
 zusätzlich serverseitig ab.
+
+**Vorbestellungs-Hinweis (seit 2026-11-06):** Über der Mengen-Hinweisbox
+steht eine zweite `.bestellmengen-hinweis`-Box „Hinweis zur Vorbestellung ·
+Canapés" (Text mit Anja abgestimmt): Canapés sind sehr gefragt, Bestellung
+bitte mindestens eine Woche im Voraus persönlich vor Ort oder telefonisch
+(Nummer als `tel:`-Link) mit den Mitarbeiterinnen besprechen; das Team
+prüft, ob der Auftrag zum Wunschtermin angenommen werden kann. Das
+Online-Formular bleibt bewusst bestehen (Kundenentscheidung) und dient als
+erste Anfrage.
 
 ---
 
@@ -979,6 +989,32 @@ nachfragen — die Redirect-Logik aus der Tabelle oben lässt sich leicht
 
 Diese Sektion wird bei JEDER Änderung an der Website fortgeschrieben
 (neuester Eintrag oben). Priorität hat immer die Website selbst.
+
+### 2026-11-06 — canapes.html: Hinweis zur Vorbestellung (mind. eine Woche, persönlich/telefonisch), Vorlaufzeit 3–5 Tage → eine Woche
+
+**Wunsch (Kunde, nach Rücksprache mit Anja):** Zusatz auf der Website:
+„Unsere Canapés sind sehr gefragt. Bitte besprechen Sie Ihre Bestellung
+daher mindestens eine Woche im Voraus persönlich vor Ort oder telefonisch
+mit unseren Mitarbeiterinnen. Wir prüfen gern, ob wir Ihren Auftrag zum
+gewünschten Termin annehmen können."
+
+**Vorab geklärt:** (1) Die Vorlaufzeit in der Infospalte („3–5 Tage")
+widersprach dem neuen Text und wurde auf „eine Woche" angeglichen;
+Bäcker-Sushi behält 3–5 Tage. (2) Der Text legt „nur persönlich/telefonisch"
+nahe, auf der Seite gibt es aber das Online-Formular. Entscheidung: Das
+Formular bleibt als erste Anfrage bestehen (Option a).
+
+**Umgesetzt (Areal 50, canapes.html):**
+1. Neue Hinweisbox „Hinweis zur Vorbestellung · Canapés" (Klasse
+   `.bestellmengen-hinweis`, kein neues CSS) direkt über der
+   Mengen-Hinweisbox; Telefonnummer als `tel:+4938187729509`-Link.
+2. Vorlaufzeit in der Infospalte: „Bitte mindestens eine Woche im Voraus
+   anfragen."
+3. Kein JSON-LD/FAQ betroffen (Vorlaufzeit stand dort nicht).
+
+**Getestet (Playwright, lokal):** Desktop 1440px, Tablet 768px und Mobile
+375px: kein horizontales Scrollen, genau eine `<h1>`, Konsole fehlerfrei,
+beide Hinweisboxen und die neue Vorlaufzeit werden angezeigt.
 
 ### 2026-09-28 — kontakt.html: Betreff um Cupcakes/Canapés/Bäcker-Sushi + Mindestmengen erweitert; karriere.html: Stellen entfernt, „alle Stellen besetzt"
 
