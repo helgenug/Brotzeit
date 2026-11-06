@@ -1,52 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- impressum.html und datenschutz.html bewusst NICHT gelistet: beide
+       tragen <meta name="robots" content="noindex, follow"> (widersprüchliches
+       Signal sonst). Weiterhin über interne Links (Footer) erreichbar.
+       Seit 2026-11-06 mit Bild-Einträgen (image:image) für die Google-Bildersuche. -->
 
   <url>
     <loc>https://www.brotzeit-rostock.de/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-fruehstueck-gebaeck-petit-fours-konditorei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-brot-handwerk-baeckerei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-petit-fours-toertchen-konditorei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-mittagstisch-veggie-rostock.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-team-rostock.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-motivtorte-herzen.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/speisekarte.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/fruehstueck-brotzeit-rostock-fruehstuecksteller.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/fruehstueck-brotzeit-rostock-spiegelei-avocado.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/fruehstueck-brotzeit-rostock-vollkornbrot-gemuese.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/fruehstueck-brotzeit-rostock-beeren-muesli.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/fruehstueck-brotzeit-rostock-broetchen-marmelade.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-brot-handwerk-baeckerei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-muttertag-torte.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-petit-fours-toertchen-konditorei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-weihnachten-plaetzchen.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-baecker-sushi-07.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-fruehstueck-gebaeck-petit-fours-konditorei.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/torten.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-toertchen-brotzeit-label.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-toertchen-reihe-beeren.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-motivtorte-happy-birthday.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-toertchen-vielfalt.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-himbeertoertchen-nahaufnahme.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-torte-rosen-beeren.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-hochzeitstorte-brautpaar.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-geburtstagstorte-erdbeer.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-motivtorte-individuell.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-cupcakes-petitfours.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-brot-handwerk-baeckerei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-muttertag-torte.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-petit-fours-toertchen-konditorei.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-weihnachten-plaetzchen.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/canapes.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-mittagstisch-veggie-rostock.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canapes-vielfalt.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-serranoschinken.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-gouda.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-putenbrust.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-tomate-mozzarella.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-franzoesische-salami.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-leerdammer.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-pastrami.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-bonbel-butterkaese.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-raeucherlachs.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-kochschinken.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-canape-tomate-feta.jpg</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://www.brotzeit-rostock.de/sushi.html</loc>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-baecker-sushi-07.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-baecker-sushi-10er-pack.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/kontakt.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-vitrine-bedienung.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/ueber-uns.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-laden-innenansicht.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-brotlaib-schriftzug.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-broetchen-auslage.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-toertchen-vitrine-blueten.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-ladenfassade-voegenteich.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-sonnenblumenbrot-nahaufnahme.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://www.brotzeit-rostock.de/karriere.html</loc>
-    <lastmod>2026-08-31</lastmod>
-  </url>
-
-  <!-- impressum.html und datenschutz.html bewusst NICHT gelistet: beide
-       tragen <meta name="robots" content="noindex, follow"> und sollen
-       laut Google nicht in der Sitemap stehen, wenn sie nicht in den
-       Suchergebnissen erscheinen sollen (widersprüchliches Signal sonst).
-       Weiterhin über interne Links (Footer) erreichbar. -->
-
-  <!-- sushi.html seit 2026-08-31 gelistet: die echten Sortennamen stehen
-       fest (10er-Pack), robots wurde auf "index, follow" umgestellt. -->
-  <url>
-    <loc>https://www.brotzeit-rostock.de/sushi.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <image:image><image:loc>https://www.brotzeit-rostock.de/images/1600/brotzeit-rostock-filiale-aussenansicht.jpg</image:loc></image:image>
   </url>
 
 </urlset>

@@ -93,9 +93,10 @@ siehe Arbeitsprotokoll.)
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser (Slideshow) |
 | 30 | Intro & Prozess |
+| 35 | Hochzeitstorten (Text + Fakten-Liste + Bild, Anker `#hochzeitstorten`, Button wählt Anlass „Hochzeit" vor) — seit 2026-11-06 |
 | 40 | Kategorien (Hochzeit/Geburtstag/Motiv/Cupcakes) |
 | 50 | Saisonales |
-| 55 | FAQ (3 Frage/Antwort-Paare zu Torten/Törtchen, mit FAQPage-Schema) |
+| 55 | FAQ (7 Frage/Antwort-Paare, davon 4 zu Hochzeitstorten, mit FAQPage-Schema) |
 | 60 | Anfrage-Formular |
 | 70 (GLOBAL) | Footer |
 
@@ -153,8 +154,9 @@ siehe Arbeitsprotokoll.)
 | 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
-| 30 | Einleitung (Text) |
+| 30 | Einleitung (Text) + Definitionsbox „Was sind Canapés?" (seit 2026-11-06) |
 | 40 | Galerie (11 Sorten, 3×4) |
+| 45 | FAQ (6 Frage/Antwort-Paare, mit FAQPage-Schema) — seit 2026-11-06 |
 | 50 | Bestellformular |
 | 60 (GLOBAL) | Footer |
 
@@ -164,8 +166,9 @@ siehe Arbeitsprotokoll.)
 | 5 (GLOBAL) | Cookie-Banner (Google Analytics erst nach Zustimmung) |
 | 10 (GLOBAL) | Navigation oben + mobiles Menü |
 | 20 | Page-Teaser |
-| 30 | Einleitung (Text) |
+| 30 | Einleitung (Text) + Definitionsbox „Was ist Bäcker-Sushi?" (seit 2026-11-06) |
 | 40 | 10er-Pack-Hinweis, Einzelbild links + Sortenliste rechts — **seit 2026-08-31**, ersetzt die frühere 11-teilige Galerie |
+| 45 | FAQ (5 Frage/Antwort-Paare, mit FAQPage-Schema) — seit 2026-11-06 |
 | 50 | Bestellformular |
 | 60 (GLOBAL) | Footer |
 
@@ -230,6 +233,8 @@ Leere. Hier stehen die Regeln jetzt gesammelt.
 - **JSON-LD/Schema derselben Seite**: Öffnungszeiten, FAQPage, JobPosting,
   Menu, ItemList. Sonst spielt Google weiter die alten Angaben aus, obwohl
   auf der Seite die neuen stehen.
+- **`llms.txt`** bei Öffnungszeiten, Vorlaufzeiten, Mindestmengen oder
+  neuen Angeboten (seit 2026-11-06).
 - **FAQ: sichtbarer Text und FAQPage-Schema müssen wortgleich sein** —
   Google verlangt das für Rich Snippets. Beides zusammen ändern.
 - Title, Meta-Description, Open Graph und Twitter-Card, Canonical.
@@ -359,11 +364,11 @@ zubereitet.
 
 ### 2. `torten.html`
 
-Title: `Individuelle Torten – Brotzeit Rostock | Hochzeitstorten, Motivtorten, Cupcakes`
-Description: `Individuelle Torten nach Maß: Hochzeitstorten, Geburtstagstorten, Motivtorten und Cupcakes. Handwerkliche Konditorei Rostock. Jetzt anfragen.`
+Title (seit 2026-11-06): `Hochzeitstorten & individuelle Torten in Rostock | Brotzeit`
+Description (seit 2026-11-06): `Hochzeitstorten und individuelle Torten aus Rostock: handgemacht in der Konditorei der Brotzeit am Vögenteich – für Geburtstag, Jugendweihe, Taufe, dazu Törtchen.`
 Canonical: `https://www.brotzeit-rostock.de/torten.html`
 
-Page-Teaser H1: `Jede Torte ein <em>Einzelstück.</em>`
+Page-Teaser H1 (seit 2026-11-06): `Hochzeitstorten &amp; individuelle Torten <em>in Rostock.</em>` — der frühere H1-Slogan „Jede Torte ein Einzelstück" steht jetzt in der Eyebrow darüber.
 Teaser-Lead: `Hochzeitstorten, Geburtstagstorten, Motivtorten — jede Torte entsteht nach Wunsch. Wir besprechen alles persönlich.`
 Platzhalterbild: `https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=80&fit=crop`
 
@@ -581,7 +586,8 @@ Hauptnavigation (`.nav-links`, `.nav-mobile`) und im Footer
 (inzwischen zwischen Torten und Bäcker-Sushi, siehe Seite 9 unten).
 
 Title: `Canapés Rostock | Feine Häppchen für jeden Anlass – Brotzeit`
-Description: `Canapés von Brotzeit Rostock: elf raffinierte Sorten auf frischem Brot, verfeinert mit Cremes und Obstdeko. Perfekt für Feiern und Events. Jetzt anfragen.`
+Description (seit 2026-11-06): `Canapés aus Rostock: elf Sorten auf Roggenvollkorn- oder Weizenbrot mit feinen Cremes, frisch aus der Backstube der Brotzeit – für Feiern, Buffets und Events.`
+og:image (seit 2026-11-06): `images/960/brotzeit-rostock-canapes-vielfalt.jpg` (853×853)
 Canonical: `https://www.brotzeit-rostock.de/canapes.html`
 
 Page-Teaser H1: `Canapés für <em>jeden Anlass.</em>`
@@ -660,8 +666,8 @@ Sortennamen Platzhalter waren). Die echten Sorten stehen jetzt fest, die
 Seite ist in `sitemap.xml` gelistet und trägt ein `ItemList`-Schema mit
 allen zehn Sorten.
 
-Title: `Bäcker-Sushi in Rostock bestellen | Brotzeit`
-Description: `Bäcker-Sushi von Brotzeit Rostock: herzhafte Röllchen aus Brot mit feinem Belag, geschnitten und angerichtet wie Sushi. Die besondere Alternative zur klassischen Platte. Jetzt anfragen.`
+Title (seit 2026-11-06): `Bäcker-Sushi in Rostock: herzhafte Röllchen bestellen | Brotzeit`
+Description (seit 2026-11-06): `Bäcker-Sushi aus Rostock: herzhaft gefüllte Wraps, gerollt und geschnitten wie Sushi – zehn Sorten im 10er-Pack, frisch aus der Backstube der Brotzeit.`
 Canonical: `https://www.brotzeit-rostock.de/sushi.html`
 
 Page-Teaser H1: `Bäcker-Sushi — <em>die herzhafte Rolle.</em>`
@@ -736,7 +742,15 @@ Stückzahl-Feld Pflicht mit `min="40"`, Live-Warnung + Browser-Popup über
   `https://www.brotzeit-rostock.de/#brotzeit` referenziert; Adresse, Kontakt,
   Öffnungszeiten und Geokoordinaten werden nicht widersprüchlich dupliziert.
 - Bilder: responsive `srcset`-Varianten (480/960/1600/2800), explizite
-  `width`-/`height`-Attribute und aussagekräftige `alt`-Texte. Das erste
+  `width`-/`height`-Attribute und aussagekräftige `alt`-Texte.
+  **Seit 2026-11-06 zusätzlich WebP:** Jedes Seitenbild steckt in einem
+  `<picture>` mit `<source type="image/webp">` (gleiche Breiten, gleiche
+  `sizes`) vor dem unveränderten JPG-`<img>` als Fallback. Zu jeder JPG-Datei
+  in `images/480|960|1600|2800/` liegt eine gleichnamige `.webp` daneben
+  (Pillow, Qualität 80). Neue Bilder brauchen also immer beide Formate in
+  allen vier Größen. `picture { display: contents; }` (in `shared.css` und
+  im Inline-Style von `index.html`) hält den Wrapper layout-neutral, alle
+  bestehenden `img`-Selektoren greifen weiter. Das erste
   sichtbare Hero-Bild wird priorisiert, nachfolgende Bilder werden lazy geladen.
 - Aktiver Nav-Link erhält Klasse `active`
 - Alle `mailto:`-Links mit echter Adresse: `info@brotzeit-rostock.de`
@@ -889,6 +903,13 @@ Datei/einen neuen Ordner einführt, hier ergänzen.
   `favicon.svg`, `apple-touch-icon.png`, `icon-192x192.png`,
   `icon-512x512.png`, `site.webmanifest` — alle 6 direkt im Projekt-Root
   (nicht im Ordner `favicon/`, das ist nur die lokale Quelle).
+- `llms.txt` (seit 2026-11-06, MUSS im Domain-Root liegen) — kompakte
+  Faktendatei für KI-Systeme (Adresse, Öffnungszeiten, Angebot mit Links).
+  Bei Änderungen an Öffnungszeiten, Vorlaufzeiten oder Mindestmengen
+  IMMER mitziehen.
+- `.webp`-Dateien in `images/480|960|1600|2800/` (seit 2026-11-06, je eine
+  pro verwendetem JPG) — ohne sie fallen Browser still auf JPG zurück, die
+  Seite bleibt also funktionsfähig, verliert aber den Ladezeit-Vorteil.
 - `robots.txt` und `sitemap.xml` (seit 2026-07-13, GLOBAL, MÜSSEN im
   Domain-Root liegen) — erlauben explizit auch KI-Crawler (GPTBot,
   OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, anthropic-ai, PerplexityBot,
@@ -989,6 +1010,85 @@ nachfragen — die Redirect-Logik aus der Tabelle oben lässt sich leicht
 
 Diese Sektion wird bei JEDER Änderung an der Website fortgeschrieben
 (neuester Eintrag oben). Priorität hat immer die Website selbst.
+
+### 2026-11-06 (später) — SEO-Runde: Suchbegriffe Bäckerei/Bäcker/Hochzeitstorten, Hochzeitstorten-Abschnitt, Definitionen + FAQ für Bäcker-Sushi und Canapés, Schema, llms.txt, Bild-Sitemap, WebP
+
+**Wunsch (Kunde):** Brotzeit soll bei „Bäckerei Rostock", „Bäcker",
+„Hochzeitstorten" sowie den Alleinstellungsmerkmalen Speisekarte,
+Bäcker-Sushi und Canapés besser gefunden werden — auch von KI-Systemen.
+Nach Diagnose freigegeben: Paket A (Technik) und Paket B (Texte) ohne
+Über-uns-Ausbau (dafür fehlen noch Fakten von Anja).
+
+**Diagnose vorab:** „Bäcker Rostock" stand auf keiner Seite, „Bäckerei
+Rostock" nur als „Bäckerei & Café Rostock"; H1 der Startseite („Ein Stück
+Rostock.") und der Tortenseite („Jede Torte ein Einzelstück.") ohne
+Suchbegriff; Hochzeitstorten nur als Kachel; Canapés/Sushi/Über uns mit
+nur ca. 270–350 Wörtern und ohne FAQ; og:image der Canapé-Seite zeigte den
+Veggie-Mittagstisch; keine `llms.txt`; Sitemap ohne Bilder und mit altem
+Datum; Bilder nur als JPG (41 MB über alle Größen).
+
+**Umgesetzt — Paket A (Technik):**
+1. WebP für alle 45 verwendeten Motive in allen vier Größen erzeugt
+   (41,0 MB JPG → 21,3 MB WebP, −48 %). Alle 54 Seitenbilder per Skript
+   (mit Trefferzahl-Prüfung) in `<picture>` mit WebP-Quelle gesetzt, JPG
+   bleibt Fallback. `picture { display: contents; }` ergänzt.
+2. `index.html`: Bakery-Schema ausgebaut (alternateName, Slogan, hasMap,
+   areaServed als Orte, knowsAbout, hasOfferCatalog mit Frühstück, Brot,
+   Hochzeitstorten, Torten, Bäcker-Sushi, Canapés; parentOrganization
+   Bäckerei Sparre GmbH & Co. KG laut Impressum) plus neuer `WebSite`-Knoten
+   `#website`. Torten/Sushi/Canapés: `Service`-Knoten mit `provider` =
+   `#brotzeit`, WebPages mit `isPartOf` = `#website`.
+3. `canapes.html`: og:image/twitter:image auf
+   `images/960/brotzeit-rostock-canapes-vielfalt.jpg` (853×853, mit
+   og:image:width/height/alt). Das Teaserbild bleibt bewusst unverändert.
+4. `sitemap.xml` neu: alle 8 Seiten mit `lastmod` 2026-11-06 und insgesamt
+   54 `image:image`-Einträgen (größte vorhandene 1600er-Variante).
+5. `llms.txt` neu im Root (Fakten, Angebot mit Links, Öffnungszeiten).
+
+**Umgesetzt — Paket B (Texte):**
+1. `index.html`: Title „Bäckerei & Bäcker in Rostock | Brotzeit am
+   Vögenteich", Description mit Bäckerei/Bäcker/Hochzeitstorten/
+   Bäcker-Sushi/Canapés. H1 bekommt die Zeile „Bäckerei in Rostock"
+   (`.hero-title-kicker`), „Ein Stück Rostock." bleibt.
+2. `torten.html`: Title/H1 „Hochzeitstorten & individuelle Torten in
+   Rostock", der alte Slogan wandert in die Eyebrow. Neue Sektion 1B
+   „Hochzeitstorten" (Areal 35) mit Fließtext, vier Fakten und Button
+   „Hochzeitstorte anfragen" (wählt im Formular Anlass „Hochzeit" vor).
+   FAQ um 4 Hochzeitsfragen ergänzt (Preis, Vorlauf, Lieferung, ab 15
+   Personen), sichtbar und im Schema wortgleich.
+3. `sushi.html`/`canapes.html`: Definitionsbox „Was ist …?" (neue Klasse
+   `.definition-box` in `shared.css`) und eigene FAQ-Sektion (Areal 45,
+   5 bzw. 6 Fragen, FAQPage-Schema). Sushi-Description von „Röllchen aus
+   Brot" auf „gefüllte Wraps" korrigiert (passend zur Einleitung).
+
+**Bewusste Entscheidungen:**
+- Keine Alleinstellungsbehauptung („nur bei uns in Rostock") — nicht
+  belegbar und wettbewerbsrechtlich riskant. Stattdessen „eine
+  Spezialität der Brotzeit Rostock".
+- Keine Preise, Etagenzahlen, Verkostungen oder Liefergebiete erfunden;
+  alle Aussagen stammen aus vorhandenen Seitentexten.
+- „Ohne Fleisch und Fisch" statt „vegetarisch" (Käse kann tierisches Lab
+  enthalten).
+- Kein `aggregateRating` im Schema: Google wertet selbst gepflegte
+  Bewertungen bei LocalBusiness nicht aus, und sie müssten sichtbar auf der
+  Seite stehen.
+
+**Getestet (Playwright, lokal):** 8 Seiten × Desktop 1440 / Tablet 768 /
+Mobile 375: kein horizontales Scrollen, Konsole fehlerfrei, keine
+HTTP-Fehler, alle Bilder laden als WebP (`currentSrc`), keine kaputten
+Bilder. Alle JSON-LD-Blöcke gültig, je Seite genau eine H1, FAQ sichtbar =
+Schema auf allen Seiten. Button „Hochzeitstorte anfragen" setzt Anlass
+„Hochzeit", Feld „Personenzahl", min 15. `sitemap.xml` ist gültiges XML.
+Formular-Tests (`node --test tests/formular.test.js`) grün.
+
+**Offen (Paket B, Rest / Paket C):**
+- [ ] Über uns ausbauen — Fakten von Anja: Gründungsjahre Sparre/Brotzeit,
+      Meisterbetrieb?
+- [ ] Hochzeitstorten präzisieren — Beratung/Verkostung? Etagen? Lieferung
+      mit Aufbau? Preis ab?
+- [ ] Sushi/Canapés — Lieferung oder nur Abholung? Platten?
+- [ ] Google Search Console + Bing Webmaster Tools: Sitemap einreichen.
+- [ ] Google-Unternehmensprofil: Kategorien, Produkte, Fotos, Beiträge.
 
 ### 2026-11-06 — canapes.html: Hinweis zur Vorbestellung (mind. eine Woche, persönlich/telefonisch), Vorlaufzeit 3–5 Tage → eine Woche
 
